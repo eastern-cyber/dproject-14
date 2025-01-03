@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ConnectButton, MediaRenderer, useActiveAccount, useReadContract } from "thirdweb/react";
 // import thirdwebIcon from "@public/thirdweb.svg";
-import dprojectIcon from "@public/Logo_DProject.svg";
+import dprojectIcon from "@public/DFastLogo_650x600.svg";
 import { client } from "./client";
 import { inAppWallet } from "thirdweb/wallets";
 import { chain } from "./chain";
@@ -33,20 +33,20 @@ export default function Home() {
                 auth: {
                   options: [
                     "email",
-                    "phone",
+                    // "phone",
                   ]
                 }
               }
               ) ]}
             />
-            <p>&nbsp;&nbsp;</p>
+            {/* <p>&nbsp;&nbsp;</p>
             <ConnectButton locale={"de_DE"}
               client={client}
               appMetadata={{
                 name: "Example App",
                 url: "https://example.com",
               }}
-            />
+            /> */}
           </div>
 
           <ThirdwebResources />
@@ -95,6 +95,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <ThirdwebResources />
     </div>
   )
 }
@@ -120,18 +121,22 @@ function Header() {
         }}
       />
       <p>&nbsp;&nbsp;</p>
-      <h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-        dProject Login
+      <h2 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
+        <span className="inline-block text-blue-500"> DFast </span>
+        &nbsp;&nbsp;&nbsp;
+        <span className="inline-block -skew-x-6 text-white"> Login </span>
+        &nbsp;
         <span className="text-zinc-300 inline-block mx-1"> + </span>
-        <span className="inline-block -skew-x-6 text-blue-500"> Register </span>
-      </h1>
+        &nbsp;
+        <span className="inline-block -skew-x-6 text-white"> Register </span>
+      </h2>
 
       <p className="text-zinc-300 text-base">
-        ล็อกอินด้วยเบอร์โทรศัพท์มือถือ แล้วรอรับ{" "}
+        ล็อกอินด้วยอีเมลล์{" "}
         <code className="bg-zinc-800 text-zinc-300 px-2 rounded py-1 text-sm mx-1">
           OTP
         </code>{" "}
-        จากนำมากรอกในช่องด้านล่าง
+        Web3 E-Mail Login
       </p>
     </header>
   );
