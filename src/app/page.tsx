@@ -58,10 +58,11 @@ export default function Home() {
   return (
     <div style={{
       display: "flex",
+      margin: "30px",
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      height: "100vh",
+      height: "100%",
     }}>
       <div style={{
         display: "flex",
@@ -95,7 +96,9 @@ export default function Home() {
           </div>
         )}
       </div>
-      <ThirdwebResources />
+      <div style={{margin:"30px"}}>
+        <ThirdwebResources />
+      </div>
     </div>
   )
 }
