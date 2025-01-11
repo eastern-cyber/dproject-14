@@ -23,12 +23,12 @@ export default function About() {
             <div style={{
                 display: "flex",
                 fontSize: "25px",
-            }}>เกี่ยวกับโครงการ</div>
+            }}>About</div>
             <div style={{
                 display: "flex",
                 fontSize: "20px",
                 margin: "15px",
-            }}>DFaast Innovation Project</div>
+            }}>DFast Innovation Project</div>
             <div>ดำเนินงานภายใต้แนวความคิดเพื่อการพัฒนาศักยภาพการแข่งขันของประเทศไทย เริ่มจาก Application ก๊อกก๊อกก๊อก (3K) ซึ่งเริ่มจากการพัฒนาให้เป็น Web3 SocialApp และไปสู่การเป็น Web3 SuperApp ในที่สุด</div>
         </div>
 
@@ -72,7 +72,7 @@ export default function About() {
                 display: "flex",
                 fontSize: "20px",
                 margin: "15px",
-            }}>DFast Project</div>
+            }}>DFast Project Membership</div>
             <div>เปิดโอกาสให้สมาชิกได้รับผลตอบแทนจากการใช้งาน Web3 Application ชื่อ Kok Kok Kok (ก๊อกๆๆ) หรือ 3K ซึ่งจะถูกพัฒนาขึ้น เพื่อให้สมาชิกมีรายได้จากระบบ ในรูปแบบ Passive Income หรือ รายได้ที่จะคงอยู่ตลอดไป ทั้งนี้สามารถสอบถามรายละเอียดได้จากผู้แนะนำ</div>
         </div>
     </div>

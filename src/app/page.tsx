@@ -199,7 +199,7 @@ function ArticleCard(props: {
   return (
     <a
       href={props.href + "?utm_source=next-template"}
-      target="_blank"
+      // target="_blank"
       className="flex flex-col border border-zinc-800 p-4 rounded-lg hover:bg-zinc-900 transition-colors hover:border-zinc-700"
     >
       <article>
