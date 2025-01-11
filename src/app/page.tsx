@@ -96,6 +96,27 @@ export default function Home() {
           </div>
         )}
       </div>
+      <div style={{
+        display: "flex",
+        margin: "20px",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "20px",
+        border: "1px solid #333",
+        borderRadius: "8px",
+      }}>
+          <p style={{
+            fontSize: "20px",
+          }}>
+          รายการทรัพย์สิน
+          </p>
+          <p style={{
+            fontSize: "15px",
+          }}>
+          แสดงรายการทรัพย์สินที่ท่่านถือครอง
+          </p>
+      </div>
       <div style={{margin:"30px"}}>
         <ThirdwebResources />
       </div>
@@ -149,21 +170,21 @@ function ThirdwebResources() {
   return (
     <div className="grid gap-4 lg:grid-cols-3 justify-center">
       <ArticleCard
-        title="thirdweb SDK Docs"
-        href="https://portal.thirdweb.com/typescript/v5"
-        description="thirdweb TypeScript SDK documentation"
+        title="เกี่ยวกับโครงการ DFast"
+        href="/about"
+        description="More detail about DFast Innovation Project"
       />
 
       <ArticleCard
-        title="Components and Hooks"
-        href="https://portal.thirdweb.com/typescript/v5/react"
-        description="Learn about the thirdweb React components and hooks in thirdweb SDK"
+        title="ต้นแบบ Application ก๊อกๆๆ"
+        href="https://3k.aseanquality.com/"
+        description="3K หรือ Kok Kok Kok จะต่อยอดจาก SocialApp ยอดนิยม"
       />
 
       <ArticleCard
-        title="thirdweb Dashboard"
-        href="https://thirdweb.com/dashboard"
-        description="Deploy, configure, and manage your smart contracts from the dashboard."
+        title="DFast Project Timeline"
+        href="/timeline"
+        description="แสดงรายละเอียดไทม์ไลน์และความคืบหน้าของโครงการ"
       />
     </div>
   );
