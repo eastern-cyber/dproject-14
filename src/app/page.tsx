@@ -103,7 +103,8 @@ export default function Home() {
         alignItems: "center",
         justifyContent: "center",
         padding: "20px",
-        border: "1px solid #333",
+        width: "90%",
+        // border: "1px solid #333",
         borderRadius: "8px",
       }}>
           <p style={{
@@ -114,7 +115,7 @@ export default function Home() {
           <p style={{
             fontSize: "15px",
           }}>
-          แสดงรายการทรัพย์สินที่ท่่านถือครอง
+          แสดงรายการทรัพย์สินที่ถือครอง
           </p>
       </div>
       <div style={{margin:"30px"}}>
