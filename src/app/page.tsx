@@ -20,7 +20,8 @@ export default function Home() {
     }
   );
 
-  if(!account){
+  if(!account)
+  {
     return (
       <main className="p-4 pb-10 min-h-[100vh] flex items-center justify-center container max-w-screen-lg mx-auto">
         <div className="py-20">
@@ -39,14 +40,6 @@ export default function Home() {
               }
               ) ]}
             />
-            {/* <p>&nbsp;&nbsp;</p>
-            <ConnectButton locale={"de_DE"}
-              client={client}
-              appMetadata={{
-                name: "Example App",
-                url: "https://example.com",
-              }}
-            /> */}
           </div>
 
           <ThirdwebResources />
@@ -86,6 +79,7 @@ export default function Home() {
             padding: "20px",
             marginTop: "20px",
           }}>
+            <div>
             <MediaRenderer
               client={client}
               src={contractMetadata.image}
@@ -93,10 +87,31 @@ export default function Home() {
                 borderRadius: "8px",
               }}
             />
+            </div>
+            <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center", 
+              justifyContent: "center",
+              marginTop: "20px",
+            }}>
+            <p style={{ 
+              fontSize: "20px",
+              fontWeight: "bold",
+          }}>
+          รายการทรัพย์สิน
+          </p>
+            <p style={{
+              fontSize: "15px",
+              marginTop: "10px",
+            }}>
+            <a href="/assets">แสดงรายการทรัพย์สินที่ถือครอง</a>
+            </p>
+            </div>
           </div>
         )}
       </div>
-      <div style={{
+      {/* <div style={{
         display: "flex",
         margin: "20px",
         flexDirection: "column",
@@ -114,10 +129,11 @@ export default function Home() {
           </p>
           <p style={{
             fontSize: "15px",
+            marginTop: "10px",
           }}>
-          แสดงรายการทรัพย์สินที่ถือครอง
+          <a href="/assets">แสดงรายการทรัพย์สินที่ถือครอง</a>
           </p>
-      </div>
+      </div> */}
       <div style={{margin:"30px"}}>
         <ThirdwebResources />
       </div>

@@ -75,6 +75,17 @@ export default function About() {
             }}>DFast Project Membership</div>
             <div>เปิดโอกาสให้สมาชิกได้รับผลตอบแทนจากการใช้งาน Web3 Application ชื่อ Kok Kok Kok (ก๊อกๆๆ) หรือ 3K ซึ่งจะถูกพัฒนาขึ้น เพื่อให้สมาชิกมีรายได้จากระบบ ในรูปแบบ Passive Income หรือ รายได้ที่จะคงอยู่ตลอดไป ทั้งนี้สามารถสอบถามรายละเอียดได้จากผู้แนะนำ</div>
         </div>
+        <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "10px 15px 10px 15px",
+                border: "1px solid #333",
+                borderRadius: "8px",
+            }}>
+                <a href="/">กลับหน้าหลัก</a>
+        </div>
     </div>
   )
 }
