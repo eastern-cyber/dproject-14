@@ -1,18 +1,13 @@
 "use client";
 
-import {
-    AccountProvider,
-    AccountAddress,
-    AccountBalance,
-    ConnectButton,
-    useActiveAccount,
-    AccountName,
-    AccountAvatar,
-  } from "thirdweb/react";
+import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer } from "thirdweb/react";
+import { useAddress, useContract, useTokenBalance } from "@thirdweb-dev/react";
 import { client } from "../client";
 import { chain } from "../chain";
 import { inAppWallet } from "thirdweb/wallets";
-  
+import { getContractMetadata } from "thirdweb/extensions/common";
+import { contract } from "../../../utils/contracts";
+
   const DFAST_POLYGON =
     "0xca23b56486035e14F344d6eb591DC27274AF3F47";
   const POL_POLYGON =
@@ -22,14 +17,95 @@ import { inAppWallet } from "thirdweb/wallets";
   const USDT_POLYGON =
     "0xc2132D05D31c914a87C6611C10748AEb04B58e8F";
   
+
   export default function Assets() {
-    const account = useActiveAccount ();
+
+    const account = useActiveAccount();
+
+    const { data: contractMetadata } = useReadContract(
+        getContractMetadata,
+        {
+          contract: contract,
+        }
+      );
+
+    // const {contract} = useContract("0xca23b56486035e14F344d6eb591DC27274AF3F47");
+
+    // const {data: balance }= useTokenBalance(contract, address);
+
+    // const address = useAddress ();
 
     return (
         <div 
             className="flex items-center justify-center"
             style={{ flexDirection: "column"}}
         >
+            <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "20px",
+                    margin: "20px",
+                    border: "1px solid #333",
+                    borderRadius: "8px",
+                  }}>
+                    {contractMetadata && (
+                      <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "20px",
+                        marginTop: "20px",
+                      }}>
+                        <div>
+                        <MediaRenderer
+                          client={client}
+                          src={contractMetadata.image}
+                          style={{
+                            borderRadius: "8px",
+                          }}
+                        />
+                        </div>
+                        <div style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center", 
+                          justifyContent: "center",
+                          marginTop: "20px",
+                        }}>
+                        <p style={{ 
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                      }}>
+                      รายการทรัพย์สิน
+                      </p>
+                        </div>
+                        <div>
+                <AccountProvider
+                    address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
+                    client={client}
+                >
+                    บัญชีผู้ใช้งาน : <AccountAddress />
+                </AccountProvider>
+                </div>
+                <div>
+                <AccountProvider
+                    address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
+                    client={client}
+                >
+                    <AccountBalance
+                        chain={chain}
+                        tokenAddress={DFAST_POLYGON}
+                        loadingComponent={<span>Loading...</span>}
+                    />
+                </AccountProvider>
+                </div>
+                      </div>
+                    )}
+            </div>
+
             <div
                 style={{
                     marginTop: "20px",
@@ -72,6 +148,7 @@ import { inAppWallet } from "thirdweb/wallets";
                     client={client}
                 >
                     <AccountAvatar />
+                    <AccountName />
                 </AccountProvider>
                 </div>
                 <div>
@@ -140,3 +217,23 @@ import { inAppWallet } from "thirdweb/wallets";
     );
   }
   
+// const Home: NextPage = () => {
+//     <ThirdwebProvider>
+        
+//         const address = useAddress();
+
+//         const contract = useContract("0xca23b56486035e14F344d6eb591DC27274AF3F47");
+
+//         const balance= useTokenBalance(contract, address);
+//     </ThirdwebProvider>
+//     return (
+//         <div>
+//             บัญชีผู้ใช้งาน
+//                 <ConnectWallet />
+//                 {balance?.displayValue}
+//         </div>
+//     )
+
+// };
+
+// export default Home;

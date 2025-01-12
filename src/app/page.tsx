@@ -102,7 +102,7 @@ export default function Home() {
           รายการทรัพย์สิน
           </p>
             <p style={{
-              fontSize: "15px",
+              fontSize: "16px",
               marginTop: "10px",
             }}>
               <a 
