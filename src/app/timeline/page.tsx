@@ -73,18 +73,11 @@ const Timeline: React.FC = () => {
             </div>
         </div>
         <center>
-        <div style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "10px 15px 10px 15px",
-                border: "1px solid #333",
-                borderRadius: "8px",
-                width: "150px",
-        }}>
-            <a href="/">กลับหน้าหลัก</a>
-        </div>
+        <div>
+                <a 
+                    className="flex flex-col w-36 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                    href="/">กลับหน้าหลัก</a>
+            </div>
         </center>
     </div>
   );

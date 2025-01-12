@@ -131,16 +131,10 @@ import { inAppWallet } from "thirdweb/wallets";
                 </AccountProvider>
                 </div>
             </div>
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "10px 15px 10px 15px",
-                border: "1px solid #333",
-                borderRadius: "8px",
-            }}>
-                <a href="/">กลับหน้าหลัก</a>
+            <div>
+                <a 
+                    className="flex flex-col border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                    href="/">กลับหน้าหลัก</a>
             </div>
         </div>
     );

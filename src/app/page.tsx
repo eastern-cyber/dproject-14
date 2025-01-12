@@ -105,7 +105,12 @@ export default function Home() {
               fontSize: "15px",
               marginTop: "10px",
             }}>
-            <a href="/assets">แสดงรายการทรัพย์สินที่ถือครอง</a>
+              <a 
+                href="/assets"
+                className="flex flex-col border border-zinc-900 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+              >
+                แสดงรายการทรัพย์สินที่ถือครอง
+              </a>
             </p>
             </div>
           </div>
