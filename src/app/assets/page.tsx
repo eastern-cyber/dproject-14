@@ -1,12 +1,13 @@
 "use client";
 
-import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer, AccountBalanceInfo } from "thirdweb/react";
+import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer, AccountBalanceInfo, ChainProvider, ChainIcon, TokenProvider, TokenIcon } from "thirdweb/react";
 import { useAddress, useContract, useTokenBalance } from "@thirdweb-dev/react";
 import { client } from "../client";
 import { chain } from "../chain";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../../utils/contracts";
+import { polygon } from "thirdweb/chains";
 
   const DFAST_POLYGON =
     "0xca23b56486035e14F344d6eb591DC27274AF3F47";
@@ -34,6 +35,30 @@ import { contract } from "../../../utils/contracts";
     // const {data: balance }= useTokenBalance(contract, address);
 
     // const address = useAddress ();
+
+    function Chain() {
+      return (
+        <ChainProvider chain={polygon}>
+          <ChainIcon
+            client={client}
+            className="h-auto w-6 rounded-full p-1"
+            loadingComponent={<span>Loading...</span>}
+          />
+        </ChainProvider>
+      );
+    }
+  
+    function Token() {
+      return (
+        <TokenProvider
+          address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
+          client={client}
+          chain={polygon}
+        >
+          <TokenIcon className="h-6 w-6 rounded-full mr-1" />
+        </TokenProvider>
+      );
+    }
 
     return (
         <div 
@@ -82,19 +107,20 @@ import { contract } from "../../../utils/contracts";
                       รายการทรัพย์สิน
                       </p>
                         </div>
-                        <div>
-                <AccountProvider
-                    address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
-                    client={client}
-                >
-                    บัญชีผู้ใช้งาน : <AccountAddress />
-                </AccountProvider>
+                <div  className="flex justify-items-center mt-4">
+                  <AccountProvider
+                      address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
+                      client={client}
+                  >
+                      บัญชีผู้ใช้งาน : <Chain /> <AccountAddress />
+                  </AccountProvider>
                 </div>
-                <div>
+                <div className="flex justify-items-center mt-4">
                 <AccountProvider
                     address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                     client={client}
                 >
+                    <Token />
                     <AccountBalance
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
@@ -154,19 +180,20 @@ import { contract } from "../../../utils/contracts";
                     <AccountName />
                 </AccountProvider>
                 </div>
-                <div>
+                <div className="flex justify-items-center mt-4">
                 <AccountProvider
                     address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                     client={client}
                 >
-                    บัญชีผู้ใช้งาน : <AccountAddress />
+                    บัญชีผู้ใช้งาน : <Chain /> <AccountAddress />
                 </AccountProvider>
                 </div>
-                <div>
+                <div className="flex justify-items-center mt-4">
                 <AccountProvider
                     address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                     client={client}
                 >
+                    <Token />
                     <AccountBalance
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
