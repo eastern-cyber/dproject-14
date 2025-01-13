@@ -1,6 +1,6 @@
 "use client";
 
-import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer } from "thirdweb/react";
+import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer, AccountBalanceInfo } from "thirdweb/react";
 import { useAddress, useContract, useTokenBalance } from "@thirdweb-dev/react";
 import { client } from "../client";
 import { chain } from "../chain";
@@ -99,6 +99,9 @@ import { contract } from "../../../utils/contracts";
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
                         loadingComponent={<span>Loading...</span>}
+                        formatFn={(props: AccountBalanceInfo) =>
+                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        }
                     />
                 </AccountProvider>
                 </div>
@@ -168,6 +171,9 @@ import { contract } from "../../../utils/contracts";
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
                         loadingComponent={<span>Loading...</span>}
+                        formatFn={(props: AccountBalanceInfo) =>
+                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        }
                     />
                 </AccountProvider>
                 </div>
@@ -180,6 +186,9 @@ import { contract } from "../../../utils/contracts";
                         chain={chain}
                         tokenAddress={POL_POLYGON}
                         loadingComponent={<span>Loading...</span>}
+                        formatFn={(props: AccountBalanceInfo) =>
+                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        }
                     />
                 </AccountProvider>
                 </div>
@@ -192,6 +201,9 @@ import { contract } from "../../../utils/contracts";
                         chain={chain}
                         tokenAddress={USDC_POLYGON}
                         loadingComponent={<span>Loading...</span>}
+                        formatFn={(props: AccountBalanceInfo) =>
+                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        }
                     />
                 </AccountProvider>
                 </div>
@@ -204,6 +216,9 @@ import { contract } from "../../../utils/contracts";
                         chain={chain}
                         tokenAddress={USDT_POLYGON}
                         loadingComponent={<span>Loading...</span>}
+                        formatFn={(props: AccountBalanceInfo) =>
+                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        }
                     />
                 </AccountProvider>
                 </div>
