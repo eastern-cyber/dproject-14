@@ -1,6 +1,6 @@
 "use client";
 
-import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer, AccountBalanceInfo, ChainProvider, ChainIcon, TokenProvider, TokenIcon } from "thirdweb/react";
+import { AccountProvider, AccountAddress, AccountBalance, ConnectButton, useActiveAccount, AccountAvatar, AccountName, useReadContract, MediaRenderer, TokenProvider, TokenIcon } from "thirdweb/react";
 import { useAddress, useContract, useTokenBalance } from "@thirdweb-dev/react";
 import { client } from "../client";
 import { chain } from "../chain";
@@ -8,6 +8,8 @@ import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../../utils/contracts";
 import { polygon } from "thirdweb/chains";
+import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdweb-dev/react";
+
 
   const DFAST_POLYGON =
     "0xca23b56486035e14F344d6eb591DC27274AF3F47";
@@ -38,13 +40,14 @@ import { polygon } from "thirdweb/chains";
 
     function Chain() {
       return (
-        <ChainProvider chain={polygon}>
-          <ChainIcon
-            client={client}
-            className="h-auto w-6 rounded-full p-1"
-            loadingComponent={<span>Loading...</span>}
-          />
-        </ChainProvider>
+        <div></div>
+        // <ChainProvider chain={chain}>
+        //   <ChainIcon
+        //     client={client}
+        //     className="h-auto w-6 rounded-full p-1"
+        //     loadingComponent={<span>Loading...</span>}
+        //   />
+        // </ChainProvider>
       );
     }
   
@@ -112,7 +115,8 @@ import { polygon } from "thirdweb/chains";
                       address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                       client={client}
                   >
-                      บัญชีผู้ใช้งาน : <Chain /> <AccountAddress />
+                      {/* บัญชีผู้ใช้งาน : <Chain /> <AccountAddress /> */}
+                      บัญชีผู้ใช้งาน : <AccountAddress />
                   </AccountProvider>
                 </div>
                 <div className="flex justify-items-center mt-4">
@@ -185,7 +189,7 @@ import { polygon } from "thirdweb/chains";
                     address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                     client={client}
                 >
-                    บัญชีผู้ใช้งาน : <Chain /> <AccountAddress />
+                    บัญชีผู้ใช้งาน : <AccountAddress />
                 </AccountProvider>
                 </div>
                 <div className="flex justify-items-center mt-4">

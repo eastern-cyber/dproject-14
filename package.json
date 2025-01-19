@@ -27,7 +27,7 @@
     "react-router-dom": "^7.1.1",
     "stripe": "^17.4.0",
     "thirdweb": "^5.71.0",
-    "thirdweb-react-monorepo": "github:thirdweb-dev/react",
+    "thirdweb-react-monorepo": "^1.0.0",
     "wagmi": "^2.14.7"
   },
   "devDependencies": {
