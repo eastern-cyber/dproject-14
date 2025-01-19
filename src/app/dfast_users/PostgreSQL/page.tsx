@@ -29,7 +29,7 @@ const Page = () => {
           {data.map((row, index) => (
             <tr key={index}>
               {Object.values(row).map((value, idx) => (
-                <td key={idx}>{value}</td>
+                  <td key={idx}>{value as React.ReactNode}</td>
               ))}
             </tr>
           ))}

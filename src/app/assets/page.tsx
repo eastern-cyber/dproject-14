@@ -8,7 +8,7 @@ import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../../utils/contracts";
 import { polygon } from "thirdweb/chains";
-import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdweb-dev/react";
+// import { ChainProvider, ChainIcon, AccountBalanceInfo } from "@thirdweb-dev/react";
 
 
   const DFAST_POLYGON =
@@ -129,9 +129,9 @@ import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdwe
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
                         loadingComponent={<span>Loading...</span>}
-                        formatFn={(props: AccountBalanceInfo) =>
-                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
-                        }
+                        // formatFn={(props: AccountBalanceInfo) =>
+                        //   `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        // }
                     />
                 </AccountProvider>
                 </div>
@@ -202,9 +202,9 @@ import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdwe
                         chain={chain}
                         tokenAddress={DFAST_POLYGON}
                         loadingComponent={<span>Loading...</span>}
-                        formatFn={(props: AccountBalanceInfo) =>
-                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
-                        }
+                        // formatFn={(props: AccountBalanceInfo) =>
+                        //   `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        // }
                     />
                 </AccountProvider>
                 </div>
@@ -217,9 +217,9 @@ import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdwe
                         chain={chain}
                         tokenAddress={POL_POLYGON}
                         loadingComponent={<span>Loading...</span>}
-                        formatFn={(props: AccountBalanceInfo) =>
-                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
-                        }
+                        // formatFn={(props: AccountBalanceInfo) =>
+                        //   `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        // }
                     />
                 </AccountProvider>
                 </div>
@@ -232,9 +232,9 @@ import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdwe
                         chain={chain}
                         tokenAddress={USDC_POLYGON}
                         loadingComponent={<span>Loading...</span>}
-                        formatFn={(props: AccountBalanceInfo) =>
-                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
-                        }
+                        // formatFn={(props: AccountBalanceInfo) =>
+                        //   `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        // }
                     />
                 </AccountProvider>
                 </div>
@@ -247,9 +247,9 @@ import { ChainProvider, ChainIcon, AccountBalanceInfo, formatFn } from "@thirdwe
                         chain={chain}
                         tokenAddress={USDT_POLYGON}
                         loadingComponent={<span>Loading...</span>}
-                        formatFn={(props: AccountBalanceInfo) =>
-                          `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
-                        }
+                        // formatFn={(props: AccountBalanceInfo) =>
+                        //   `${props.balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${props.symbol}`
+                        // }
                     />
                 </AccountProvider>
                 </div>

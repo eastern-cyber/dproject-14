@@ -13,7 +13,6 @@
     "@neondatabase/serverless": "^0.10.4",
     "@stripe/react-stripe-js": "^3.0.0",
     "@stripe/stripe-js": "^5.2.0",
-    "@thirdweb-dev/react": "^4.9.4",
     "@thirdweb-dev/sdk": "^4.0.99",
     "@types/react-router-dom": "^5.3.3",
     "@vercel/edge-config": "^1.4.0",
@@ -28,6 +27,7 @@
     "stripe": "^17.4.0",
     "thirdweb": "^5.71.0",
     "thirdweb-react-monorepo": "^1.0.0",
+    "@thirdweb-dev/react": "^latest-version",
     "wagmi": "^2.14.7"
   },
   "devDependencies": {

@@ -18,7 +18,7 @@ const Page: React.FC = () => {
       })
       .then((data) => {
         // Parse the CSV file
-        const parsedData = Papa.parse<string[]>(data, { header: false });
+        const parsedData = Papa.parse(data, { header: false });
         setCsvData(parsedData.data);
       })
       .catch((error) => {
