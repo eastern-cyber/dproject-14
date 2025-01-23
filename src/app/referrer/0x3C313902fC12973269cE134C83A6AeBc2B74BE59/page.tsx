@@ -116,7 +116,8 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ : 0x3C313902fC12973269cE134C83A6AeBc2B74BE59</p>
+            <p>ผู้แนะนำ: Big K</p>
+            <p>0x3C313902fC12973269cE134C83A6AeBc2B74BE59</p>
         </header>
     );
 }
