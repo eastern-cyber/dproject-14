@@ -1,16 +1,17 @@
+//กิจการ : 0x3C313902fC12973269cE134C83A6AeBc2B74BE59
 "use client";
 
 import Image from "next/image";
 import {  ConnectButton, MediaRenderer, TokenIcon, TokenProvider, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
-import { client } from "../client";
-import { chain  } from "../chain";
+import { client } from "../../client";
+import { chain  } from "../../chain";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContract, toEther } from "thirdweb";
 import { defineChain, polygon } from "thirdweb/chains";
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
-import { contract } from "../../../utils/contracts";
+import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
 
 
@@ -23,18 +24,6 @@ export default function Refferrer() {
           contract: contract,
         }
       );
-    
-    function Token() {
-    return (
-        <TokenProvider
-        address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
-        client={client}
-        chain={polygon}
-        >
-        <TokenIcon className="h-6 w-6 rounded-full mr-1" />
-        </TokenProvider>
-    );
-    }
 
       function NFTMetadata() {
         return(
@@ -93,7 +82,7 @@ export default function Refferrer() {
                         }) ]}
                     />
                 </div>
-                <NFTMetadata />
+                {/* <NFTMetadata /> */}
                 <div className="flex flex-col items-center mb-6">
                     <ClaimButtons walletAddress={account?.address || ""}/>
                 </div>
@@ -124,9 +113,10 @@ function  Header() {
                 }}
             />
 
-            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
-               3K NFT Claim
+            <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
+               สมัครใช้งาน
             </h1>
+            <p>ผู้แนะนำ : 0x3C313902fC12973269cE134C83A6AeBc2B74BE59</p>
         </header>
     );
 }
@@ -149,33 +139,23 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
 
     return (
         <div className="flex flex-col gap-4 md:gap-8">
-            <TransactionButton
-                // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
-                transaction={() => claimERC1155({
-                    contract: nftContract,
-                    to: walletAddress || "",
-                    tokenId: 1n,
-                    quantity: 1n
-                })}
-                onTransactionConfirmed={async () => {
-                    alert("ทำรายการซื้อ คูปอง 3K NFT เรียบร้อย ");
-                }}
-            >ซื้อคูปอง 3K NFT</TransactionButton>
-            {/* <TransactionButton
-                transaction={() => claimERC20({
-                    contract: dfastContract,
-                    to: walletAddress || "",
-                    quantity: "10"
-                })}
-                onTransactionConfirmed={async () => {
-                    alert("DFast Coin Claimed");
-                }}
-            >Claim DFast Coin</TransactionButton> */}
-            {/* <TransactionButton>Claim Sepolia NFT</TransactionButton>
-            <TransactionButton>Claim Mode Tokens</TransactionButton>            
-            <TransactionButton>Claim Base Item01</TransactionButton>
-            <TransactionButton>Claim Base Item01</TransactionButton> */}
-            {/* ThirdWeb Youtube : Building a Multi-chain Experience with Account Abstraction */}
+            <div>
+            กดปุ่ม ด้านล่างเพื่อซื้อคูปองผู้ใช้งานพรีเมี่ยมของ แอพพลิเคชั่นก๊อกๆๆ
+            </div>
+            <div className="flex flex-col gap-4 md:gap-8">
+                <TransactionButton
+                        // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
+                        transaction={() => claimERC1155({
+                            contract: nftContract,
+                            to: walletAddress || "",
+                            tokenId: 1n,
+                            quantity: 1n
+                        })}
+                        onTransactionConfirmed={async () => {
+                            alert("ทำรายการซื้อ คูปอง 3K NFT เรียบร้อย ");
+                        }}
+                >ซื้อคูปอง 3K NFT</TransactionButton>
+            </div>  
         </div>
     )
 };

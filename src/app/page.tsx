@@ -102,7 +102,7 @@ export default function Home() {
               fontSize: "20px",
               fontWeight: "bold",
           }}>
-          รายการทรัพย์สิน
+          ยืนดีต้อนรับสู่ DFast Innovation
           </p>
             <p style={{
               fontSize: "16px",
@@ -110,9 +110,9 @@ export default function Home() {
             }}>
               <a 
                 href="/referrer"
-                className="flex flex-col border border-zinc-900 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                className="flex flex-col border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-900 transition-colors hover:border-zinc-300"
               >
-                ซื้อ 3K NFT คูปองใช้งานพรีเมี่ยม
+                ดูรายการทรัพย์สินที่ท่านถือครอง
               </a>
             </p>
             </div>
