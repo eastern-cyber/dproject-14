@@ -30,6 +30,10 @@ export default function Home() {
           <div className="flex justify-center mb-20">
           <ConnectButton locale={"en_US"}
               client={client}
+              // accountAbstraction={{
+              //   chain: chain,
+              //   sponsorGas: true,
+              // }}
               wallets={[ inAppWallet ({
                 auth: {
                   options: [
@@ -37,8 +41,7 @@ export default function Home() {
                     // "phone",
                   ]
                 }
-              }
-              ) ]}
+              }) ]}
             />
           </div>
 
@@ -106,10 +109,10 @@ export default function Home() {
               marginTop: "10px",
             }}>
               <a 
-                href="/assets"
+                href="/referrer"
                 className="flex flex-col border border-zinc-900 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
               >
-                แสดงรายการทรัพย์สินที่ถือครอง
+                ซื้อ 3K NFT คูปองใช้งานพรีเมี่ยม
               </a>
             </p>
             </div>
@@ -208,6 +211,24 @@ function ThirdwebResources() {
         href="/timeline"
         description="แสดงรายละเอียดไทม์ไลน์และความคืบหน้าของโครงการ"
       />
+
+      {/* <ArticleCard
+        title="รายการทรัพย์สิน"
+        href="/assets"
+        description="แสดงรายการทรัพย์สินที่ท่านถือครอง"
+      />
+
+      <ArticleCard
+        title="ต้นแบบ Application ก๊อกๆๆ"
+        href="https://3k.aseanquality.com/"
+        description="3K หรือ Kok Kok Kok จะต่อยอดจาก SocialApp ยอดนิยม"
+      />
+
+      <ArticleCard
+        title="DFast Project Timeline"
+        href="/timeline"
+        description="แสดงรายละเอียดไทม์ไลน์และความคืบหน้าของโครงการ"
+      /> */}
     </div>
   );
 }

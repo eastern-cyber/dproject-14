@@ -1,5 +1,5 @@
-// app/page.tsx
 'use client';
+// app/page.tsx
 
 import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';

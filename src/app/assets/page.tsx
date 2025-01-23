@@ -7,8 +7,13 @@ import { chain } from "../chain";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../../utils/contracts";
-import { polygon } from "thirdweb/chains";
-// import { ChainProvider, ChainIcon, AccountBalanceInfo } from "@thirdweb-dev/react";
+// import { polygon } from "thirdweb/chains";
+// import { inAppWallet } from "thirdweb/wallets";
+import { getContract, toEther } from "thirdweb";
+import { defineChain, polygon } from "thirdweb/chains";
+import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
+import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
+
 
 
   const DFAST_POLYGON =
@@ -103,21 +108,23 @@ import { polygon } from "thirdweb/chains";
                           justifyContent: "center",
                           marginTop: "20px",
                         }}>
-                        <p style={{ 
-                          fontSize: "20px",
-                          fontWeight: "bold",
-                      }}>
-                      รายการทรัพย์สิน
-                      </p>
+                          <p style={{ 
+                              fontSize: "20px",
+                              fontWeight: "bold",
+                          }}>
+                            รายการทรัพย์สิน
+                          </p>
                         </div>
                 <div  className="flex justify-items-center mt-4">
                   <AccountProvider
                       address="0xDdF99A33c49884792a89bD8DE9474138e4E0350a"
                       client={client}
                   >
-                      {/* บัญชีผู้ใช้งาน : <Chain /> <AccountAddress /> */}
-                      บัญชีผู้ใช้งาน : <AccountAddress />
+                      บัญชีผู้ใช้งาน : <Chain /> <AccountAddress />
                   </AccountProvider>
+                </div>
+                <div style={{width: "100%", justifyContent: "center"}} className="flex justify-items-center mt-4">
+                  <WalletBalances />
                 </div>
                 <div className="flex justify-items-center mt-4">
                 <AccountProvider
@@ -155,6 +162,10 @@ import { polygon } from "thirdweb/chains";
                 <div className="flex justify-center mb-10 mt-10">
                           <ConnectButton locale={"en_US"}
                               client={client}
+                              accountAbstraction={{
+                                chain: chain,
+                                sponsorGas: true,
+                              }}
                               wallets={[ inAppWallet ({
                                 auth: {
                                   options: [
@@ -262,6 +273,62 @@ import { polygon } from "thirdweb/chains";
         </div>
     );
   }
+
+  const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+      const { data: nftBalance } = useReadContract(
+          balanceOfERC1155,
+          {
+              contract: getContract({
+                  client: client,
+                  chain: defineChain(polygon),
+                  address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+              }),
+              owner: walletAddress || "",
+              tokenId: 1n
+          }
+      );
+      const { data: dfastBalance } = useReadContract(
+          balanceOfERC20,
+          {
+              contract: getContract({
+                  client: client,
+                  chain: defineChain(polygon),
+                  address: "0xca23b56486035e14F344d6eb591DC27274AF3F47"
+              }),
+              address: walletAddress || ""
+          }
+      );
+      return (
+          <div style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
+              border: "1px solid #333",
+              borderRadius: "8px",
+            }}>
+              <div 
+              style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  width: "100%",
+                  fontSize: "24px",
+                  justifyContent: "center",
+                  paddingBottom: "20px",
+                  // border: "1px solid #333",
+                  borderRadius: "8px",
+                }}>
+                  <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p>
+                  <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+              </div>
+              
+              <p>คูปอง 3K NFT: {walletAddress ? nftBalance?.toString() : "0"}</p>
+              <p>เหรียญ DFast: {walletAddress ? toEther(dfastBalance || 0n) : "0"}</p>
+          </div>
+      )
+  };
   
 // const Home: NextPage = () => {
 //     <ThirdwebProvider>
