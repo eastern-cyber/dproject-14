@@ -1,4 +1,4 @@
-//กิจการ : 0x3C313902fC12973269cE134C83A6AeBc2B74BE59
+//kitkankw1963@gmail.com : 0x3C313902fC12973269cE134C83A6AeBc2B74BE59
 "use client";
 
 import Image from "next/image";
@@ -116,7 +116,7 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: Big K</p>
+            <p>ผู้แนะนำ: kitkankw1963@gmail.com</p>
             <p>0x3C313902fC12973269cE134C83A6AeBc2B74BE59</p>
         </header>
     );
