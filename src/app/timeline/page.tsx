@@ -59,6 +59,20 @@ const Timeline: React.FC = () => {
             </div>
             <div className="timeline-item">
                 <div className="timeline-content">
+                <ul><b>24.01.2025</b></ul>
+                <h3><b>Dfast Referrer Link (Test)</b></h3>
+                <p>ลิ้งค์แนะนำสมาชิก (ทดสอบ) ทดลองการใช้งาน ส่งลิ้งค์แนะนำสมาชิก ซื้อ NFT เพื่อการสมัครสมาชิก</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>28.01.2025</b></ul>
+                <h3><b>Member Backend</b></h3>
+                <p>เชื่อมต่อระบบจัดการสมาชิกหลังบ้าน ฐานข้อมูลการสมัครสมาชิกจากลิ้งค์แนะนำ</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
                 <ul><b>20.02.2025</b></ul>
                 <h3><b>3K SocialApp v.1.2</b></h3>
                 <p>3K Application ก๊อกๆๆ ที่สามารถใช้งานได้ ใกล้เคียงเวอร์ชั่นสมบูรณ์มากยิ่งขึ้น</p>
