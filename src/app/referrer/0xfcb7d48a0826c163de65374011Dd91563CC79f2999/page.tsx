@@ -1,4 +1,4 @@
-//saintfah7@gmail.com : 0xfcb7d48a0826c163de65374011Dd91563CC79f29
+//saintfah7@gmail.com : 0xfcb7d48a0826c163de65374011Dd91563CC79f2999
 "use client";
 
 import Image from "next/image";
@@ -14,6 +14,23 @@ import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/ext
 import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
 
+import React from "react";
+
+const MyComponent: React.FC = () => {
+  const myNumber = 10; // Change this to test different cases
+
+  return (
+    <div>
+      {myNumber > 0 ? (
+        <p>The number is positive: {myNumber}</p>
+      ) : (
+        <p>The number is zero or negative: {myNumber}</p>
+      )}
+    </div>
+  );
+};
+
+export default MyComponent;
 
 export default function Refferrer() {
     const account = useActiveAccount();

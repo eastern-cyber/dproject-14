@@ -109,7 +109,7 @@ export default function Home() {
               marginTop: "10px",
             }}>
               <a 
-                href="/referrer"
+                href="/assets"
                 className="flex flex-col border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-900 transition-colors hover:border-zinc-300"
               >
                 ดูรายการทรัพย์สินที่ท่านถือครอง
