@@ -154,7 +154,7 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 transaction={() => claimERC1155({
                     contract: nftContract,
                     to: walletAddress || "",
-                    tokenId: 1n,
+                    tokenId: 0n,
                     quantity: 1n
                 })}
                 onTransactionConfirmed={async () => {
@@ -190,7 +190,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
             }),
             owner: walletAddress || "",
-            tokenId: 1n
+            tokenId: 0n
         }
     );
     const { data: dfastBalance } = useReadContract(
