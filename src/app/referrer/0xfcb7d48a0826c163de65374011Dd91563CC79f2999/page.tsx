@@ -1,4 +1,6 @@
-//saintfah7@gmail.com : 0xfcb7d48a0826c163de65374011Dd91563CC79f2999
+//<p>ผู้แนะนำ: saintfah7@gmail.com</p>
+//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
+//tokenId: 4n
 "use client";
 
 import Image from "next/image";
@@ -13,29 +15,13 @@ import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
 import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
-
-import React from "react";
-
-const MyComponent: React.FC = () => {
-  const myNumber = 10; // Change this to test different cases
-
-  return (
-    <div>
-      {myNumber > 0 ? (
-        <p>The number is positive: {myNumber}</p>
-      ) : (
-        <p>The number is zero or negative: {myNumber}</p>
-      )}
-    </div>
-  );
-};
-
-export default MyComponent;
+import MyNFTs from "@/app/components/MyNFTs"
+import TokenDFast from "@/app/components/TokenfDFast";
 
 export default function Refferrer() {
     const account = useActiveAccount();
 
-    const { data: contractMetadata } = useReadContract(
+    const { data: nftMetadata } = useReadContract(
         getContractMetadata,
         {
           contract: contract,
@@ -54,12 +40,12 @@ export default function Refferrer() {
                 border: "1px solid #333",
                 borderRadius: "8px",
               }}>
-                {contractMetadata && (
+                {nftMetadata && (
 
                     <div>
                     <MediaRenderer
                       client={client}
-                      src={contractMetadata.image}
+                      src={nftMetadata.image}
                       style={{
                         borderRadius: "8px",
                       }}
@@ -107,7 +93,8 @@ export default function Refferrer() {
                     <WalletBalances walletAddress={account?.address || ""}/>
                 </div>
 
-            </div> 
+            </div>
+            <div><MyNFTs /></div>
             <div className="flex flex-col items-center">
                     <a 
                         className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
@@ -181,6 +168,68 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
 };
 
 const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+
+    const account = useActiveAccount();
+
+    const { data: contractMetadata } = useReadContract(
+        getContractMetadata,
+        {
+          contract: contract,
+        }
+      );
+    
+    // function TokenDFast() {
+    // return (
+    //     <TokenProvider
+    //     address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
+    //     client={client}
+    //     chain={polygon}
+    //     >
+    //     <TokenIcon className="h-6 w-6 rounded-full mr-1" />
+    //     </TokenProvider>
+    // );
+    // }
+
+    // function TokenPOL() {
+    //     return (
+    //         <TokenProvider
+    //         address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
+    //         client={client}
+    //         chain={polygon}
+    //         >
+    //         <TokenIcon className="h-6 w-6 rounded-full mr-1" />
+    //         </TokenProvider>
+    //     );
+    //     }
+
+      function NFTMetadata() {
+        return(
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "20px",
+                margin: "20px",
+                border: "1px solid #333",
+                borderRadius: "8px",
+              }}>
+                {contractMetadata && (
+
+                    <div>
+                    <MediaRenderer
+                      client={client}
+                      src={contractMetadata.image}
+                      style={{
+                        borderRadius: "8px",
+                      }}
+                    />
+                    </div>
+                )}
+        </div>
+        );
+      }
+
     const { data: nftBalance } = useReadContract(
         balanceOfERC1155,
         {
@@ -268,23 +317,34 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                 </div>
             </div>
-            
-            <p>คูปอง 3K NFT: {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
-            
-            <p>เหรียญ DFast: {walletAddress? 
-                new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 2,})
-                .format(Number(toEther(dfastBalance || 0n))): "0"}
-            </p>
-            
-            <p>เหรียญ USDC: {walletAddress ? (Number(usdcBalance) / 1_000_000).toFixed(2) : "0"}</p>
-            
-            <p>เหรียญ USDT: {walletAddress ? (Number(usdtBalance) / 1_000_000).toFixed(2) : "0"}</p>
-            
-            <p>เหรียญ POL: {walletAddress? 
-                new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 6,})
-                .format(Number(toEther(polBalance || 0n))): "0"}
-                {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
-            </p>
+        
+            <div className="flex flex-col gap-4 md:gap-8"><NFTMetadata /></div>
+            <p style={{fontSize: "24px"}}>คูปอง 3K NFT: {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+            <div className="flex flex-col justify-items-left">
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <TokenDFast />เหรียญ DFast: {walletAddress? 
+                    new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 2,})
+                    .format(Number(toEther(dfastBalance || 0n))): "0"}
+                </div>
+                
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/centre-usdc_32.png" />
+                    เหรียญ USDC: {walletAddress ? (Number(usdcBalance) / 1_000_000).toFixed(2) : "0"}
+                </div>
+                
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/tether_32.png" />
+                    เหรียญ USDT: {walletAddress ? (Number(usdtBalance) / 1_000_000).toFixed(2) : "0"}
+                </div>
+                
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/polygonmatic_new_32.png" />
+                    เหรียญ POL: {walletAddress? 
+                    new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 6,})
+                    .format(Number(toEther(polBalance || 0n))): "0"}
+                    {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
+                </div>
+            </div>
         </div>
     )
 };
