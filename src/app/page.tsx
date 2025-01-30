@@ -102,7 +102,7 @@ export default function Home() {
               fontSize: "20px",
               fontWeight: "bold",
           }}>
-          ยืนดีต้อนรับสู่ DFast Innovation
+          ยืนดีต้อนรับสู่ DProject
           </p>
             <p style={{
               fontSize: "16px",
@@ -171,7 +171,7 @@ function Header() {
       />
       <p>&nbsp;&nbsp;</p>
       <h2 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-        <span className="inline-block text-blue-500"> DFast </span>
+        <span className="inline-block text-blue-500"> DProject </span>
         &nbsp;&nbsp;&nbsp;
         <span className="inline-block -skew-x-6 text-white"> Login </span>
         &nbsp;
@@ -195,9 +195,9 @@ function ThirdwebResources() {
   return (
     <div className="grid gap-4 lg:grid-cols-3 justify-center">
       <ArticleCard
-        title="เกี่ยวกับโครงการ DFast"
+        title="เกี่ยวกับโครงการ DProject"
         href="/about"
-        description="More detail about DFast Innovation Project"
+        description="More detail about DProject"
       />
 
       <ArticleCard
@@ -207,7 +207,7 @@ function ThirdwebResources() {
       />
 
       <ArticleCard
-        title="DFast Project Timeline"
+        title="DProject Timeline"
         href="/timeline"
         description="แสดงรายละเอียดไทม์ไลน์และความคืบหน้าของโครงการ"
       />
@@ -225,7 +225,7 @@ function ThirdwebResources() {
       />
 
       <ArticleCard
-        title="DFast Project Timeline"
+        title="DProject Timeline"
         href="/timeline"
         description="แสดงรายละเอียดไทม์ไลน์และความคืบหน้าของโครงการ"
       /> */}

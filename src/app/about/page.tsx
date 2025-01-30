@@ -28,7 +28,7 @@ export default function About() {
                 display: "flex",
                 fontSize: "20px",
                 margin: "15px",
-            }}>DFast Innovation Project</div>
+            }}>D Project</div>
             <div>ดำเนินงานภายใต้แนวความคิดเพื่อการพัฒนาศักยภาพการแข่งขันของประเทศไทย เริ่มจาก Application ก๊อกก๊อกก๊อก (3K) ซึ่งเริ่มจากการพัฒนาให้เป็น Web3 SocialApp และไปสู่การเป็น Web3 SuperApp ในที่สุด</div>
         </div>
 

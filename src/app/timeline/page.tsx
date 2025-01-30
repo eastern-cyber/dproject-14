@@ -12,7 +12,7 @@ const Timeline: React.FC = () => {
             fontWeight:"bold",
             marginTop:"60px",
         }}>
-            DFast Innovation Project Timeline
+            DProject Timeline
         </div>
         <div className="timeline">
             <div className="timeline-item">

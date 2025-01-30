@@ -7,7 +7,7 @@ import { ThirdwebProvider } from "thirdweb/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DFast Innovation Project",
+  title: "DProject",
   description:
     "Web3 Decentralized Platform for the Future",
 };
