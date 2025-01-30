@@ -39,8 +39,8 @@ const Timeline: React.FC = () => {
             <div className="timeline-item">
                 <div className="timeline-content">
                 <ul><b>11.11.2024</b></ul>
-                <h3><b>DFast Token and 3K NFT</b></h3>
-                <p>กำเนิด DFast Token และ 3K NFT สำหรับการใช้งาน Premium Member</p>
+                <h3><b>DProject Token and 3K NFT</b></h3>
+                <p>กำเนิด DProject Token และ 3K NFT สำหรับการใช้งาน Premium Member</p>
                 </div>
             </div>
             <div className="timeline-item">
@@ -60,7 +60,7 @@ const Timeline: React.FC = () => {
             <div className="timeline-item">
                 <div className="timeline-content">
                 <ul><b>24.01.2025</b></ul>
-                <h3><b>Dfast Referrer Link (Test)</b></h3>
+                <h3><b>DProject Referrer Link (Test)</b></h3>
                 <p>ลิ้งค์แนะนำสมาชิก (ทดสอบ) ทดลองการใช้งาน ส่งลิ้งค์แนะนำสมาชิก ซื้อ NFT เพื่อการสมัครสมาชิก</p>
                 </div>
             </div>
