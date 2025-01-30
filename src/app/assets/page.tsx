@@ -125,7 +125,7 @@ function  Header() {
             />
 
             <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
-               3K NFT Claim
+               DProject Assets
             </h1>
         </header>
     );
@@ -269,11 +269,13 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 </div>
             </div>
             <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
-                <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/">
+                <a target="_blank" href="https://opensea.io/account/collected">
                 {/* <NFTMetadata /> */}
-                <img  className="h-11 w-11" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmaZnaqQcAxt4aWzJ6YnxkHLiTGeBxwjTiW4Gfq6Xjbaaq/3K-red.png" alt="" />
+                <img className="flex h-14 w-14" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmaZnaqQcAxt4aWzJ6YnxkHLiTGeBxwjTiW4Gfq6Xjbaaq/3K-red.png" alt="" />
                 </a>
-                <p style={{alignItems: "center", justifyContent: "center", fontSize: "24px"}}>คูปอง 3K NFT: {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+                <a target="_blank" href="https://opensea.io/account/collected">
+                <p style={{alignItems: "center", justifyContent: "center", fontSize: "24px"}}>3K NFT ทั้งหมดที่ท่านถือครอง</p>
+                </a>
             </div>
             
             <div className="mt-8 flex flex-col justify-items-left">

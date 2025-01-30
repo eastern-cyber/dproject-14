@@ -180,18 +180,49 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
     )
 };
 
+
+
 const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
-    const { data: nftBalance } = useReadContract(
-        balanceOfERC1155,
-        {
-            contract: getContract({
-                client: client,
-                chain: defineChain(polygon),
-                address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
-            }),
-            owner: walletAddress || "",
-            tokenId: 0n
-        }
+        // if (!walletAddress) return <div>Please connect your wallet</div>;
+    
+        const tokenIds = [0n, 1n, 2n, 3n]; // Replace with actual token IDs
+    
+        // Fetch balance for each tokenId
+        const balances = tokenIds.map((tokenId) =>
+            useReadContract(balanceOfERC1155, {
+                contract: getContract({
+                    client: client,
+                    chain: polygon, // No need to redefine
+                    address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2",
+                }),
+                owner: walletAddress,
+                tokenId: tokenId,
+    //         })
+    //     );
+    
+    //     return (
+    //         <div>
+    //             <h3>NFT Balances:</h3>
+    //             {balances.map(({ data }, index) => (
+    //                 <p key={tokenIds[index].toString()}>
+    //                     Token ID {tokenIds[index].toString()}: {data?.toString() ?? "Loading..."}
+    //                 </p>
+    //             ))}
+    //         </div>
+    //     );
+    // };
+    
+    // const { data: nftBalance } = useReadContract(
+    //     balanceOfERC1155,
+    //     {
+    //         contract: getContract({
+    //             client: client,
+    //             chain: defineChain(polygon),
+    //             address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+    // //         }),
+    //         owner: walletAddress || "",
+    //         tokenId: 0n
+        })
     );
     const { data: dfastBalance } = useReadContract(
         balanceOfERC20,
