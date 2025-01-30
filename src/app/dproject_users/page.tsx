@@ -9,7 +9,7 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     // Fetch the CSV file
-    fetch('/dfast_users_20250126_1801.csv')
+    fetch('/dproject_users_20250130_1256.csv')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch CSV file');
@@ -28,7 +28,7 @@ const Page: React.FC = () => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", marginTop: "20px", justifyContent: "center", alignItems: "center" }}>
-      <h1 style={{ fontWeight: "bold", margin: "10px", justifyContent: 'center', alignItems: 'center' }}>DFast Users</h1>
+      <h1 style={{ fontWeight: "bold", margin: "10px", justifyContent: 'center', alignItems: 'center' }}>DProject Users</h1>
       {csvData.length > 0 ? (
         <table style={{ borderCollapse: 'collapse', width: '100%' }}>
           <thead>
