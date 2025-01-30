@@ -73,9 +73,16 @@ const Timeline: React.FC = () => {
             </div>
             <div className="timeline-item">
                 <div className="timeline-content">
-                <ul><b>20.02.2025</b></ul>
+                <ul><b>08.02.2025</b></ul>
                 <h3><b>3K SocialApp v.1.2</b></h3>
                 <p>3K Application ก๊อกๆๆ ที่สามารถใช้งานได้ ใกล้เคียงเวอร์ชั่นสมบูรณ์มากยิ่งขึ้น</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>14.02.2025</b></ul>
+                <h3><b>Soft Opening</b></h3>
+                <p>14 กุมภาฯ วันวาเลนไทน์ ฤกษ์ดีเปิดตัว (ซอฟท์โอเพนนิ่ง) ในกลุ่มผู้ร่วมริเริ่มอย่างพวกเรา</p>
                 </div>
             </div>
             <div className="timeline-item">
