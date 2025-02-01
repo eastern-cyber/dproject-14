@@ -9,7 +9,7 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     // Fetch the CSV file
-    fetch('/dproject_users_20250130_1256.csv')
+    fetch('/dproject_users_20250201_1457.csv')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch CSV file');
