@@ -72,6 +72,7 @@ export default function Refferrer() {
                 <div className="flex justify-center mb-20">
                     <ConnectButton locale={"en_US"}
                         client={client}
+                        chain={chain}
                         // accountAbstraction={{
                         //     chain: chain,
                         //     sponsorGas: true,
