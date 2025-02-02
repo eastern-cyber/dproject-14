@@ -1,4 +1,4 @@
-//<p>ผู้แนะนำ: ทดสอบระบบ TokenID:0</p>
+//<p>ผู้แนะนำ: ทดสอบระบบ TokenID : 0</p>
 //<p>0xfcb7d48a0826c163de65374011Dd91563CC79f2999</p>
 //tokenId: 1n
 "use client";
@@ -121,7 +121,7 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: ทดสอบระบบ TokenID:0</p>
+            <p>ผู้แนะนำ: ทดสอบระบบ TokenID : 0</p>
             <p>0xfcb7d48a0826c163de65374011Dd91563CC79f2999</p>
         </header>
     );
