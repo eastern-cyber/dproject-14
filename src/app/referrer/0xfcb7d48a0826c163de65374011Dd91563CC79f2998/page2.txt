@@ -1,5 +1,5 @@
-//<p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
-//<p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
+//<p>ผู้แนะนำ: saintfah7@gmail.com</p>
+//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
 //tokenId: 4n
 "use client";
 
@@ -15,89 +15,50 @@ import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
 import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
-import MyNFTs from "@/app/components/MyNFTs"
 import TokenDFast from "@/app/components/TokenfDFast";
 
 export default function Refferrer() {
     const account = useActiveAccount();
 
-    const { data: nftMetadata } = useReadContract(
-        getContractMetadata,
-        {
-          contract: contract,
-        }
-      );
+    // const { data: nftMetadata } = useReadContract(
+    //     getContractMetadata,
+    //     {
+    //       contract: contract,
+    //     }
+    //   );
 
-      function NFTMetadata() {
-        return(
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "20px",
-                margin: "20px",
-                border: "1px solid #333",
-                borderRadius: "8px",
-              }}>
-                {nftMetadata && (
+    //   function NFTMetadata() {
+    //     return(
+    //         <div className="flex flex-col items-center justify-center p-5 m-5 border border-[#333] rounded-lg">
+    //             {nftMetadata && (
 
-                    <div>
-                    <MediaRenderer
-                      client={client}
-                      src={nftMetadata.image}
-                      style={{
-                        borderRadius: "8px",
-                      }}
-                    />
-                    </div>
-                )}
-        </div>
-        );
-      }
+    //                 <div>
+    //                 <MediaRenderer
+    //                   client={client}
+    //                   src={nftMetadata.image}
+    //                   style={{
+    //                     borderRadius: "8px",
+    //                   }}
+    //                 />
+    //                 </div>
+    //             )}
+    //     </div>
+    //     );
+    //   }
 
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
-            <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "20px",
-                    margin: "20px",
-                    border: "1px solid #333",
-                    borderRadius: "8px",
-                  }}>
+            <div className="flex flex-col items-center justify-center p-5 m-5 border border-[#333] rounded-lg">
                 <Header />
-                <div className="flex justify-center mb-20">
-                    <ConnectButton locale={"en_US"}
-                        client={client}
-                        // accountAbstraction={{
-                        //     chain: chain,
-                        //     sponsorGas: true,
-                        // }}
-                        wallets={[ inAppWallet ({
-                        auth: {
-                            options: [
-                                "email",
-                            ]
-                        }
-                        }) ]}
-                    />
-                </div>
                 <div className="flex flex-col items-center mb-6">
                     <ClaimButtons walletAddress={account?.address || ""}/>
                 </div>
-                <div className="flex flex-col items-center mb-6">
-                    <WalletBalances walletAddress={account?.address || ""}/>
-                </div>
-
             </div>
             {/* <div><MyNFTs /></div> */}
             <div className="flex flex-col items-center">
                     <a 
                         className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
-                        href="/">กลับหน้าหลัก</a>
+                        href="/assets/">ดูรายการทรัพย์สิน</a>
             </div>
         </main>
     )
@@ -119,8 +80,24 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
-            <p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
+            <p>ผู้แนะนำ: saintfah7@gmail.com</p>
+            <p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
+            <div className="flex justify-center mt-10 mb-10">
+                    <ConnectButton locale={"en_US"}
+                        client={client}
+                        chain={chain}
+                        wallets={[ inAppWallet ({
+                        auth: {
+                            options: [
+                                "email",
+                            ]
+                        }
+                        }) ]}
+                    />
+            </div>
+            {/* <div className="flex flex-col items-center mb-6">
+                    <WalletBalances walletAddress={account?.address || ""}/>
+            </div> */}
         </header>
     );
 }
@@ -179,16 +156,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
 
       function NFTMetadata() {
         return(
-            <div style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "20px",
-                margin: "20px",
-                border: "1px solid #333",
-                borderRadius: "8px",
-              }}>
+            <div className="flex flex-col items-center justify-center p-5 m-5 border border-[#333] rounded-lg">
                 {contractMetadata && (
 
                     <div>
@@ -217,6 +185,30 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             tokenId: 4n
         }
     );
+
+    return nftBalance && nftBalance > 0 ? 
+        <div className="flex flex-col items-center mb-6">
+                    <WalletBalances walletAddress={account?.address || ""}/>
+                    <WalletBalances walletAddress={account?.address || ""}/>
+        </div> : (
+        <div className="flex flex-col gap-4 md:gap-8">
+            <ClaimButtons walletAddress={account?.address || ""}/>
+            <div className="flex justify-center mt-10 mb-10">
+                    <ConnectButton locale={"en_US"}
+                        client={client}
+                        chain={chain}
+                        wallets={[ inAppWallet ({
+                        auth: {
+                            options: [
+                                "email",
+                            ]
+                        }
+                        }) ]}
+                    />
+            </div>  
+        </div>
+    );
+    
     const { data: dfastBalance } = useReadContract(
         balanceOfERC20,
         {

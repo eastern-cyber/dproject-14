@@ -80,10 +80,7 @@ export default function Refferrer() {
                 <div className="flex justify-center mb-20">
                     <ConnectButton locale={"en_US"}
                         client={client}
-                        // accountAbstraction={{
-                        //     chain: chain,
-                        //     sponsorGas: true,
-                        // }}
+                        chain={chain}
                         wallets={[ inAppWallet ({
                         auth: {
                             options: [
@@ -274,7 +271,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <img className="flex h-14 w-14" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmaZnaqQcAxt4aWzJ6YnxkHLiTGeBxwjTiW4Gfq6Xjbaaq/3K-red.png" alt="" />
                 </a>
                 <a target="_blank" href="https://opensea.io/account/collected">
-                <p style={{alignItems: "center", justifyContent: "center", fontSize: "24px"}}>3K NFT ทั้งหมดที่ท่านถือครอง</p>
+                <p style={{alignItems: "center", justifyContent: "center", fontSize: "24px"}}>3K NFT ทั้งหมดที่ท่านถือครอง</p >
                 </a>
             </div>
             

@@ -1,5 +1,5 @@
-//<p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
-//<p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
+//<p>ผู้แนะนำ: saintfah7@gmail.com</p>
+//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
 //tokenId: 4n
 "use client";
 
@@ -119,8 +119,8 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
-            <p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
+            <p>ผู้แนะนำ: saintfah7@gmail.com</p>
+            <p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
         </header>
     );
 }
@@ -217,6 +217,32 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             tokenId: 4n
         }
     );
+
+    return nftBalance && nftBalance > 0 ? null : (
+        <div className="flex flex-col gap-4 md:gap-8">
+            <div className="flex flex-col gap-4 md:gap-8">
+                <p>กดปุ่มด้านล่างเพื่อซื้อคูปอง  
+                ผู้ใช้งานพรีเมี่ยมของ  
+                แอพพลิเคชั่นก๊อกๆๆ</p>
+            </div>
+            <div className="flex flex-col gap-4 md:gap-8">
+                <TransactionButton
+                    transaction={() => claimERC1155({
+                        contract: nftContract,
+                        to: walletAddress || "",
+                        tokenId: 4n,
+                        quantity: 1n
+                    })}
+                    onTransactionConfirmed={async () => {
+                        alert("ทำรายการซื้อ คูปอง 3K NFT เรียบร้อย ");
+                    }}
+                >
+                    ซื้อคูปอง 3K NFT
+                </TransactionButton>
+            </div>  
+        </div>
+    );
+    
     const { data: dfastBalance } = useReadContract(
         balanceOfERC20,
         {
