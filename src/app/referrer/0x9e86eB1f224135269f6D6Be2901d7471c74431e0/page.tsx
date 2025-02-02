@@ -1,5 +1,5 @@
-//<p>ผู้แนะนำ: saintfah7@gmail.com</p>
-//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
+//<p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
+//<p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
 //tokenId: 4n
 "use client";
 
@@ -120,8 +120,8 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: saintfah7@gmail.com</p>
-            <p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
+            <p>ผู้แนะนำ: ywlkjkatnssm889@gmail.com</p>
+            <p>0x9e86eB1f224135269f6D6Be2901d7471c74431e0</p>
         </header>
     );
 }
@@ -155,7 +155,7 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                         transaction={() => claimERC1155({
                             contract: nftContract,
                             to: walletAddress || "",
-                            tokenId: 4n,
+                            tokenId: 12n,
                             quantity: 1n
                         })}
                         onTransactionConfirmed={async () => {
@@ -215,7 +215,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
             }),
             owner: walletAddress || "",
-            tokenId: 4n
+            tokenId: 12n
         }
     );
     const { data: dfastBalance } = useReadContract(
@@ -294,7 +294,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 </div>
             </div>
             <div className="flex flex-col gap-4 md:gap-8">
-                <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/4">
+                <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/12">
                 <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/495c8c0598ade9099d9361ae906d18c9.png?auto=format&dpr=1&w=1000" alt="" />
                 {/* <NFTMetadata /> */}
                 </a>
