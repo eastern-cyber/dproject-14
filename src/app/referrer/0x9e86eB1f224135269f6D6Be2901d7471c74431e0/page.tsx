@@ -295,7 +295,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             </div>
             <div className="flex flex-col gap-4 md:gap-8">
                 <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/12">
-                <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/495c8c0598ade9099d9361ae906d18c9.png?auto=format&dpr=1&w=1000" alt="" />
+                <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/24057f98c7ac7a0dc19a6e7f78c8e1e0.png?auto=format&dpr=1&w=1000" alt="" />
                 {/* <NFTMetadata /> */}
                 </a>
             </div>
