@@ -1,6 +1,6 @@
-//<p>ผู้แนะนำ: saintfah7@gmail.com</p>
-//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
-//tokenId: 4n
+//<p>ผู้แนะนำ: ทดสอบระบบ TokenID:0</p>
+//<p>0xfcb7d48a0826c163de65374011Dd91563CC79f2999</p>
+//tokenId: 1n
 "use client";
 
 import Image from "next/image";
@@ -121,8 +121,8 @@ function  Header() {
             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                สมัครใช้งาน
             </h1>
-            <p>ผู้แนะนำ: saintfah7@gmail.com</p>
-            <p>0xfcb7d48a0826c163de65374011Dd91563CC79f29</p>
+            <p>ผู้แนะนำ: ทดสอบระบบ TokenID:0</p>
+            <p>0xfcb7d48a0826c163de65374011Dd91563CC79f2999</p>
         </header>
     );
 }
@@ -156,7 +156,7 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                         transaction={() => claimERC1155({
                             contract: nftContract,
                             to: walletAddress || "",
-                            tokenId: 4n,
+                            tokenId: 0n,
                             quantity: 1n
                         })}
                         onTransactionConfirmed={async () => {
@@ -240,7 +240,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
             }),
             owner: walletAddress || "",
-            tokenId: 4n
+            tokenId: 0n
         }
     );
     const { data: dfastBalance } = useReadContract(
