@@ -146,7 +146,9 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
     return (
         <div className="flex flex-col gap-4 md:gap-8">
             <div className="flex flex-col gap-4 md:gap-8">
-            <p>กดปุ่มด้านล่าง ยืนยันการเป็นสมาชิกพรีเมี่ยม เพื่อสนับสนุนแอพพลิเคชั่นก๊อกๆๆ</p>
+            <p className="text-center">
+                กดปุ่มด้านล่าง ยืนยันการเป็นสมาชิกพรีเมี่ยม <br /> เพื่อสนับสนุนแอพพลิเคชั่นก๊อกๆๆ
+            </p>
             </div>
             <div className="flex flex-col gap-4 md:gap-8">
                 <TransactionButton
