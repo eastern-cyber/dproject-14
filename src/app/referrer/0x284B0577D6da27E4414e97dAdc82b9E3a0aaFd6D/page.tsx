@@ -1,6 +1,6 @@
 //<p>ผู้แนะนำ: laohasuwan@gmail.com</p>
 //<p>0x284B0577D6da27E4414e97dAdc82b9E3a0aaFd6D</p>
-//tokenId: 3n
+//tokenId: 14n
 "use client";
 
 import Image from "next/image";
@@ -295,7 +295,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             </div>
             <div className="flex flex-col gap-4 md:gap-8">
                 <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/14">
-                <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/56555f28556c56c18c2d0482b6e538bd.jpg?auto=format&dpr=1&w=1000" alt="" />
+                <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/de9a2ad065fc4139a34a0f3aa4223459.png?auto=format&dpr=1&w=1000" alt="" />
                 {/* <NFTMetadata /> */}
                 </a>
             </div>            
