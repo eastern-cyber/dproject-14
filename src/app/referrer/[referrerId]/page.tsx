@@ -13,7 +13,7 @@ export default function page({
     params: { referrerId: string };
 }) {
 
-    const account = useActiveAccount();
+    // const account = useActiveAccount();
     
   return (
     <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
