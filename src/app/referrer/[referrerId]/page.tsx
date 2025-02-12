@@ -200,7 +200,8 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
           }}>
             <div className="flex flex-col">
                 <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
-                <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/15c636f0fd04af287d79d5bd62bca67a.png?auto=format&dpr=1&w=1000" alt="" />
+                <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmX7sxs3WExk8eYQ1G96HMqaZsS5AiPgSdJncj6aTvnG3j/3.png" alt="" />
+                <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmW7A4LMuGbi35x5aWMn1UZWomk5QGbSmFR9d8MvwidoVe/1.png" alt="" />
                 </a>
             </div>
             <div 
