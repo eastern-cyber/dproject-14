@@ -1,5 +1,5 @@
-
 "use client";
+import React from "react";
 import Image from "next/image";
 import {  ConnectButton, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
@@ -123,114 +123,114 @@ export default function ReferrerDetails( {
     
 }
 
-type walletAddresssProps = {
-    walletAddress?: string;
-};
+// type walletAddresssProps = {
+//     walletAddress?: string;
+// };
 
-const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
-    const nftContract = getContract({
-        client: client,
-        chain: defineChain(polygon),
-        address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
-    })
+// const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+//     const nftContract = getContract({
+//         client: client,
+//         chain: defineChain(polygon),
+//         address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+//     })
 
-    return (
-        <div className="flex flex-col gap-4 md:gap-8">
-            <div className="flex flex-col gap-4 md:gap-8">
-            <p className="text-center mt-4">
-                กดปุ่ม<b> "ยืนยัน"</b><br /> ด้านล่าง
-            </p>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-6">
-                <TransactionButton
-                        // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
-                        transaction={() => claimERC1155({
-                            contract: nftContract,
-                            to: walletAddress || "",
-                            tokenId: 3n,
-                            quantity: 1n
-                        })}
-                        onTransactionConfirmed={async () => {
-                            alert("รายการ ยืนยัน เรียบร้อย ");
-                        }}
-                >
-                <p style={{fontSize: "18px"}}><b>ยืนยัน</b></p>
-                </TransactionButton>
-            </div>
-            <p className="text-center">
-                ชำระ<b> "40 POL"</b><br /> เพื่อสนับสนุน<br /> แอพพลิเคชั่นก๊อกๆๆ
-            </p>  
-        </div>
-    )
-};
+//     return (
+//         <div className="flex flex-col gap-4 md:gap-8">
+//             <div className="flex flex-col gap-4 md:gap-8">
+//             <p className="text-center mt-4">
+//                 กดปุ่ม<b> "ยืนยัน"</b><br /> ด้านล่าง
+//             </p>
+//             </div>
+//             <div className="flex flex-col gap-2 md:gap-6">
+//                 <TransactionButton
+//                         // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
+//                         transaction={() => claimERC1155({
+//                             contract: nftContract,
+//                             to: walletAddress || "",
+//                             tokenId: 3n,
+//                             quantity: 1n
+//                         })}
+//                         onTransactionConfirmed={async () => {
+//                             alert("รายการ ยืนยัน เรียบร้อย ");
+//                         }}
+//                 >
+//                 <p style={{fontSize: "18px"}}><b>ยืนยัน</b></p>
+//                 </TransactionButton>
+//             </div>
+//             <p className="text-center">
+//                 ชำระ<b> "40 POL"</b><br /> เพื่อสนับสนุน<br /> แอพพลิเคชั่นก๊อกๆๆ
+//             </p>  
+//         </div>
+//     )
+// };
 
-const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+// const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
 
-    const account = useActiveAccount();
+//     const account = useActiveAccount();
 
-    const { data: contractMetadata } = useReadContract(
-        getContractMetadata,
-        {
-          contract: contract,
-        }
-      );
+//     const { data: contractMetadata } = useReadContract(
+//         getContractMetadata,
+//         {
+//           contract: contract,
+//         }
+//       );
 
-    const { data: nftBalance } = useReadContract(
-        balanceOfERC1155,
-        {
-            contract: getContract({
-                client: client,
-                chain: defineChain(polygon),
-                address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
-            }),
-            owner: walletAddress || "",
-            tokenId: 3n
-        }
-    );
+//     const { data: nftBalance } = useReadContract(
+//         balanceOfERC1155,
+//         {
+//             contract: getContract({
+//                 client: client,
+//                 chain: defineChain(polygon),
+//                 address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+//             }),
+//             owner: walletAddress || "",
+//             tokenId: 3n
+//         }
+//     );
 
-    return (
-        <div style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "20px",
-            // border: "1px solid #333",
-            // borderRadius: "8px",
-          }}>
-            <div className="flex flex-col">
-                <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
-                <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmX7sxs3WExk8eYQ1G96HMqaZsS5AiPgSdJncj6aTvnG3j/3.png" alt="" />
-                <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmW7A4LMuGbi35x5aWMn1UZWomk5QGbSmFR9d8MvwidoVe/1.png" alt="" />
-                </a>
-            </div>
-            <div 
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: "100%",
-                    fontSize: "24px",
-                    justifyContent: "center",
-                    paddingBottom: "20px",
-                    // border: "1px solid #333",
-                    // borderRadius: "8px",
-                }}
-                >
-                    <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของท่าน</b></p>
-                        <div style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
-                        {/* <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>     */}
-                        <p style={{ fontSize: "18px" }}>{walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>
-                        </div>
-                    <div style={{justifyContent: "center", alignItems: "center", fontSize: "24px", marginTop: "6px"}}>
-                        คูปอง 3K NFT ของท่านมี 
-                        <span style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
-                            {walletAddress ? nftBalance?.toString() : "0"}
-                        </span>
-                        รายการ
-                    </div>
-            </div>
-        </div>
-    )
-};
+//     return (
+//         <div style={{
+//             display: "flex",
+//             flexDirection: "column",
+//             width: "100%",
+//             alignItems: "center",
+//             justifyContent: "center",
+//             padding: "20px",
+//             // border: "1px solid #333",
+//             // borderRadius: "8px",
+//           }}>
+//             <div className="flex flex-col">
+//                 <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
+//                 <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmX7sxs3WExk8eYQ1G96HMqaZsS5AiPgSdJncj6aTvnG3j/3.png" alt="" />
+//                 <img  className="h-56 w-56 m-6" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmW7A4LMuGbi35x5aWMn1UZWomk5QGbSmFR9d8MvwidoVe/1.png" alt="" />
+//                 </a>
+//             </div>
+//             <div 
+//                 style={{
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     alignItems: "center",
+//                     width: "100%",
+//                     fontSize: "24px",
+//                     justifyContent: "center",
+//                     paddingBottom: "20px",
+//                     // border: "1px solid #333",
+//                     // borderRadius: "8px",
+//                 }}
+//                 >
+//                     <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของท่าน</b></p>
+//                         <div style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
+//                         {/* <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>     */}
+//                         <p style={{ fontSize: "18px" }}>{walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>
+//                         </div>
+//                     <div style={{justifyContent: "center", alignItems: "center", fontSize: "24px", marginTop: "6px"}}>
+//                         คูปอง 3K NFT ของท่านมี 
+//                         <span style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
+//                             {walletAddress ? nftBalance?.toString() : "0"}
+//                         </span>
+//                         รายการ
+//                     </div>
+//             </div>
+//         </div>
+//     )
+// };
