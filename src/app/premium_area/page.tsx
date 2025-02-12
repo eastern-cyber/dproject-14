@@ -127,8 +127,11 @@ const WalletPublicKey: React.FC<walletAddresssProps> = ({ walletAddress }) => {
               }}
             >
                 <span className="mt-4 text-[22px]">ลิ้งค์แนะนำของท่าน</span>
-                <div style={{border: "1px solid #666", background: "#222", padding: "2px 8px", margin: "6px"}}>
-                <p className="text-[16px] break-all">https://dfi.fund/referrer/{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
+                <p className="text-[16px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                </div>
+                <div>
+                {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
                 </div>
                 <div className="flex flex-col items-center justify-center p-5 border border-gray-800 rounded-lg text-lg text-center font-bold mt-10">
                     เตรียมเปิดร้านค้าออนไลน์<br />และประชาสัมพันธ์ผ่านแอ๊พ <span className="mt-2 text-[#eb1c24] text-3xl animate-blink">ก๊อกๆๆ !</span>
