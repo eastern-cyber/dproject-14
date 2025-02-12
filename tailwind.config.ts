@@ -13,8 +13,18 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        blink: "blink 3s ease-in-out infinite",
+      },
+      keyframes: {
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.2" }, // Reduce opacity instead of full 0 for a smoother effect
+        },
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
