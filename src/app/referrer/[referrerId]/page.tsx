@@ -17,109 +17,109 @@ export default function ReferrerDetails( {
  }: {
     params: { referrerId: string };
 }) {
-    // return <h1>Details about Referrer {params.referrerId}</h1>
-    const account = useActiveAccount();
+    return <h1>Details about Referrer {params.referrerId}</h1>
+//     const account = useActiveAccount();
 
-    const { data: nftMetadata } = useReadContract(
-        getContractMetadata,
-        {
-          contract: contract,
-        }
-      );
+//     const { data: nftMetadata } = useReadContract(
+//         getContractMetadata,
+//         {
+//           contract: contract,
+//         }
+//       );
 
-    return (
-        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
-            <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: "20px",
-                    margin: "20px",
-                    border: "1px solid #333",
-                    borderRadius: "8px",
-                  }}>
+//     return (
+//         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
+//             <div style={{
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     alignItems: "center",
+//                     justifyContent: "center",
+//                     padding: "20px",
+//                     margin: "20px",
+//                     border: "1px solid #333",
+//                     borderRadius: "8px",
+//                   }}>
                 
-                <Image
-                src={dprojectIcon}
-                alt=""
-                className="mb-4 size-[100px] md:size-[100px]"
-                style={{
-                    filter: "drop-shadow(0px 0px 24px #a726a9a8"
-                }}
-            />
+//                 <Image
+//                 src={dprojectIcon}
+//                 alt=""
+//                 className="mb-4 size-[100px] md:size-[100px]"
+//                 style={{
+//                     filter: "drop-shadow(0px 0px 24px #a726a9a8"
+//                 }}
+//             />
 
-            <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
-               สมัครใช้งาน
-            </h1>
-                <div className="flex justify-center mb-20">
-                    <ConnectButton locale={"en_US"} 
-                        client={client}
-                        chain={chain}
-                        wallets={[ inAppWallet ({
-                        auth: {
-                            options: [
-                                "email",
-                            ]
-                            }
-                        }) ]}
-                        connectModal={{
-                            title: "เชื่อมต่อกระเป๋า",
-                            titleIcon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
-                            size: "wide", // Change to "compact" or "auto" 
-                        }}
-                        supportedTokens={{
-                        [polygon.id]: [
-                            {
-                                address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
-                                name: "DProject",
-                                symbol: "DFI",
-                                icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
-                            },
-                            {
-                                address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
-                                name: "USDC",
-                                symbol: "USDC",
-                                icon: "https://polygonscan.com/token/images/centre-usdc_32.png",
-                            },
-                            {
-                                address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
-                                name: "USDT",
-                                symbol: "USDT",
-                                icon: "https://polygonscan.com/token/images/tether_32.png",
-                                },
-                        ],
-                        }}
-                        supportedNFTs={{
-                        [polygon.id]: [
-                            "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
-                        ],
-                        }}
-                    />
-                </div>
-            {/* <p>ผู้แนะนำ: sunyapakorn.1958@gmail.com</p>
-             */}
-            <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของผู้แนะนำ</b></p>
-            <div style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
-            {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
-            <p style={{ fontSize: "18px" }}>{params.referrerId ? `${params.referrerId.slice(0, 6)}...${params.referrerId.slice(-4)}` : ""}
-</p>
-            </div>
-                <div className="flex flex-col items-center mb-6">
-                    <ClaimButtons walletAddress={account?.address || ""}/>
-                </div>
-                <div className="flex flex-col items-center mb-6">
-                    <WalletBalances walletAddress={account?.address || ""}/>
-                </div>
+//             <h1 className="p-4 text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
+//                สมัครใช้งาน
+//             </h1>
+//                 <div className="flex justify-center mb-20">
+//                     <ConnectButton locale={"en_US"} 
+//                         client={client}
+//                         chain={chain}
+//                         wallets={[ inAppWallet ({
+//                         auth: {
+//                             options: [
+//                                 "email",
+//                             ]
+//                             }
+//                         }) ]}
+//                         connectModal={{
+//                             title: "เชื่อมต่อกระเป๋า",
+//                             titleIcon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
+//                             size: "wide", // Change to "compact" or "auto" 
+//                         }}
+//                         supportedTokens={{
+//                         [polygon.id]: [
+//                             {
+//                                 address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
+//                                 name: "DProject",
+//                                 symbol: "DFI",
+//                                 icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
+//                             },
+//                             {
+//                                 address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+//                                 name: "USDC",
+//                                 symbol: "USDC",
+//                                 icon: "https://polygonscan.com/token/images/centre-usdc_32.png",
+//                             },
+//                             {
+//                                 address: "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+//                                 name: "USDT",
+//                                 symbol: "USDT",
+//                                 icon: "https://polygonscan.com/token/images/tether_32.png",
+//                                 },
+//                         ],
+//                         }}
+//                         supportedNFTs={{
+//                         [polygon.id]: [
+//                             "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
+//                         ],
+//                         }}
+//                     />
+//                 </div>
+//             {/* <p>ผู้แนะนำ: sunyapakorn.1958@gmail.com</p>
+//              */}
+//             <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของผู้แนะนำ</b></p>
+//             <div style={{border: "1px solid #666", background: "#222", padding: "0px 6px", margin: "10px"}}>
+//             {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
+//             <p style={{ fontSize: "18px" }}>{params.referrerId ? `${params.referrerId.slice(0, 6)}...${params.referrerId.slice(-4)}` : ""}
+// </p>
+//             </div>
+//                 <div className="flex flex-col items-center mb-6">
+//                     <ClaimButtons walletAddress={account?.address || ""}/>
+//                 </div>
+//                 <div className="flex flex-col items-center mb-6">
+//                     <WalletBalances walletAddress={account?.address || ""}/>
+//                 </div>
 
-            </div>
-            <div className="flex flex-col items-center">
-                    <a 
-                        className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
-                        href="/">กลับหน้าหลัก</a>
-            </div>
-        </main>
-    )
+//             </div>
+//             <div className="flex flex-col items-center">
+//                     <a 
+//                         className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+//                         href="/">กลับหน้าหลัก</a>
+//             </div>
+//         </main>
+//     )
     
 }
 
