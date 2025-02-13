@@ -4,11 +4,8 @@ import Image from "next/image";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
 import { chain } from '@/app/chain';
 import { client } from '@/app/client';
-import { ConnectButton, TransactionButton, useActiveAccount } from 'thirdweb/react';
+import { ConnectButton } from 'thirdweb/react';
 import { inAppWallet } from 'thirdweb/wallets';
-import { defineChain, getContract } from 'thirdweb';
-import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
-import { polygon } from 'thirdweb/chains';
 
 export default function ReferrerDetails({ 
     params,
@@ -36,8 +33,6 @@ export default function ReferrerDetails({
             fetchReferrerData();
         }
     }, [params.referrerId]);
-
-    const account = useActiveAccount();
 
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -104,51 +99,7 @@ export default function ReferrerDetails({
                         <p className="text-gray-400 text-sm mt-2">ไม่พบข้อมูลผู้แนะนำ</p>
                     )}
                 </div>
-                <div className="flex flex-col items-center mb-6">
-                    <ClaimButtons walletAddress={account?.address || ""}/>
-                </div>
             </div>
         </main>
     );
 }
-
-type walletAddresssProps = {
-    walletAddress?: string;
-};
-
-const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
-    const nftContract = getContract({
-        client: client,
-        chain: defineChain(polygon),
-        address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
-    })
-
-    return (
-        <div className="flex flex-col gap-4 md:gap-8">
-            <div className="flex flex-col gap-4 md:gap-8">
-            <p className="text-center mt-4">
-                กดปุ่ม<b> "ยืนยัน"</b><br /> ด้านล่าง
-            </p>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-6">
-                <TransactionButton
-                        // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
-                        transaction={() => claimERC1155({
-                            contract: nftContract,
-                            to: walletAddress || "",
-                            tokenId: 3n,
-                            quantity: 1n
-                        })}
-                        onTransactionConfirmed={async () => {
-                            alert("รายการ ยืนยัน เรียบร้อย ");
-                        }}
-                >
-                <p style={{fontSize: "18px"}}><b>ยืนยัน</b></p>
-                </TransactionButton>
-            </div>
-            <p className="text-center">
-                ชำระ<b> "40 POL"</b><br /> เพื่อสนับสนุน<br /> แอพพลิเคชั่นก๊อกๆๆ
-            </p>  
-        </div>
-    )
-};
