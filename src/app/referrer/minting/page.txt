@@ -1,19 +1,16 @@
-//<p>ผู้แนะนำ: sunyapakorn.1958@gmail.com</p>
-//<p>0x0a11986fd85AAe898Ee34757eBbA93454647C63D</p>
-//tokenId: 3n
 "use client";
 
 import Image from "next/image";
 import {  ConnectButton, MediaRenderer, TokenIcon, TokenProvider, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
-import { client } from "../client";
-import { chain  } from "../chain";
+import { client } from "../../client";
+import { chain  } from "../../chain";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContract, toEther } from "thirdweb";
 import { defineChain, polygon } from "thirdweb/chains";
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
-import { contract } from "../../../utils/contracts";
+import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import TokenDFast from "@/app/components/TokenfDFast";
 

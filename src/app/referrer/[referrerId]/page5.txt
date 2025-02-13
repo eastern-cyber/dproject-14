@@ -6,8 +6,6 @@ import { chain } from '@/app/chain';
 import { client } from '@/app/client';
 import { ConnectButton, TransactionButton, useActiveAccount } from 'thirdweb/react';
 import { inAppWallet } from 'thirdweb/wallets';
-import { useRouter } from "next/navigation";
-
 import { defineChain, getContract } from 'thirdweb';
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
 import { polygon } from 'thirdweb/chains';
@@ -107,63 +105,12 @@ export default function ReferrerDetails({
                     )}
                 </div>
                 <div className="flex flex-col items-center mb-6">
-                    <ExistingPage />
                     {/* <ClaimButtons walletAddress={account?.address || ""}/> */}
                 </div>
             </div>
         </main>
     );
 }
-
-const ExistingPage = () => {
-    const router = useRouter();
-  
-    const navigateToMintingsPage = () => {
-      const data = {
-        var1: "Hello",
-        var2: "World",
-        var3: "Next.js",
-        var4: "TypeScript"
-      };
-  
-      // Store data in sessionStorage before navigation
-      sessionStorage.setItem("mintingsData", JSON.stringify(data));
-  
-      // Navigate without exposing variables in the URL
-      router.push("/referrer/mintings");
-    };
-  
-    return (
-      <div>
-        <h1>Existing Page</h1>
-        <button onClick={navigateToMintingsPage}>
-          Go to Mintings Page
-        </button>
-      </div>
-    );
-  };
-
-// const navigateToMintingsPage = (router: any) => {
-//   const var1 = "Hello";
-//   const var2 = "World";
-//   const var3 = "Next.js";
-//   const var4 = "TypeScript";
-
-//   router.push(`/referrer/mintings/newpage?var1=${var1}&var2=${var2}&var3=${var3}&var4=${var4}`);
-// };
-
-// const ExistingPage = () => {
-//   const router = useRouter();
-
-//   return (
-//     <div>
-//       <h1>Existing Page</h1>
-//       <button onClick={() => navigateToMintingsPage(router)}>
-//         Go to New Page
-//       </button>
-//     </div>
-//   );
-// };
 
 // type walletAddresssProps = {
 //     walletAddress?: string;
