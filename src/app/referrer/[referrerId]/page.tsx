@@ -37,7 +37,7 @@ export default function ReferrerDetails({
         }
     }, [params.referrerId]);
 
-    const account = useActiveAccount();
+    // const account = useActiveAccount();
 
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -105,7 +105,7 @@ export default function ReferrerDetails({
                     )}
                 </div>
                 <div className="flex flex-col items-center mb-6">
-                    <ClaimButtons walletAddress={account?.address || ""}/>
+                    {/* <ClaimButtons walletAddress={account?.address || ""}/> */}
                 </div>
             </div>
         </main>
