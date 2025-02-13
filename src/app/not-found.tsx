@@ -1,5 +1,6 @@
+"use client";
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export default function NotFound() {
   return (
@@ -8,11 +9,11 @@ export default function NotFound() {
         <p>This is a restricted area</p>
         <p>ท่านไม่สามารถใช้งานพื้นที่นี้ได้</p>
         <div className="flex flex-col items-center">
-            <a 
+            <Link 
                 className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                 href="/">
                 Home / กลับหน้าหลัก
-            </a>
+            </Link>
         </div>
     </div>
     </main>
