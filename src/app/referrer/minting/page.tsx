@@ -256,10 +256,10 @@ const MintingPage = () => {
                         </div>
                             <div className="flex flex-col items-center justify-center p-3 m-2 border border-gray-800">
                             <p className="mb-4"><u>ขอมูลเพื่อการตรวจสอบระบบ</u></p> 
-                            <p>Variable 1: {data.var1}</p>
-                            <p>Variable 2: {data.var2}</p>
-                            <p>Variable 3: {data.var3}</p>
-                            <p>Variable 4: {data.var4}</p>
+                            <p>เลขกระเป๋าผู้แนะนำ: {data.var1}</p>
+                            <p>อีเมล: {data.var2}</p>
+                            <p>ชื่อ: {data.var3}</p>
+                            <p>TokenId: {data.var4}</p>
                             </div>
                         </>
                     ) : (
