@@ -152,15 +152,6 @@ const MintingPage = () => {
                     </a>
                 </div>            
                 <p style={{fontSize: "20px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
-                {nftBalance && nftBalance > 0 && (
-                    <div className="flex flex-col items-center mt-6">
-                        <Link
-                            className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-800 transition-colors hover:border-zinc-800"
-                            href="/premium-area/">
-                            เข้าพื้นที่สมาชิกพรีเมี่ยม
-                        </Link>
-                    </div>
-                )}
             </div>
         )
     };
@@ -252,6 +243,13 @@ const MintingPage = () => {
                                 </div>
                                 <div className="flex flex-col items-center mb-6">
                                     <WalletBalances walletAddress={account?.address || ""}/>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <Link 
+                                        className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                                        href="/premium-area/">
+                                        เข้าพื้นที่สมาชิกพรีเมี่ยม
+                                    </Link>
                                 </div>
                         </div>
                             <div className="flex flex-col items-center justify-center p-3 m-2 border border-gray-800">
