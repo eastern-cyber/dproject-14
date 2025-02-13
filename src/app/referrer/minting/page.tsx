@@ -4,7 +4,7 @@ import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ConnectButton } from "thirdweb/react";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import { inAppWallet } from "thirdweb/wallets";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
 
@@ -18,6 +18,8 @@ const MintingPage = () => {
       setData(JSON.parse(storedData));
     }
   }, []);
+
+  const account = useActiveAccount();
 
   return (
     <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
