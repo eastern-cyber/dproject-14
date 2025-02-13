@@ -30,10 +30,10 @@ const MintingPage = () => {
                 filter: "drop-shadow(0px 0px 24px #a726a9a8"
             }}
             />
-                {/* <h1 className="p-4 md:text-2xl text-2xl font-semibold md:font-bold tracking-tighter">
-                    สมัครใช้งาน
-                </h1> */}
-                <div className="flex justify-center m-5">
+                <h1 className="p-4 md:text-2xl text-2xl font-semibold md:font-bold tracking-tighter">
+                    Mint 3K NFT
+                </h1>
+                <div className="flex justify-center m-2">
                     <ConnectButton locale={"en_US"} 
                         client={client}
                         chain={chain}
@@ -79,35 +79,39 @@ const MintingPage = () => {
                     />
                 </div>
                 
-                <h1>Minting Page</h1>
+                <div>
                     {data ? (
                         <>
-                        <div className="flex flex-col items-center justify-center p-5 m-5">
-                    <p className="flex flex-col items-center justify-center text-[20px] m-5"><b>เลขที่กระเป๋าของผู้แนะนำ</b></p>
-                    <div style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center", // Centers vertically
-                        border: "1px solid #666",
-                        background: "#222",
-                        padding: "0px 6px",
-                        margin: "10px",
-                        height: "40px" // Optional: Ensure enough height for centering
-                    }}>
-                        {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
-                        <p style={{ fontSize: "18px" }}>
-                            {data.var1 ? `${data.var1.slice(0, 6)}...${data.var1.slice(-4)}` : ""}
-                        </p>
-                    </div>
-                </div>
-                        <p>Variable 1: {data.var1}</p>
-                        <p>Variable 2: {data.var2}</p>
-                        <p>Variable 3: {data.var3}</p>
-                        <p>Variable 4: {data.var4}</p>
+                        <div className="flex flex-col items-center justify-center p-2 m-2">
+                            <p className="flex flex-col items-center justify-center text-[20px] m-3"><b>เลขกระเป๋าของผู้แนะนำ</b></p>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center", // Centers vertically
+                                border: "1px solid #666",
+                                background: "#222",
+                                padding: "0px 6px",
+                                margin: "10px",
+                                height: "40px" // Optional: Ensure enough height for centering
+                            }}>
+                                {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
+                                <p style={{ fontSize: "18px" }}>
+                                    {data.var1 ? `${data.var1.slice(0, 6)}...${data.var1.slice(-4)}` : ""}
+                                </p>
+                            </div>
+                        </div>
+                            <div className="flex flex-col items-center justify-center p-3 m-2 border border-gray-800">
+                            <p className="mb-4"><u>ขอมูลเพื่อการตรวจสอบระบบ</u></p> 
+                            <p>Variable 1: {data.var1}</p>
+                            <p>Variable 2: {data.var2}</p>
+                            <p>Variable 3: {data.var3}</p>
+                            <p>Variable 4: {data.var4}</p>
+                            </div>
                         </>
                     ) : (
-                        <p>No data available.</p>
+                        <p>No data available.</p>                        
                     )}
+                </div>
         </div>
     </main>
   );
