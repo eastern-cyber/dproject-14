@@ -4,9 +4,14 @@ import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ConnectButton, useActiveAccount } from "thirdweb/react";
+import { ConnectButton, MediaRenderer, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import { inAppWallet } from "thirdweb/wallets";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
+import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
+import { defineChain, getContract } from "thirdweb";
+import { polygon } from "thirdweb/chains";
+import { getContractMetadata } from "thirdweb/extensions/common";
+import { contract } from "../../../../utils/contracts";
 
 const MintingPage = () => {
   const [data, setData] = useState<{ var1: string; var2: string; var3: string; var4: string } | null>(null);
@@ -19,7 +24,138 @@ const MintingPage = () => {
     }
   }, []);
 
-  const account = useActiveAccount();
+    const account = useActiveAccount();
+
+    type walletAddresssProps = {
+        walletAddress?: string;
+    };
+
+    const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+        const nftContract = getContract({
+            client: client,
+            chain: defineChain(polygon),
+            address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+        })
+    
+        return (
+            <div className="flex flex-col gap-4 md:gap-8">
+                {/* <div className="flex flex-col gap-4 md:gap-8"> */}
+                <p className="mt-4 text-center">
+                    กดปุ่ม
+                </p>
+                {/* </div> */}
+                <div className="flex flex-col gap-2 md:gap-4">
+                    <TransactionButton
+                            className="flex flex-col mt-1 border border-zinc-100 px-4 py-3 rounded-lg bg-red-700 hover:bg-red-800 hover:border-zinc-400"
+                            transaction={() => claimERC1155({
+                                contract: nftContract,
+                                to: walletAddress || "",
+                                tokenId: 3n,
+                                quantity: 1n
+                            })}
+                            onTransactionConfirmed={async () => {
+                                alert("การยืนยันเรียบร้อย ");
+                            }}
+                    >ยืนยัน </TransactionButton>
+                </div>
+                <p className="text-center">
+                    เป็นสมาชิกพรีเมี่ยม <br /> เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ  
+                </p>
+            </div>
+        )
+    };
+
+    const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+    
+        const account = useActiveAccount();
+    
+        const { data: contractMetadata } = useReadContract(
+            getContractMetadata,
+            {
+              contract: contract,
+            }
+          );
+    
+          function NFTMetadata() {
+            return(
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "20px",
+                    margin: "20px",
+                    border: "1px solid #333",
+                    borderRadius: "8px",
+                  }}>
+                    {contractMetadata && (
+    
+                        <div>
+                        <MediaRenderer
+                          client={client}
+                          src={contractMetadata.image}
+                          style={{
+                            borderRadius: "8px",
+                          }}
+                        />
+                        </div>
+                    )}
+            </div>
+            );
+          }
+    
+        const { data: nftBalance } = useReadContract(
+            balanceOfERC1155,
+            {
+                contract: getContract({
+                    client: client,
+                    chain: defineChain(polygon),
+                    address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+                }),
+                owner: walletAddress || "",
+                tokenId: 3n
+            }
+        );
+    
+        return (
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "20px",
+                // border: "1px solid #333",
+                // borderRadius: "8px",
+              }}>
+                <div 
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    width: "100%",
+                    fontSize: "24px",
+                    justifyContent: "center",
+                    paddingBottom: "20px",
+                    // border: "1px solid #333",
+                    // borderRadius: "8px",
+                  }}
+                >
+                    {/* <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p> */}
+                    <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของท่าน</b></p>
+                    <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}>
+                    <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                    </div>
+                </div>
+                <div className="flex flex-col gap-4 md:gap-8">
+                    <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
+                    <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/15c636f0fd04af287d79d5bd62bca67a.png?auto=format&dpr=1&w=1000" alt="" />
+                    </a>
+                </div>            
+                <p style={{fontSize: "24px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+            </div>
+        )
+    };
 
   return (
     <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -85,22 +221,30 @@ const MintingPage = () => {
                     {data ? (
                         <>
                         <div className="flex flex-col items-center justify-center p-2 m-2">
-                            <p className="flex flex-col items-center justify-center text-[20px] m-3"><b>เลขกระเป๋าของผู้แนะนำ</b></p>
-                            <div style={{
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center", // Centers vertically
-                                border: "1px solid #666",
-                                background: "#222",
-                                padding: "0px 6px",
-                                margin: "10px",
-                                height: "40px" // Optional: Ensure enough height for centering
-                            }}>
-                                {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
-                                <p style={{ fontSize: "18px" }}>
-                                    {data.var1 ? `${data.var1.slice(0, 6)}...${data.var1.slice(-4)}` : ""}
-                                </p>
-                            </div>
+                            {/* <p className="flex flex-col items-center justify-center text-[20px] m-3">
+                                <b>เลขที่กระเป๋าของผู้แนะนำ</b>
+                            </p> */}
+                                {/* <div style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center", // Centers vertically
+                                    border: "1px solid #666",
+                                    background: "#222",
+                                    padding: "0px 6px",
+                                    margin: "10px",
+                                    height: "40px" // Optional: Ensure enough height for centering
+                                }}> */}
+                                    {/* <p style={{fontSize: "18px"}}>{params.referrerId}</p> */}
+                                    {/* <p style={{ fontSize: "18px" }}>
+                                        {data.var1 ? `${data.var1.slice(0, 6)}...${data.var1.slice(-4)}` : ""}
+                                    </p> */}
+                                {/* </div> */}
+                                <div className="flex flex-col items-center mb-6">
+                                    <ClaimButtons walletAddress={account?.address || ""}/>
+                                </div>
+                                <div className="flex flex-col items-center mb-6">
+                                    <WalletBalances walletAddress={account?.address || ""}/>
+                                </div>
                         </div>
                             <div className="flex flex-col items-center justify-center p-3 m-2 border border-gray-800">
                             <p className="mb-4"><u>ขอมูลเพื่อการตรวจสอบระบบ</u></p> 
