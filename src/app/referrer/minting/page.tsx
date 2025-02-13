@@ -39,11 +39,9 @@ const MintingPage = () => {
     
         return (
             <div className="flex flex-col gap-4 md:gap-8">
-                {/* <div className="flex flex-col gap-4 md:gap-8"> */}
                 <p className="mt-4 text-center">
                     กดปุ่ม
                 </p>
-                {/* </div> */}
                 <div className="flex flex-col gap-2 md:gap-4">
                     <TransactionButton
                             className="flex flex-col mt-1 border border-zinc-100 px-4 py-3 rounded-lg bg-red-700 hover:bg-red-800 hover:border-zinc-400"
@@ -142,17 +140,17 @@ const MintingPage = () => {
                   }}
                 >
                     {/* <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p> */}
-                    <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของท่าน</b></p>
-                    <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}>
-                    <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
-                    </div>
+                    {/* <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋าของท่าน</b></p> */}
+                    {/* <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}> */}
+                    {/* <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>     */}
+                    {/* </div> */}
                 </div>
-                <div className="flex flex-col gap-4 md:gap-8">
+                <div className="flex flex-col gap-2 md:gap-4">
                     <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
-                    <img  className="h-56 w-56 m-6" src="https://i.seadn.io/s/raw/files/15c636f0fd04af287d79d5bd62bca67a.png?auto=format&dpr=1&w=1000" alt="" />
+                    <img  className="h-36 w-36 m-2" src="https://i.seadn.io/s/raw/files/b95ea6273415b8ae2ab7b563bd770dda.png?auto=format&dpr=1&w=1000" alt="" />
                     </a>
                 </div>            
-                <p style={{fontSize: "24px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+                <p style={{fontSize: "20px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
             </div>
         )
     };
@@ -255,7 +253,7 @@ const MintingPage = () => {
                             </div>
                         </>
                     ) : (
-                        <p>No data available.</p>                        
+                        <p>ไม่พบข้อมูลผู้แนะนำ</p>                        
                     )}
                 </div>
         </div>
