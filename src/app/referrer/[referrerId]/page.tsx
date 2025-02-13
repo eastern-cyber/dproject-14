@@ -112,43 +112,43 @@ export default function ReferrerDetails({
     );
 }
 
-type walletAddresssProps = {
-    walletAddress?: string;
-};
+// type walletAddresssProps = {
+//     walletAddress?: string;
+// };
 
-const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
-    const nftContract = getContract({
-        client: client,
-        chain: defineChain(polygon),
-        address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
-    })
+// const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
+//     const nftContract = getContract({
+//         client: client,
+//         chain: defineChain(polygon),
+//         address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
+//     })
 
-    return (
-        <div className="flex flex-col gap-4 md:gap-8">
-            <div className="flex flex-col gap-4 md:gap-8">
-            <p className="text-center mt-4">
-                กดปุ่ม<b> "ยืนยัน"</b><br /> ด้านล่าง
-            </p>
-            </div>
-            <div className="flex flex-col gap-2 md:gap-6">
-                <TransactionButton
-                        // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
-                        transaction={() => claimERC1155({
-                            contract: nftContract,
-                            to: walletAddress || "",
-                            tokenId: 3n,
-                            quantity: 1n
-                        })}
-                        onTransactionConfirmed={async () => {
-                            alert("รายการ ยืนยัน เรียบร้อย ");
-                        }}
-                >
-                <p style={{fontSize: "18px"}}><b>ยืนยัน</b></p>
-                </TransactionButton>
-            </div>
-            <p className="text-center">
-                ชำระ<b> "40 POL"</b><br /> เพื่อสนับสนุน<br /> แอพพลิเคชั่นก๊อกๆๆ
-            </p>  
-        </div>
-    )
-};
+//     return (
+//         <div className="flex flex-col gap-4 md:gap-8">
+//             <div className="flex flex-col gap-4 md:gap-8">
+//             <p className="text-center mt-4">
+//                 กดปุ่ม<b> "ยืนยัน"</b><br /> ด้านล่าง
+//             </p>
+//             </div>
+//             <div className="flex flex-col gap-2 md:gap-6">
+//                 <TransactionButton
+//                         // className="border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-100 transition-colors hover:border-zinc-300"
+//                         transaction={() => claimERC1155({
+//                             contract: nftContract,
+//                             to: walletAddress || "",
+//                             tokenId: 3n,
+//                             quantity: 1n
+//                         })}
+//                         onTransactionConfirmed={async () => {
+//                             alert("รายการ ยืนยัน เรียบร้อย ");
+//                         }}
+//                 >
+//                 <p style={{fontSize: "18px"}}><b>ยืนยัน</b></p>
+//                 </TransactionButton>
+//             </div>
+//             <p className="text-center">
+//                 ชำระ<b> "40 POL"</b><br /> เพื่อสนับสนุน<br /> แอพพลิเคชั่นก๊อกๆๆ
+//             </p>  
+//         </div>
+//     )
+// };
