@@ -32,7 +32,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
         }
     }, [params.referrerId]);
 
-    const navigateToMintingsPage = () => {
+    const navigateToMintingPage = () => {
         const data = {
             var1: params.referrerId || "N/A", // Referrer ID from params
             var2: referrerData?.email || "N/A", // Email from referrerData
@@ -43,8 +43,8 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
         // Store data in sessionStorage before navigation
         sessionStorage.setItem("mintingsData", JSON.stringify(data));
 
-        // Navigate to mintings page without exposing variables in the URL
-        router.push("/referrer/mintings");
+        // Navigate to minting page without exposing variables in the URL
+        router.push("/referrer/minting");
     };
 
     return (
@@ -121,7 +121,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                     )}
                 </div>
                 <div className="flex flex-col items-center mb-6">
-                    <button onClick={navigateToMintingsPage} className="flex flex-col mt-1 border border-zinc-100 px-4 py-3 rounded-lg bg-red-700 hover:bg-zinc-800 transition-colors hover:border-zinc-400">
+                    <button onClick={navigateToMintingPage} className="flex flex-col mt-1 border border-zinc-100 px-4 py-3 rounded-lg bg-red-700 hover:bg-zinc-800 transition-colors hover:border-zinc-400">
                         ดำเนินการต่อ
                     </button>
                 </div>
