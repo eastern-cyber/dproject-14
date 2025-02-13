@@ -96,7 +96,7 @@ export default function ReferrerDetails({
                     </div>
                     {referrerData ? (
                         <div className="mt-4 text-center gap-6">
-                            <p className="text-lg text-gray-300"><b>อีเมล:</b> {referrerData.email} </p>
+                            <p className="text-lg text-gray-300 break-all"><b>อีเมล:</b> {referrerData.email} </p>
                             <p className="text-lg text-gray-300 mt-1"><b>ชื่อ:</b> {referrerData.name} </p>
                             <p className="text-lg text-red-600 mt-1"><b>Token ID: {referrerData.tokenId} </b></p>
                         </div>
