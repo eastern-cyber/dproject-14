@@ -48,7 +48,7 @@ const MintingPage = () => {
                             transaction={() => claimERC1155({
                                 contract: nftContract,
                                 to: walletAddress || "",
-                                tokenId: 3n,
+                                tokenId: BigInt(data?.var4 || "0"),
                                 quantity: 1n
                             })}
                             onTransactionConfirmed={async () => {
@@ -111,7 +111,7 @@ const MintingPage = () => {
                     address: "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2"
                 }),
                 owner: walletAddress || "",
-                tokenId: 3n
+                tokenId: BigInt(data?.var4 || "0")
             }
         );
     
@@ -146,7 +146,7 @@ const MintingPage = () => {
                     {/* </div> */}
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4">
-                    <a target="_blank" href="https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/3">
+                    <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
                     <img  className="h-36 w-36 m-2" src="https://i.seadn.io/s/raw/files/b95ea6273415b8ae2ab7b563bd770dda.png?auto=format&dpr=1&w=1000" alt="" />
                     </a>
                 </div>            
