@@ -7,7 +7,7 @@ import { client } from '@/app/client';
 import { ConnectButton } from 'thirdweb/react';
 import { inAppWallet } from 'thirdweb/wallets';
 
-export default function Page({ 
+export default function ReferrerDetails({ 
     params,
  }: {
     params: { referrerId: string };
@@ -74,7 +74,7 @@ export default function Page({
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center p-5 m-5">
-                    <p className="flex flex-col items-center justify-center text-[20px] m-5"><b>ผู้แนะนำ</b></p>
+                    <p className="flex flex-col items-center justify-center text-[20px] m-2"><b>ผู้แนะนำของท่านคือ</b></p>
                     <div style={{
                         display: "flex",
                         justifyContent: "center",
@@ -82,7 +82,7 @@ export default function Page({
                         border: "1px solid #666",
                         background: "#222",
                         padding: "10px",
-                        margin: "10px",
+                        margin: "6px",
                         borderRadius: "8px"
                     }}>
                         <p style={{ fontSize: "18px" }}>
@@ -90,10 +90,10 @@ export default function Page({
                         </p>
                     </div>
                     {referrerData ? (
-                        <div className="mt-4 text-center">
-                            <p className="text-sm text-gray-400"><b>อีเมล:</b> {referrerData.email}</p>
-                            <p className="text-lg"><b>ชื่อ:</b> {referrerData.name}</p>
-                            <p className="text-sm text-green-400"><b>Token ID:</b> {referrerData.tokenId}</p>
+                        <div className="mt-4 text-center gap-6">
+                            <p className="text-lg text-gray-300"><b>อีเมล:</b> {referrerData.email} </p>
+                            <p className="text-lg text-gray-300 mt-1"><b>ชื่อ:</b> {referrerData.name} </p>
+                            <p className="text-lg text-red-600 mt-1"><b>Token ID: {referrerData.tokenId} </b></p>
                         </div>
                     ) : (
                         <p className="text-gray-400 text-sm mt-2">ไม่พบข้อมูลผู้แนะนำ</p>
