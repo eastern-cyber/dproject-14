@@ -1,0 +1,20 @@
+[
+    {
+      "referrerId": "0x12E43878Ab2a41ACA0545a7dCa3536D92e16E8b7",
+      "email": "katawut@mail.com",
+      "name": "Mac 0x12E4",
+      "tokenId": "7"
+    },
+    {
+        "referrerId": "0xE044Ef9C25997Fb463A9637F96B15d4F89E6B8e2",
+        "email": "katawut.paramee@gmail.com",
+        "name": "Mac 0xE044 ",
+        "tokenId": "21"
+      },
+    {
+      "referrerId": "0xfedcba9876543210mnopqrs",
+      "email": "alice.smith@example.com",
+      "name": "Alice Smith",
+      "tokenId": "1002"
+    }
+  ]
