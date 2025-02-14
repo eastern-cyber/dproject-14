@@ -1114,10 +1114,6 @@
         "referrerId": "0x284B0577D6da27E4414e97dAdc82b9E3a0aaFd6D"
     },
     {
-        "refereeId": "0x0c20e00690Fd7B7c660206A5F0Ee06D664650f1a",
-        "referrerId": "0x0c20e00690Fd7B7c660206A5F0Ee06D664650f1a"
-    },
-    {
         "refereeId": "0x97f4ed804432EfF9AB04D35ca41Fd9678D9F6f6e",
         "referrerId": "0xfAFd5620BB742dC3C76bDe0ece29A2CCABB3293d"
     },
@@ -1179,10 +1175,6 @@
         "referrerId": "0x284B0577D6da27E4414e97dAdc82b9E3a0aaFd6D"
     },
     {
-        "refereeId": "0xAc92417043dC9dE9a5B85b4AaB9cb0edb878aF07",
-        "referrerId": "0x284B0577D6da27E4414e97dAdc82b9E3a0aaFd6D"
-    },
-    {
         "refereeId": "0x656524dA4bFd3EB17a5AE14ADA91b8d7510d0Fc0",
         "referrerId": "0x284B0577D6da27E4414e97dAdc82b9E3a0aaFd6D"
     },
@@ -1219,8 +1211,8 @@
         "referrerId": "0x9e86eB1f224135269f6D6Be2901d7471c74431e0"
     },
     {
-        "refereeId": "",
-        "referrerId": ""
+        "refereeId": "0xbc99Ff8935A4383C6Ad0da4416A654f8153D6119",
+        "referrerId": "0xb9cB4e7C1174877C9D06A7D519eD0edcf97E4DbF"
     },
     {
         "refereeId": "",
