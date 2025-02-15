@@ -190,6 +190,7 @@ const MintingPage = () => {
                             ]
                             }
                         }) ]}
+                        connectButton={{ label: "ล็อกอิน" }}
                         connectModal={{
                             title: "เชื่อมต่อกระเป๋า",
                             titleIcon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",

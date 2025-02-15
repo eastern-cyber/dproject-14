@@ -67,6 +67,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                         client={client}
                         chain={chain}
                         wallets={[inAppWallet({ auth: { options: ["email"] } })]}
+                        connectButton={{ label: "ล็อกอิน" }}
                         connectModal={{
                             title: "เชื่อมต่อกระเป๋า",
                             titleIcon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
