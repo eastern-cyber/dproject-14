@@ -177,10 +177,10 @@ export default function Home() {
               marginTop: "10px",
             }}>
               <a 
-                href="/assets"
-                className="flex flex-col border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-900 transition-colors hover:border-zinc-300"
+                href="/member-area"
+                className="flex flex-col border bg-zinc-800 border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-300"
               >
-                ดูรายการทรัพย์สินที่ท่านถือครอง
+                <p className="text-[18px] break-words tex-center">เข้าสู่พื้นที่สมาชิก</p>
               </a>
             </p>
             </div>

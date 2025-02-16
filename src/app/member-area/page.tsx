@@ -13,6 +13,7 @@ import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/ext
 import { contract } from "../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import TokenDFast from "@/app/components/TokenfDFast";
+import Link from "next/link";
 
 export default function Refferrer() {
     const account = useActiveAccount();
@@ -130,12 +131,13 @@ export default function Refferrer() {
                 <div className="flex flex-col items-center mb-6">
                     <WalletBalances walletAddress={account?.address || ""}/>
                 </div>
-
             </div> 
             <div className="flex flex-col items-center">
-                    <a 
+                    <Link 
                         className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
-                        href="/">กลับหน้าหลัก</a>
+                        href="/">
+                        กลับหน้าหลัก
+                    </Link>
             </div>
         </main>
     )
@@ -295,7 +297,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p>
                 <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋า</b></p>
                 <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}>
-                <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                <p className="text-[18px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                 </div>
             </div>
             <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
@@ -328,6 +330,43 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 6,})
                     .format(Number(toEther(polBalance || 0n))): "0"}
                     {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
+                </div>
+
+                <div style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}>
+                    <div 
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        width: "100%",
+                        fontSize: "24px",
+                        justifyContent: "center",
+                        paddingTop: "15px",
+                        paddingBottom: "5px",
+                    }}
+                    >
+                        <span className="mt-4 text-[22px]">ลิ้งค์แนะนำของท่าน</span>
+                        <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
+                            <p className="text-[16px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                        </div>
+                        <span className="text-center mt-4 text-[20px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>
+                        <div>
+                            {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
+                        </div>
+                        <div className="flex flex-col items-center tex-[16px]">
+                            <Link 
+                                className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800"
+                                href="/premium-area">
+                                <p className="text-[18px]">เข้าสู่พื้นที่สมาชิกพรีเมี่ยม</p>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

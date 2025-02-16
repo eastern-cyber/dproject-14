@@ -131,6 +131,7 @@ const WalletPublicKey: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
                 <p className="text-[16px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                 </div>
+                <span className="text-center mt-4 text-[20px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>
                 <div>
                 {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
                 </div>
