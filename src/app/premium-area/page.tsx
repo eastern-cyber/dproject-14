@@ -135,8 +135,10 @@ const WalletPublicKey: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <div>
                 {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
                 </div>
-                <div className="flex flex-col items-center justify-center p-5 border border-gray-800 rounded-lg text-lg text-center font-bold mt-10">
-                    เตรียมเปิดร้านค้าออนไลน์<br />และประชาสัมพันธ์ผ่านแอ๊พ <span className="mt-2 text-[#eb1c24] text-3xl animate-blink">ก๊อกๆๆ !</span>
+                <div className="flex flex-col items-center justify-center p-5 border border-gray-800 rounded-lg text-[19px] text-center font-bold mt-10">
+                    <span className="m-2 text-[#eb1c24] text-[22px] animate-blink">สมาชิกพรีเมี่ยม !</span>
+                    เตรียมเปิดร้านค้าออนไลน์<br />และประชาสัมพันธ์ ผ่านแอ๊พ 
+                    <span className="mt-2 text-[#eb1c24] text-3xl animate-blink">ก๊อกๆๆ !</span>
                 </div>
             </div>
         </div>

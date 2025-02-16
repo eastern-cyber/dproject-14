@@ -301,7 +301,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             
             <div className="mt-8 flex flex-col justify-items-left">
                 <div className="flex mt-3 gap-2 md:gap-2">
-                    <TokenDFast />เหรียญ DFast: {walletAddress? 
+                    <TokenDFast />เหรียญ DProject: {walletAddress? 
                     new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 2,})
                     .format(Number(toEther(dfastBalance || 0n))): "0"}
                 </div>                
@@ -324,7 +324,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
                         <Link target="_blank" href="https://opensea.io/account/collected">
                             {/* <NFTMetadata /> */}
-                            <img className="flex h-8 w-8" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
+                            <img className="flex h-8 w-8 mr-3" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
                         </Link>
                         <Link target="_blank" href="https://opensea.io/account/collected">
                             <p style={{alignItems: "center", justifyContent: "center", fontSize: "18px"}}>
