@@ -58,7 +58,7 @@ const MintingPage = () => {
                     >ยืนยัน </TransactionButton>
                 </div>
                 <p className="text-center">
-                    เป็นสมาชิกพรีเมี่ยม <br /> เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ  
+                    การเป็นสมาชิกพรีเมี่ยม <br /> เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ  
                 </p>
             </div>
         )
@@ -148,10 +148,10 @@ const MintingPage = () => {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4">
                     <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
-                    <img  className="h-36 w-36 m-2" src="https://i.seadn.io/s/raw/files/b95ea6273415b8ae2ab7b563bd770dda.png?auto=format&dpr=1&w=1000" alt="" />
+                    <img  className="h-36 w-36 m-4" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
                     </a>
                 </div>            
-                <p style={{fontSize: "20px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+                <p style={{fontSize: "18px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
                 {nftBalance && nftBalance > 0 && (
                     <div className="flex flex-col items-center mt-6">
                         <Link
