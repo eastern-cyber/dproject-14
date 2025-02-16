@@ -25,17 +25,17 @@ export default function Refferrer() {
         }
       );
     
-    function Token() {
-    return (
-        <TokenProvider
-        address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
-        client={client}
-        chain={polygon}
-        >
-        <TokenIcon className="h-6 w-6 rounded-full mr-1" />
-        </TokenProvider>
-    );
-    }
+    // function Token() {
+    // return (
+    //     <TokenProvider
+    //     address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
+    //     client={client}
+    //     chain={polygon}
+    //     >
+    //     <TokenIcon className="h-6 w-6 rounded-full mr-1" />
+    //     </TokenProvider>
+    // );
+    // }
 
       function NFTMetadata() {
         return(
@@ -78,7 +78,7 @@ export default function Refferrer() {
                     borderRadius: "8px",
                   }}>
                 <Header />
-                <div className="flex justify-center mb-20">
+                <div className="flex justify-center mb-10">
                 <ConnectButton locale={"en_US"} 
                         client={client}
                         chain={chain}
@@ -128,13 +128,13 @@ export default function Refferrer() {
                 {/* <div className="flex flex-col items-center mb-6">
                     <ClaimButtons walletAddress={account?.address || ""}/>
                 </div> */}
-                <div className="flex flex-col items-center mb-6">
+                <div className="flex flex-col justify-center items-center">
                     <WalletBalances walletAddress={account?.address || ""}/>
                 </div>
             </div> 
             <div className="flex flex-col items-center">
                     <Link 
-                        className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                        className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                         href="/">
                         กลับหน้าหลัก
                     </Link>
@@ -146,7 +146,7 @@ export default function Refferrer() {
 
 function  Header() {
     return (
-        <header className="flex flex-col items-center mb-20 mb:mb-20">
+        <header className="flex flex-col items-center mb-12 mb:mb-20">
             <Image
                 src={dprojectIcon}
                 alt=""
@@ -290,8 +290,6 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 fontSize: "24px",
                 justifyContent: "center",
                 paddingBottom: "20px",
-                // border: "1px solid #333",
-                // borderRadius: "8px",
               }}
             >
                 <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p>
@@ -299,15 +297,6 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}>
                 <p className="text-[18px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                 </div>
-            </div>
-            <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
-                <a target="_blank" href="https://opensea.io/account/collected">
-                {/* <NFTMetadata /> */}
-                <img className="flex h-14 w-14" src="https://e8b864cf8d55fbd854f43ae53b6c824c.ipfscdn.io/ipfs/QmaZnaqQcAxt4aWzJ6YnxkHLiTGeBxwjTiW4Gfq6Xjbaaq/3K-red.png" alt="" />
-                </a>
-                <a target="_blank" href="https://opensea.io/account/collected">
-                <p style={{alignItems: "center", justifyContent: "center", fontSize: "24px"}}>3K NFT ทั้งหมดที่ท่านถือครอง</p >
-                </a>
             </div>
             
             <div className="mt-8 flex flex-col justify-items-left">
@@ -332,40 +321,34 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
                 </div>
 
-                <div style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}>
-                    <div 
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        width: "100%",
-                        fontSize: "24px",
-                        justifyContent: "center",
-                        paddingTop: "15px",
-                        paddingBottom: "5px",
-                    }}
-                    >
-                        <span className="mt-4 text-[22px]">ลิ้งค์แนะนำของท่าน</span>
-                        <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
-                            <p className="text-[16px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
-                        </div>
-                        <span className="text-center mt-4 text-[20px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>
-                        <div>
-                            {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
-                        </div>
-                        <div className="flex flex-col items-center tex-[16px]">
-                            <Link 
-                                className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800"
-                                href="/premium-area">
-                                <p className="text-[18px]">เข้าสู่พื้นที่สมาชิกพรีเมี่ยม</p>
-                            </Link>
-                        </div>
+                <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
+                        <Link target="_blank" href="https://opensea.io/account/collected">
+                            {/* <NFTMetadata /> */}
+                            <img className="flex h-8 w-8" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
+                        </Link>
+                        <Link target="_blank" href="https://opensea.io/account/collected">
+                            <p style={{alignItems: "center", justifyContent: "center", fontSize: "18px"}}>
+                                NFT ทั้งหมดที่ท่านถือครอง
+                            </p >
+                        </Link>
+                </div>   
+            </div>
+            <div className="flex flex-col w-full items-center justify-center mt-6">
+                <div className="flex flex-col items-center w-full justify-center pt-[15px] pb-[5px]">
+                    <span className="text-center text-[21px]">ลิ้งค์แนะนำของท่าน</span>
+                    <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
+                        <p className="text-[18px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
+                    </div>
+                    <span className="text-center mt-2 mb-10 text-[19px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>
+                    <div>
+                        {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
+                    </div>
+                    <div className="flex flex-col justify-center items-center w-[300px]">
+                        <Link 
+                            className="flex flex-col border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800"
+                            href="/premium-area">
+                            <p className="text-center text-[19px]">เข้าสู่พื้นที่สมาชิกพรีเมี่ยม</p>
+                        </Link>
                     </div>
                 </div>
             </div>

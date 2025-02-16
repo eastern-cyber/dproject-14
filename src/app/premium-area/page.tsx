@@ -84,7 +84,7 @@ export default function PremiumArea() {
             </div>
             <div className="flex flex-col items-center">
                     <a 
-                        className="flex flex-col mt-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                        className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                         href="/">กลับหน้าหลัก</a>
             </div>
         </main>
