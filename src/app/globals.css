@@ -16,7 +16,8 @@
 }
 
 @layer base {
-	body {
-		@apply bg-zinc-950 text-neutral-200;
-	}
+    body {
+        @apply text-neutral-200;
+        background-color: #1e1d59;
+    }
 }
