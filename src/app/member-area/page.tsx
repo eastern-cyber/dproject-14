@@ -24,18 +24,6 @@ export default function Refferrer() {
           contract: contract,
         }
       );
-    
-    // function Token() {
-    // return (
-    //     <TokenProvider
-    //     address={"0xca23b56486035e14F344d6eb591DC27274AF3F47"}
-    //     client={client}
-    //     chain={polygon}
-    //     >
-    //     <TokenIcon className="h-6 w-6 rounded-full mr-1" />
-    //     </TokenProvider>
-    // );
-    // }
 
       function NFTMetadata() {
         return(
@@ -342,6 +330,13 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     <span className="text-center mt-2 mb-10 text-[19px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>
                     <div>
                         {/* <p className="text-[16px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p> */}
+                    </div>
+                    <div className="flex flex-col justify-center items-center w-[300px]">
+                        <Link 
+                            className="flex flex-col border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800 mb-5"
+                            href="/member-area/check-referee">
+                            <p className="text-center text-[19px]">ตรวจสอบรายชื่อผู้ที่ท่านแนะนำ</p>
+                        </Link>
                     </div>
                     <div className="flex flex-col justify-center items-center w-[300px]">
                         <Link 
