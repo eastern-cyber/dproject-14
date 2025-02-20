@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import {  ConnectButton, MediaRenderer, TokenIcon, TokenProvider, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
+import {  ConnectButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import dprojectIcon from "@public/DFastLogo_650x600.svg";
 import { client } from "../../client";
 import { chain  } from "../../chain";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContract, toEther } from "thirdweb";
 import { defineChain, polygon } from "thirdweb/chains";
-import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
-import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
 import { contract } from "../../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
-import TokenDFast from "@/app/components/TokenfDFast";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -44,6 +41,10 @@ export default function RefereePage() {
     const [referrers, setReferrers] = useState<ReferrerData[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [referrerId, setReferrerId] = useState("");
+
+    // Use relative paths from GitHub Raw file
+    // const refereesUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-11/main/public/referees.json";
+    // const referrersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-11/main/public/referrers.json";
 
     // Use relative paths to refer to files in the /public folder
     const refereesUrl = "/referees.json";

@@ -116,6 +116,12 @@ export default function Home() {
             supportedTokens={{
             [chain.id]: [
                 {
+                  address: "0x0000000000000000000000000000000000001010",
+                  name: "POL",
+                  symbol: "POL",
+                  icon: "https://polygonscan.com/token/images/polygonmatic_new_32.png",
+                },
+                {
                     address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
                     name: "DProject",
                     symbol: "DFI",
