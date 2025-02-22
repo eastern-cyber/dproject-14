@@ -282,19 +282,11 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             </div>
             
             <div className="mt-8 flex flex-col justify-items-left">
-                <div className="flex mt-3 gap-2 md:gap-2">
+                {/* <div className="flex mt-3 gap-2 md:gap-2">
                     <TokenDFast />เหรียญ DProject: {walletAddress? 
                     new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 2,})
                     .format(Number(toEther(dfastBalance || 0n))): "0"}
-                </div>                
-                <div className="flex mt-3 gap-2 md:gap-2">
-                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/centre-usdc_32.png" />
-                    เหรียญ USDC: {walletAddress ? (Number(usdcBalance) / 1_000_000).toFixed(2) : "0"}
-                </div>                
-                <div className="flex mt-3 gap-2 md:gap-2">
-                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/tether_32.png" />
-                    เหรียญ USDT: {walletAddress ? (Number(usdtBalance) / 1_000_000).toFixed(2) : "0"}
-                </div>                
+                </div>*/}
                 <div className="flex mt-3 gap-2 md:gap-2">
                     <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/polygonmatic_new_32.png" />
                     เหรียญ POL: {walletAddress? 
@@ -302,11 +294,18 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     .format(Number(toEther(polBalance || 0n))): "0"}
                     {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
                 </div>
-
-                <div className="mt-6 flex justify-items-center gap-1 md:gap-6">
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/centre-usdc_32.png" />
+                    เหรียญ USDC: {walletAddress ? (Number(usdcBalance) / 1_000_000).toFixed(2) : "0"}
+                </div>                
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/tether_32.png" />
+                    เหรียญ USDT: {walletAddress ? (Number(usdtBalance) / 1_000_000).toFixed(2) : "0"}
+                </div>
+                <div className="mt-6 flex justify-items-center gap-1 md:gap-4">
                         <Link target="_blank" href="https://opensea.io/account/collected">
                             {/* <NFTMetadata /> */}
-                            <img className="flex h-8 w-8 mr-3" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
+                            <img className="flex h-8 w-8 mr-1" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
                         </Link>
                         <Link target="_blank" href="https://opensea.io/account/collected">
                             <p style={{alignItems: "center", justifyContent: "center", fontSize: "18px"}}>
