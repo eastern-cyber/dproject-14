@@ -12,6 +12,7 @@ import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
 import { contract } from "../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
+import Link from 'next/link';
 
 export default function PremiumArea() {
     const account = useActiveAccount();
@@ -19,14 +20,16 @@ export default function PremiumArea() {
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div className="flex flex-col items-center justify-center p-5 m-5 border border-gray-800 rounded-lg">
-            <Image
-                src={dprojectIcon}
-                alt=""
-                className="mb-4 size-[100px] md:size-[100px]"
-                style={{
-                    filter: "drop-shadow(0px 0px 24px #a726a9a8"
-                }}
-            />
+            <Link href="/" passHref>
+                <Image
+                    src={dprojectIcon}
+                    alt=""
+                    className="mb-4 size-[100px] md:size-[100px]"
+                    style={{
+                        filter: "drop-shadow(0px 0px 24px #a726a9a8"
+                    }}
+                />
+            </Link>
 
             <h1 className="p-4 text-1xl md:text-3xl text-2xl font-semibold md:font-bold tracking-tighter">
                 พื้นที่สมาชิกพรีเมี่ยม

@@ -9,6 +9,7 @@ import { client } from "./client";
 import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../utils/contracts";
+import Link from "next/link";
 
 export default function Home() {
   const account = useActiveAccount ();
@@ -222,15 +223,16 @@ function Header() {
           filter: "drop-shadow(0px 0px 24px #a726a9a8)",
         }}
       /> */}
-
-      <Image
-        src={dprojectIcon}
-        alt=""
-        className="size-[150px] md:size-[150px]"
-        style={{
-          filter: "drop-shadow(0px 0px 24px #a726a9a8)",
-        }}
-      />
+      <Link href="/" passHref>
+        <Image
+          src={dprojectIcon}
+          alt=""
+          className="size-[150px] md:size-[150px]"
+          style={{
+            filter: "drop-shadow(0px 0px 24px #a726a9a8)",
+          }}
+        />
+      </Link>
       <p>&nbsp;&nbsp;</p>
       <h2 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
         <span className="inline-block text-blue-500"> DProject </span>

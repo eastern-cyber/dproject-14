@@ -129,14 +129,16 @@ export default function Refferrer() {
 function  Header() {
     return (
         <header className="flex flex-col items-center mb-12 mb:mb-20">
-            <Image
-                src={dprojectIcon}
-                alt=""
-                className="mb-4 size-[100px] md:size-[100px]"
-                style={{
-                    filter: "drop-shadow(0px 0px 24px #a726a9a8"
-                }}
-            />
+            <Link href="/" passHref>
+                <Image
+                    src={dprojectIcon}
+                    alt=""
+                    className="mb-4 size-[100px] md:size-[100px]"
+                    style={{
+                        filter: "drop-shadow(0px 0px 24px #a726a9a8"
+                    }}
+                />
+            </Link>
 
             <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
                DProject Assets
