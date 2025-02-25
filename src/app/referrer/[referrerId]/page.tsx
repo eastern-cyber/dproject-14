@@ -7,6 +7,7 @@ import { client } from "@/app/client";
 import { ConnectButton } from "thirdweb/react";
 import { inAppWallet } from "thirdweb/wallets";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function ReferrerDetails({ params }: { params: { referrerId: string } }) {
     const [referrerData, setReferrerData] = useState<{ email?: string; name?: string; tokenId?: string } | null>(null);
@@ -50,14 +51,16 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div className="flex flex-col items-center justify-center p-10 m-5 border border-gray-800 rounded-lg">
-                <Image
-                    src={dprojectIcon}
-                    alt=""
-                    className="mb-4 size-[100px] md:size-[100px]"
-                    style={{
-                        filter: "drop-shadow(0px 0px 24px #a726a9a8",
-                    }}
-                />
+                <Link href="/" passHref>
+                    <Image
+                        src={dprojectIcon}
+                        alt=""
+                        className="mb-4 size-[100px] md:size-[100px]"
+                        style={{
+                            filter: "drop-shadow(0px 0px 24px #a726a9a8",
+                        }}
+                    />
+                </Link>
                 <h1 className="p-4 md:text-2xl text-2xl font-semibold md:font-bold tracking-tighter">
                     สมัครใช้งาน
                 </h1>
