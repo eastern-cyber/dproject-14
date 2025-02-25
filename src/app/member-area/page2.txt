@@ -12,6 +12,7 @@ import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb
 import { claimTo as claimERC20, balanceOf as balanceOfERC20 } from "thirdweb/extensions/erc20";
 import { contract } from "../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
+import TokenDFast from "@/app/components/TokenfDFast";
 import Link from "next/link";
 
 export default function Refferrer() {
@@ -176,6 +177,21 @@ const ClaimButtons: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     alert("ทำรายการซื้อ คูปอง 3K NFT เรียบร้อย ");
                 }}
             >ซื้อคูปอง 3K NFT</TransactionButton>
+            {/* <TransactionButton
+                transaction={() => claimERC20({
+                    contract: dfastContract,
+                    to: walletAddress || "",
+                    quantity: "10"
+                })}
+                onTransactionConfirmed={async () => {
+                    alert("DFast Coin Claimed");
+                }}
+            >Claim DFast Coin</TransactionButton> */}
+            {/* <TransactionButton>Claim Sepolia NFT</TransactionButton>
+            <TransactionButton>Claim Mode Tokens</TransactionButton>            
+            <TransactionButton>Claim Base Item01</TransactionButton>
+            <TransactionButton>Claim Base Item01</TransactionButton> */}
+            {/* ThirdWeb Youtube : Building a Multi-chain Experience with Account Abstraction */}
         </div>
     )
 };
@@ -246,6 +262,8 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             alignItems: "center",
             justifyContent: "center",
             padding: "20px",
+            // border: "1px solid #333",
+            // borderRadius: "8px",
           }}>
             <div 
             style={{
@@ -266,6 +284,11 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             </div>
             
             <div className="mt-8 flex flex-col justify-items-left">
+                {/* <div className="flex mt-3 gap-2 md:gap-2">
+                    <TokenDFast />เหรียญ DProject: {walletAddress? 
+                    new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 2,})
+                    .format(Number(toEther(dfastBalance || 0n))): "0"}
+                </div>*/}
                 <div className="flex mt-3 gap-2 md:gap-2">
                     <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/polygonmatic_new_32.png" />
                     เหรียญ POL: {walletAddress? 

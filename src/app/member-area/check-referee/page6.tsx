@@ -55,14 +55,8 @@ export default function RefereePage() {
 
     // const matchingUsers = users.filter((user) => user.referrerId === referrerId);
     const matchingUsers = referrerId.trim()
-    ? users
-        .filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
-        .map((user, index) => ({ ...user, recordNumber: index + 1 }))
+    ? users.filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
     : [];
-
-    // const matchingUsers = referrerId.trim()
-    // ? users.filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
-    // : [];
 
     // const matchingUsers = users.filter((user) => user.referrerId === referrerId && user.userId.trim() !== "");
 
@@ -132,41 +126,7 @@ export default function RefereePage() {
                     className="border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
                 />
                 <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2>
-                
-                {matchingUsers.length > 0 && (
-                    <>
-                        <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-400 px-4 py-2">#</th>
-                                    <th className="border border-gray-400 px-4 py-2">เลขกระเป๋า (ย่อ) </th>
-                                    <th className="border border-gray-400 px-4 py-2">ชื่อ</th>
-                                    <th className="border border-gray-400 px-4 py-2">อีเมล</th>
-                                    <th className="border border-gray-400 px-4 py-2">Token ID</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {matchingUsers.map((user) => (
-                                    <tr key={user.userId}>
-                                        <td className="border border-gray-400 px-4 py-2">{user.recordNumber}</td>
-                                        <td className="border border-gray-400 px-4 py-2">
-                                            {user.userId.slice(0, 6)}...{user.userId.slice(-4)}
-                                        </td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.name || "N/A"}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.email || "N/A"}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <p className="mt-4 text-lg font-semibold">
-                            รวม : {matchingUsers.length} ท่าน
-                        </p>
-                    </>
-                )}
-
-
-                {/* {matchingUsers.length > 0 ? (
+                {matchingUsers.length > 0 ? (
                     <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
                         <thead>
                             <tr>
@@ -189,7 +149,7 @@ export default function RefereePage() {
                     </table>
                 ) : (
                     <p className="mt-2 text-gray-400">No referees found for this referrer ID.</p>
-                )} */}
+                )}
                 <div className="flex flex-col mt-8 justify-center items-center w-full">
                     <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800" href="/member-area">
                         <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
