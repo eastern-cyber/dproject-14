@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ConnectButton, MediaRenderer, useActiveAccount, useReadContract } from "thirdweb/react";
 // import thirdwebIcon from "@public/thirdweb.svg";
-import dprojectIcon from "@public/DFastLogo_650x600.svg";
+import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { chain } from "./chain";
 import { client } from "./client";
 import { inAppWallet } from "thirdweb/wallets";

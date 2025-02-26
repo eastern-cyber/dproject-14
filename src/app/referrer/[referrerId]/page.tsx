@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import dprojectIcon from "@public/Logo_DProject.svg";
+import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import { ConnectButton } from "thirdweb/react";

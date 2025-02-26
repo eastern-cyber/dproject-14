@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ConnectButton, MediaRenderer, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
 import { inAppWallet } from "thirdweb/wallets";
-import dprojectIcon from "@public/DFastLogo_650x600.svg";
+import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
 import { defineChain, getContract } from "thirdweb";
 import { polygon } from "thirdweb/chains";
