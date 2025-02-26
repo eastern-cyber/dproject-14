@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import dprojectIcon from "@public/DFastLogo_650x600.svg";
+import dprojectIcon from "@public/Logo_DProject.svg";
 import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import { ConnectButton } from "thirdweb/react";
@@ -88,7 +88,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center p-2 m-2">
-                <p className="flex flex-col items-center justify-center text-[20px] m-2 text-center">
+                    <p className="flex flex-col items-center justify-center text-[20px] m-2 text-center">
                         <b>ขณะนี้ ท่านกำลังดำเนินการสมัครสมาชิก ภายใต้การแนะนำของ</b>
                     </p>
                     <div
