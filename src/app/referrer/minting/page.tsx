@@ -58,9 +58,9 @@ const MintingPage = () => {
                     >ยืนยัน </TransactionButton>
                 </div>
                 <p className="text-center text-[18px]">
-                    การเป็นสมาชิกพรีเมี่ยม <br /> 
-                    เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ <br />
-                    และถือเป็นการยืนยันสถานภาพสมาชิก <br /> 
+                    เพื่อสนับสนุน <b>แอพพลิเคชั่น <span className="text-[26px] text-red-600">ก๊อกๆๆ</span></b> <br />
+                    ถือเป็นการยืนยันสถานภาพ<br /> 
+                    <span className="text-yellow-500 text-[22px]"><b>"สมาชิกพรีเมี่ยม"</b></span><br />
                     ภายใต้สายงานของ<br />
                 </p>
                 <div className="text-center text-[18px] bg-gray-900 p-4 border border-1 border-zinc-300">
@@ -178,14 +178,14 @@ const MintingPage = () => {
                 <p>ที่ซื้อภายในการแนะนำของ<br /></p>
                 <p>
                     {data ? (
-                    <p className="text-[18px] m-1 text-yellow-500">
+                    <p className="text-[20px] my-3 text-yellow-500">
                         <b>{data.var3}</b>
                     </p>
                     ):(
                         <></>
                     )}
                 </p>
-                <p>มีจำนวน <b>{walletAddress ? nftBalance?.toString() : "0"}</b> รายการ</p>
+                <p>มีจำนวน <span className="text-[24px] my-3 text-yellow-500"><b>{walletAddress ? nftBalance?.toString() : "0"}</b></span> รายการ</p>
                 </div>
                 {nftBalance && nftBalance > 0 && (
                     <div className="flex flex-col items-center mt-6">
