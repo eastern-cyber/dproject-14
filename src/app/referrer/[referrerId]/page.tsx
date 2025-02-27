@@ -88,28 +88,16 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                     />
                 </div>
                 <div className="flex flex-col items-center justify-center p-2 m-2">
-                    <p className="flex flex-col items-center justify-center text-[20px] m-2 text-center">
+                    <p className="flex flex-col items-center justify-center text-[20px] m-2 text-center break-word">
                         <b>ขณะนี้ ท่านกำลังดำเนินการสมัครสมาชิก ภายใต้การแนะนำของ</b>
                     </p>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            border: "1px solid #666",
-                            background: "#222",
-                            padding: "10px",
-                            margin: "6px",
-                            borderRadius: "8px",
-                        }}
-                    >
-                        <p style={{ fontSize: "18px" }}>
-                            {params.referrerId ? `${params.referrerId.slice(0, 6)}...${params.referrerId.slice(-4)}` : "ไม่พบกระเป๋า"}
-                        </p>
-                    </div>
                     {referrerData ? (
-                        <div className="mt-4 text-center gap-6">
-                            <p className="text-lg text-gray-300 break-all">
+                        // <div className="text-center text-[18px] bg-gray-900 p-4 border border-1 border-zinc-300">
+                        <div className="mt-4 text-center gap-6 bg-gray-900 p-4 border border-1 border-gray-500">
+                            <p className="text-lg text-gray-300">
+                                <b>เลขกระเป๋าผู้แนะนำ:</b> {params.referrerId ? `${params.referrerId.slice(0, 6)}...${params.referrerId.slice(-4)}` : "ไม่พบกระเป๋า"}<br />
+                            </p>
+                            <p className="text-lg text-gray-300">
                                 <b>อีเมล:</b> {referrerData.email}
                             </p>
                             <p className="text-lg text-gray-300 mt-1">
@@ -120,8 +108,15 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                             </p>
                         </div>
                     ) : (
-                        <p className="text-gray-400 text-sm mt-2">ไม่พบข้อมูลผู้แนะนำ</p>
+                        <p className="text-gray-600 text-sm mt-2">ไม่พบข้อมูลผู้แนะนำ</p>
                     )}
+                    <div className="flex border border-gray-500 bg-gray-900 p-2.5 mt-5 w-full">
+                        <p className="text-[18px] break-all">
+                            <center>
+                            {params.referrerId ? `${params.referrerId}` : "ไม่พบกระเป๋า"}
+                            </center>
+                        </p>
+                    </div>
                 </div>
                 <div className="flex flex-col items-center mb-6">
                     <button onClick={navigateToMintingPage} className="flex flex-col mt-1 border border-zinc-100 px-4 py-3 rounded-lg bg-red-700 hover:bg-zinc-800 transition-colors hover:border-zinc-400">

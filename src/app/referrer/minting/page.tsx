@@ -57,9 +57,31 @@ const MintingPage = () => {
                             }}
                     >ยืนยัน </TransactionButton>
                 </div>
-                <p className="text-center">
-                    การเป็นสมาชิกพรีเมี่ยม <br /> เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ  
+                <p className="text-center text-[18px]">
+                    การเป็นสมาชิกพรีเมี่ยม <br /> 
+                    เพื่อสนับสนุนแอพพลิเคชั่น ก๊อกๆๆ <br />
+                    และถือเป็นการยืนยันสถานภาพสมาชิก <br /> 
+                    ภายใต้สายงานของ<br />
                 </p>
+                <div className="text-center text-[18px] bg-gray-900 p-4 border border-1 border-zinc-300">
+                {data ? (
+                    <div>
+                        <p className="text-lg text-gray-300">
+                            <b>เลขกระเป๋าผู้แนะนำ:</b> {data.var1.slice(0, 6)}...{data.var1.slice(-4)}
+                        </p>
+                        <p className="text-lg text-gray-300 mt-1">
+                            <b>อีเมล:</b> {data.var2}
+                        </p>
+                        <p className="text-lg text-gray-300 mt-1">
+                            <b>ชื่อ:</b> {data.var3}
+                        </p>
+                        <p className="text-lg text-red-600 mt-1">
+                            <b>Token ID: {data.var4} </b>
+                        </p>
+                    </div>
+                
+                ):(<p>ไม่พบข้อมูลผู้แนะนำ</p>)}
+                </div>
             </div>
         )
     };
