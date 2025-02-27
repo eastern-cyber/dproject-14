@@ -60,7 +60,7 @@ const MintingPage = () => {
                 <p className="text-center text-[18px]">
                     เพื่อสนับสนุน <b>แอพพลิเคชั่น <span className="text-[26px] text-red-600">ก๊อกๆๆ</span></b> <br />
                     ถือเป็นการยืนยันสถานภาพ<br /> 
-                    <span className="text-yellow-500 text-[22px]"><b>&quot;สมาชิกพรีเมี่ยม&quot;</b></span><br /> // Quote Symbol &quot; &ldquo; &rdquo; &#34;
+                    <span className="text-yellow-500 text-[22px]"><b>&quot;สมาชิกพรีเมี่ยม&quot;</b></span><br /> {/*  Quote Symbol &quot; &ldquo; &rdquo; &#34; */}
                     ภายใต้สายงานของ<br />
                 </p>
                 <div className="text-center text-[18px] bg-gray-900 p-4 border border-1 border-zinc-300">
@@ -170,7 +170,7 @@ const MintingPage = () => {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4]">
                     <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
-                    <img  className="h-36 w-36 m-4" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
+                    <Image  className="h-36 w-36 m-4" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
                     </a>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
