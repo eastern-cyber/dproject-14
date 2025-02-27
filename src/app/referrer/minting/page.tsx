@@ -168,12 +168,25 @@ const MintingPage = () => {
                     {/* <p style={{fontSize: "18px"}}>{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>     */}
                     {/* </div> */}
                 </div>
-                <div className="flex flex-col gap-2 md:gap-4">
+                <div className="flex flex-col gap-2 md:gap-4]">
                     <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
                     <img  className="h-36 w-36 m-4" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
                     </a>
-                </div>            
-                <p style={{fontSize: "18px"}}>คูปอง 3K NFT ของท่านมี {walletAddress ? nftBalance?.toString() : "0"} รายการ</p>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
+                <p>คูปอง NFT ของท่าน</p>
+                <p>ที่ซื้อภายในการแนะนำของ<br /></p>
+                <p>
+                    {data ? (
+                    <p className="text-[18px] m-1 text-yellow-500">
+                        <b>{data.var3}</b>
+                    </p>
+                    ):(
+                        <></>
+                    )}
+                </p>
+                <p>มีจำนวน <b>{walletAddress ? nftBalance?.toString() : "0"}</b> รายการ</p>
+                </div>
                 {nftBalance && nftBalance > 0 && (
                     <div className="flex flex-col items-center mt-6">
                         <Link
@@ -271,11 +284,11 @@ const MintingPage = () => {
                                     <WalletBalances walletAddress={account?.address || ""}/>
                                 </div>
                         </div>
-                            <div className="flex flex-col items-center justify-center p-3 m-2 border border-gray-800">
+                            <div className="flex text-center flex-col items-center justify-center p-3 m-2 border border-gray-800 break-all">
                             <p className="mb-4"><u>ขอมูลเพื่อการตรวจสอบระบบ</u></p> 
-                            <p>เลขกระเป๋าผู้แนะนำ: {data.var1}</p>
-                            <p>อีเมล: {data.var2}</p>
-                            <p>ชื่อ: {data.var3}</p>
+                            <p className="mb-4">เลขกระเป๋าผู้แนะนำ:<br /> {data.var1}</p>
+                            <p className="mb-4">อีเมล: {data.var2}</p>
+                            <p className="mb-4">ชื่อ: {data.var3}</p>
                             <p>TokenId: {data.var4}</p>
                             </div>
                         </>
