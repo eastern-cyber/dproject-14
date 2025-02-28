@@ -23,7 +23,7 @@ export default function RefereePage() {
     const [loading, setLoading] = useState(true);
     const [referrerId, setReferrerId] = useState("");
 
-    const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
+    const usersUrl = "https://2earn.work/public/dproject-users.json";
 
 
     useEffect(() => {
