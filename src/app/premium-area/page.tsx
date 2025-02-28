@@ -121,7 +121,7 @@ const WalletPublicKey: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             >
                 <span className="mt-4 text-[22px]">ลิ้งค์แนะนำของท่าน</span>
                 <div 
-                    style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px", cursor: "pointer"}} 
+                    style={{border: "1px solid #dfea08", background: "#2b2b59", padding: "4px 8px", margin: "6px", cursor: "pointer"}} 
                     onClick={handleCopy}
                 >
                     <p className="text-[16px] break-all">

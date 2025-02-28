@@ -260,7 +260,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             >
                 <p style={{fontSize: "24px"}}><b>รายการทรัพย์สิน</b></p>
                 <p style={{fontSize: "19px"}}><b>เลขที่กระเป๋า</b></p>
-                <div style={{border: "1px solid #444", background: "#222", padding: "0px 6px", margin: "6px"}}>
+                <div style={{border: "1px solid #aaa", background: "#2b2b59", padding: "0px 6px", margin: "6px"}}>
                 <p className="text-[18px] break-all">{walletAddress ? walletAddress || "" : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                 </div>
             </div>
@@ -296,7 +296,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             <div className="flex flex-col w-full items-center justify-center mt-6">
                 <div className="flex flex-col items-center w-full justify-center pt-[15px] pb-[5px]">
                     <span className="text-center text-[21px]">ลิ้งค์แนะนำของท่าน</span>
-                    <div style={{border: "1px solid #666", background: "#222", padding: "4px 8px", margin: "6px"}}>
+                    <div style={{border: "1px solid#dfea08", background: "#2b2b59", padding: "4px 8px", margin: "6px"}}>
                         <p className="text-[18px] break-all">{walletAddress ? `https://dfi.fund/referrer/${walletAddress}` : "ยังไม่ได้เชื่อมกระเป๋า !"} </p>    
                     </div>
                     <span className="text-center mt-2 mb-10 text-[19px] break-words">เพื่อส่งให้ผู้มุ่งหวัง ที่ท่านต้องการแนะนำ</span>

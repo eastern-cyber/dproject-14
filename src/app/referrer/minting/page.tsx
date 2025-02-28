@@ -40,7 +40,7 @@ const MintingPage = () => {
     
         return (
             <div className="flex flex-col gap-4 md:gap-8">
-                <p className="mt-4 text-center">
+                <p className="mt-4 text-center text-[18px]">
                     กดปุ่ม
                 </p>
                 <div className="flex flex-col gap-2 md:gap-4">
@@ -55,7 +55,10 @@ const MintingPage = () => {
                             onTransactionConfirmed={async () => {
                                 alert("การยืนยันเรียบร้อย ");
                             }}
-                    >ยืนยัน </TransactionButton>
+                            disabled={!!data?.var4} // Disable button if data.var4 exists
+                    >
+                        <span className="text-[18px]">ยืนยัน</span>
+                    </TransactionButton>
                 </div>
                 <p className="text-center text-[18px]">
                     เพื่อสนับสนุน <b>แอพพลิเคชั่น <span className="text-[26px] text-red-600">ก๊อกๆๆ</span></b> <br />
@@ -170,10 +173,10 @@ const MintingPage = () => {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4]">
                     <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
-                    <Image  className="h-36 w-36 m-4" src="/KokKokKok_Logo_WhiteBG_686x686.png" alt="" />
+                    <Image src="/KokKokKok_Logo_WhiteBG_686x686.png" width="150" height={150} alt="" />
                     </a>
                 </div>
-                <div className="flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
+                <div className="mt-6 flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
                 <p>คูปอง NFT ของท่าน</p>
                 <p>ที่ซื้อภายในการแนะนำของ<br /></p>
                 <p>
