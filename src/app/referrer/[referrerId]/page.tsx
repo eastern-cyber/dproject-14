@@ -16,7 +16,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
     useEffect(() => {
         const fetchReferrerData = async () => {
             try {
-                const response = await fetch("https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json");
+                const response = await fetch("https://2earn.work/public/dproject-users.json");
                 const data = await response.json();
                 const referrer = data.find((item: any) => item.userId.toLowerCase() === params.referrerId.toLowerCase());
 
