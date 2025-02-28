@@ -93,7 +93,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                     </p>
                     {referrerData ? (
                         // <div className="text-center text-[18px] bg-gray-900 p-4 border border-1 border-zinc-300">
-                        <div className="mt-4 text-center gap-6 bg-gray-900 p-4 border border-1 border-gray-500">
+                        <div className="mt-4 text-center gap-6 bg-gray-900 p-4 border border-1 border-gray-400">
                             <p className="text-lg text-gray-300">
                                 <b>เลขกระเป๋าผู้แนะนำ:</b> {params.referrerId ? `${params.referrerId.slice(0, 6)}...${params.referrerId.slice(-4)}` : "ไม่พบกระเป๋า"}<br />
                             </p>
@@ -110,7 +110,7 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                     ) : (
                         <p className="text-gray-600 text-sm mt-2">ไม่พบข้อมูลผู้แนะนำ</p>
                     )}
-                    <div className="flex border border-gray-500 bg-gray-900 p-2.5 mt-5 w-full">
+                    <div className="items-centerflex border border-gray-400 bg-[#2b2b59] p-2.5 mt-5 w-full">
                         <p className="text-[18px] break-all">
                             <center>
                             {params.referrerId ? `${params.referrerId}` : "ไม่พบกระเป๋า"}
