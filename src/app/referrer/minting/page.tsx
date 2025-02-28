@@ -55,7 +55,7 @@ const MintingPage = () => {
                             onTransactionConfirmed={async () => {
                                 alert("การยืนยันเรียบร้อย ");
                             }}
-                            disabled={!!data?.var4} // Disable button if data.var4 exists
+                            // disabled={!!data?.var4} // Disable button if data.var4 exists
                     >
                         <span className="text-[18px]">ยืนยัน</span>
                     </TransactionButton>
