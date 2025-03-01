@@ -153,7 +153,7 @@ export default function RefereePage() {
                     placeholder="ใส่เลขกระเป๋าของผู้ที่ต้องการตรวจสอบสายงาน"
                     value={referrerId}
                     onChange={(e) => setReferrerId(e.target.value)}
-                    className="text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
+                    className="border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
                 />
                 <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2>
                 
@@ -174,13 +174,7 @@ export default function RefereePage() {
                                         </td>
                                         <td className="border border-gray-400 px-4 py-2">
                                             <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br />
-                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b>&nbsp; 
-                                                <button 
-                                                    className="text-yellow-500 hover:text-red-500 active:text-blue-500"
-                                                    onClick={() => setReferrerId(user.userId)}
-                                                >
-                                                    {user.userId}
-                                                </button><br />
+                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b> {user.userId}<br />
                                             <b>อีเมล:</b> {user.email || "N/A"}<br />
                                             <b>ชื่อ:</b> {user.name || "N/A"}<br />
                                             <b>Token ID:</b> {user.tokenId || "N/A"}<br />
@@ -196,6 +190,31 @@ export default function RefereePage() {
                     </>
                 )}
 
+
+                {/* {matchingUsers.length > 0 ? (
+                    <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
+                        <thead>
+                            <tr>
+                                <th className="border border-gray-400 px-4 py-2">User ID</th>
+                                <th className="border border-gray-400 px-4 py-2">ชื่อ</th>
+                                <th className="border border-gray-400 px-4 py-2">อีเมล</th>
+                                <th className="border border-gray-400 px-4 py-2">Token ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {matchingUsers.map((user) => (
+                                <tr key={user.userId}>
+                                    <td className="border border-gray-400 px-4 py-2">{user.userId.slice(0, 6)}...{user.userId.slice(-4)}</td>
+                                    <td className="border border-gray-400 px-4 py-2">{user.name || "N/A"}</td>
+                                    <td className="border border-gray-400 px-4 py-2">{user.email || "N/A"}</td>
+                                    <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className="mt-2 text-gray-400">No referees found for this referrer ID.</p>
+                )} */}
                 <div className="flex flex-col mt-8 justify-center items-center w-full">
                     <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800" href="/member-area">
                         <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
