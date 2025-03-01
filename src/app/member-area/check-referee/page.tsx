@@ -113,8 +113,8 @@ export default function RefereePage() {
                                             {user.recordNumber}
                                         </td>
                                         <td className="border border-gray-400 px-4 py-2">
-                                            <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br />
-                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b>&nbsp; 
+                                            {/* <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br /> */}
+                                            <b>เลขกระเป๋า:</b>&nbsp; 
                                                 <button 
                                                     className="text-yellow-500 hover:text-red-500 active:text-blue-500"
                                                     onClick={() => setReferrerId(user.userId)}
@@ -123,10 +123,10 @@ export default function RefereePage() {
                                                 </button><br />
                                             <b>อีเมล:</b> {user.email || "N/A"}<br />
                                             <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                            <b>Token ID:</b> {user.tokenId || "N/A"}<br />
                                             <b>วันที่สร้างบัญชี:</b> {formatDate(user.userCreated) || "N/A"}<br />
                                             <b>แผน A:</b> {formatDate(user.aPlan) || "N/A"}<br />
                                             <b>แผน B:</b> {formatDate(user.bPlan) || "N/A"}<br />
+                                            <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
                                         </td>
                                         {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}
                                     </tr>
