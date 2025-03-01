@@ -164,21 +164,22 @@ export default function RefereePage() {
                                 <tr>
                                     <th className="border border-gray-400 px-4 py-2">#</th>
                                     <th className="border border-gray-400 px-4 py-2">เลขกระเป๋า (ย่อ) </th>
-                                    <th className="border border-gray-400 px-4 py-2">ชื่อ</th>
-                                    <th className="border border-gray-400 px-4 py-2">อีเมล</th>
-                                    <th className="border border-gray-400 px-4 py-2">Token ID</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {matchingUsers.map((user) => (
                                     <tr key={user.userId}>
-                                        <td className="border border-gray-400 px-4 py-2">{user.recordNumber}</td>
                                         <td className="border border-gray-400 px-4 py-2">
-                                            {user.userId.slice(0, 6)}...{user.userId.slice(-4)}
+                                            {user.recordNumber}
                                         </td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.name || "N/A"}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.email || "N/A"}</td>
-                                        <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td>
+                                        <td className="border border-gray-400 px-4 py-2">
+                                            <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br />
+                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b> {user.userId}<br />
+                                            <b>อีเมล:</b> {user.email || "N/A"}<br />
+                                            <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                            <b>Token ID:</b> {user.tokenId || "N/A"}<br />
+                                        </td>
+                                        {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}
                                     </tr>
                                 ))}
                             </tbody>
