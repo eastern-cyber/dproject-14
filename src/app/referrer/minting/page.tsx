@@ -4,8 +4,7 @@ import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ConnectButton, MediaRenderer, TransactionButton, useActiveAccount, useReadContract } from "thirdweb/react";
-import { inAppWallet } from "thirdweb/wallets";
+import { ConnectButton, MediaRenderer, TransactionButton, useActiveAccount, useReadContract, darkTheme } from "thirdweb/react";
 import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
 import { defineChain, getContract } from "thirdweb";
@@ -13,6 +12,10 @@ import { polygon } from "thirdweb/chains";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../../../utils/contracts";
 import Link from "next/link";
+import {
+    inAppWallet,
+    createWallet,
+  } from "thirdweb/wallets";
 
 const MintingPage = () => {
   const [data, setData] = useState<{ var1: string; var2: string; var3: string; var4: string } | null>(null);
@@ -236,6 +239,12 @@ const MintingPage = () => {
                         }}
                         supportedTokens={{
                         [chain.id]: [
+                            // {
+                            //     address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
+                            //     name: "DProject",
+                            //     symbol: "DFI",
+                            //     icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
+                            // },
                             {
                                 address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
                                 name: "USDC",
@@ -255,6 +264,21 @@ const MintingPage = () => {
                             "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
                         ],
                         }}
+                        theme={darkTheme({
+                            colors: {
+                            modalBg: "hsl(241, 51%, 23%)",
+                            borderColor: "hsl(60, 99%, 56%)",
+                            accentText: "hsl(0, 100%, 60%)",
+                            separatorLine: "hsl(22, 100%, 37%)",
+                            secondaryText: "hsl(251, 20%, 50%)",
+                            primaryText: "hsl(240, 89%, 93%)",
+                            accentButtonBg: "hsl(22, 100%, 37%)",
+                            tertiaryBg: "hsl(231, 11%, 12%)",
+                            accentButtonText: "hsl(0, 0%, 97%)",
+                            connectedButtonBg: "hsl(241, 51%, 23%)",
+                            connectedButtonBgHover: "hsl(241, 50%, 17%)"
+                            },
+                        })}
                     />
                 </div>
                 
