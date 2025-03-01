@@ -18,6 +18,9 @@ interface UserData {
     name?: string;
     email?: string;
     tokenId?: string;
+    userCreated?: string;
+    aPlan?: string;
+    bPlan?: string;
 }
 
 export default function RefereePage() {
@@ -27,7 +30,6 @@ export default function RefereePage() {
     const [referrerId, setReferrerId] = useState("");
 
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
-
 
     useEffect(() => {
         if (account?.address) {
@@ -56,19 +58,22 @@ export default function RefereePage() {
         return <div className="p-6 text-red-600">Failed to load data.</div>;
     }
 
-    // const matchingUsers = users.filter((user) => user.referrerId === referrerId);
     const matchingUsers = referrerId.trim()
-    ? users
-        .filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
-        .map((user, index) => ({ ...user, recordNumber: index + 1 }))
-    : [];
+        ? users
+            .filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
+            .map((user, index) => ({ ...user, recordNumber: index + 1 }))
+        : [];
 
-    // const matchingUsers = referrerId.trim()
-    // ? users.filter((user) => user.referrerId === referrerId && user.userId.trim() !== "")
-    // : [];
-
-    // const matchingUsers = users.filter((user) => user.referrerId === referrerId && user.userId.trim() !== "");
-
+    const formatDate = (dateString?: string) => {
+        if (!dateString) return "N/A";
+        const date = new Date(dateString);
+        return date.toLocaleDateString("th-TH", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+    };
+        
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div style={{
@@ -76,13 +81,112 @@ export default function RefereePage() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "20px",
+                padding: "5px",
                 margin: "20px",
-                border: "1px solid #333",
-                borderRadius: "8px",
+                // border: "1px solid #333",
+                // borderRadius: "8px",
             }}>
                 <Header />
-                <div className="flex justify-center mb-10">
+                <h1 className="text-center text-[20px] font-bold">ตรวจสอบรายชื่อสายงาน</h1>
+                <h2 className="text-center text-[16px]">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
+                <input
+                    type="text"
+                    placeholder="ใส่เลขกระเป๋าของผู้ที่ท่านต้องการตรวจสอบสายงาน"
+                    value={referrerId}
+                    onChange={(e) => setReferrerId(e.target.value)}
+                    className="text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
+                />
+                {/* <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2> */}
+                {matchingUsers.length > 0 && (
+                    <>
+                        <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
+                            <thead>
+                                <tr>
+                                    <th className="border border-gray-400 px-4 py-2">#</th>
+                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {matchingUsers.map((user) => (
+                                    <tr key={user.userId}>
+                                        <td className="border border-gray-400 px-4 py-2">
+                                            {user.recordNumber}
+                                        </td>
+                                        <td className="border border-gray-400 px-4 py-2">
+                                            <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br />
+                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b>&nbsp; 
+                                                <button 
+                                                    className="text-yellow-500 hover:text-red-500 active:text-blue-500"
+                                                    onClick={() => setReferrerId(user.userId)}
+                                                >
+                                                    {user.userId}
+                                                </button><br />
+                                            <b>อีเมล:</b> {user.email || "N/A"}<br />
+                                            <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                            <b>Token ID:</b> {user.tokenId || "N/A"}<br />
+                                            <b>วันที่สร้างบัญชี:</b> {formatDate(user.userCreated) || "N/A"}<br />
+                                            <b>แผน A:</b> {formatDate(user.aPlan) || "N/A"}<br />
+                                            <b>แผน B:</b> {formatDate(user.bPlan) || "N/A"}<br />
+                                        </td>
+                                        {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <p className="mt-4 text-lg font-semibold">รวม : {matchingUsers.length} ท่าน</p>
+                    </>
+                )}
+                <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
+            </div>
+            <div className="flex flex-col mt-4 justify-center items-center w-full">
+                <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800" href="/member-area">
+                    <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
+                </Link>
+            </div>
+        </main>
+    );
+}
+
+interface WalletBalancesProps {
+    walletAddress?: string;
+    setReferrerId: (id: string) => void;
+}
+
+const WalletBalances: React.FC<WalletBalancesProps> = ({ walletAddress, setReferrerId }) => {
+    return (
+        <div className="flex flex-col items-center p-6">
+            <p className="text-[19px]"><b>เลขกระเป๋าของท่าน</b></p>
+            <div className="border border-gray-500 bg-[#1e1d59] p-2 mt-2 rounded">
+                <button
+                    className="text-yellow-500 hover:text-red-500 active:text-blue-500 text-[18px]"
+                    onClick={() => setReferrerId(walletAddress ?? "")}
+                >
+                    {walletAddress || "ยังไม่ได้เชื่อมกระเป๋า !"}
+                </button>
+                {/* <p className="text-[18px] break-all">{walletAddress || "ยังไม่ได้เชื่อมกระเป๋า !"}</p> */}
+            </div>
+                <p className="my-3 text-[16px]">
+                    คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
+                </p>
+        </div>
+    );
+};
+
+function Header() {
+    return (
+        <header className="flex flex-col items-center mb-4">
+            <Link href="/" passHref>
+                <Image
+                    src={dprojectIcon}
+                    alt=""
+                    className="m-8 size-[100px]"
+                    style={{ filter: "drop-shadow(0px 0px 24px #a726a9a8" }}
+                />
+            </Link>
+            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
+                Check Referee
+            </h1>
+            <div className="flex justify-center my-6">
                     <ConnectButton locale={"en_US"} 
                         client={client}
                         chain={chain}
@@ -143,94 +247,6 @@ export default function RefereePage() {
                         })}
                     />
                 </div>
-                <div className="flex flex-col justify-center items-center">
-                    <WalletBalances walletAddress={account?.address || ""} />
-                </div>
-                <h1 className="text-center text-[18px] font-bold">ตรวจสอบรายชื่อผู้ที่ท่านแนะนำ</h1>
-                <h2 className="text-center text-[17px]">ใส่เลขกระเป๋าของท่าน</h2>
-                <input
-                    type="text"
-                    placeholder="ใส่เลขกระเป๋าของผู้ที่ต้องการตรวจสอบสายงาน"
-                    value={referrerId}
-                    onChange={(e) => setReferrerId(e.target.value)}
-                    className="text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
-                />
-                <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2>
-                
-                {matchingUsers.length > 0 && (
-                    <>
-                        <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-400 px-4 py-2">#</th>
-                                    <th className="border border-gray-400 px-4 py-2">เลขกระเป๋า (ย่อ) </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {matchingUsers.map((user) => (
-                                    <tr key={user.userId}>
-                                        <td className="border border-gray-400 px-4 py-2">
-                                            {user.recordNumber}
-                                        </td>
-                                        <td className="border border-gray-400 px-4 py-2">
-                                            <b>เลขกระเป๋า</b>(ย่อ)<b>:</b> {user.userId.slice(0, 6)}...{user.userId.slice(-4)}<br />
-                                            <b>เลขกระเป๋า</b>(เต็ม)<b>:</b>&nbsp; 
-                                                <button 
-                                                    className="text-yellow-500 hover:text-red-500 active:text-blue-500"
-                                                    onClick={() => setReferrerId(user.userId)}
-                                                >
-                                                    {user.userId}
-                                                </button><br />
-                                            <b>อีเมล:</b> {user.email || "N/A"}<br />
-                                            <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                            <b>Token ID:</b> {user.tokenId || "N/A"}<br />
-                                        </td>
-                                        {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <p className="mt-4 text-lg font-semibold">
-                            รวม : {matchingUsers.length} ท่าน
-                        </p>
-                    </>
-                )}
-
-                <div className="flex flex-col mt-8 justify-center items-center w-full">
-                    <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 transition-colors hover:border-zinc-800" href="/member-area">
-                        <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
-                    </Link>
-                </div>
-            </div>
-        </main>
-    );
-}
-
-function Header() {
-    return (
-        <header className="flex flex-col items-center mb-12">
-            <Link href="/" passHref>
-                <Image
-                    src={dprojectIcon}
-                    alt=""
-                    className="mb-4 size-[100px]"
-                    style={{ filter: "drop-shadow(0px 0px 24px #a726a9a8" }}
-                />
-            </Link>
-            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
-                Check Referee
-            </h1>
         </header>
     );
 }
-
-const WalletBalances: React.FC<{ walletAddress?: string }> = ({ walletAddress }) => {
-    return (
-        <div className="flex flex-col items-center p-6">
-            <p className="text-[19px]"><b>เลขที่กระเป๋าของท่าน</b></p>
-            <div className="border border-gray-400 bg-gray-800 p-2 mt-2 rounded">
-                <p className="text-[18px] break-all">{walletAddress || "ยังไม่ได้เชื่อมกระเป๋า !"}</p>
-            </div>
-        </div>
-    );
-};
