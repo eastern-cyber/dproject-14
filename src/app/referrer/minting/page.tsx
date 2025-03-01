@@ -181,7 +181,7 @@ const MintingPage = () => {
                 </div>
                 <div className="mt-6 flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
                 <p>คูปอง NFT ของท่าน</p>
-                <p>ที่ซื้อภายในการแนะนำของ<br /></p>
+                <p>ที่ซื้อภายใต้การแนะนำของ<br /></p>
                 <p>
                     {data ? (
                     <p className="text-[20px] my-3 text-yellow-500">
@@ -262,6 +262,7 @@ const MintingPage = () => {
                         supportedNFTs={{
                         [chain.id]: [
                             "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
+                            "0x60aD2f102FDb0e09ED50e2ab07573079C956aFB8",
                         ],
                         }}
                         theme={darkTheme({
