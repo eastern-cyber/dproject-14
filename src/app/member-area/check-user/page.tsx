@@ -1,16 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { ConnectButton, useActiveAccount, darkTheme } from "thirdweb/react";
+import { ConnectButton, useActiveAccount } from "thirdweb/react";
 import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { client } from "../../client";
 import { chain } from "../../chain";
+import { inAppWallet } from "thirdweb/wallets";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-    inAppWallet,
-    createWallet,
-  } from "thirdweb/wallets";
 
 interface UserData {
     userId: string;
@@ -20,11 +17,14 @@ interface UserData {
     tokenId?: string;
 }
 
-export default function RefereePage() {
+export default function CheckUser() {
     const account = useActiveAccount();
     const [users, setUsers] = useState<UserData[] | null>(null);
     const [loading, setLoading] = useState(true);
+    const [inputUserId, setInputUserId] = useState("");
     const [referrerId, setReferrerId] = useState("");
+    const [matchingUser, setMatchingUser] = useState<UserData | null>(null);
+
 
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
 
@@ -47,6 +47,19 @@ export default function RefereePage() {
                 setLoading(false);
             });
     }, []);
+
+    useEffect(() => {
+        if (users && inputUserId.trim()) {
+            const foundUser = users.find(user => user.userId === inputUserId.trim());
+            setMatchingUser(foundUser || null);
+        } else {
+            setMatchingUser(null);
+        }
+    }, [inputUserId, users]);
+
+    const handleUserClick = (userId: string) => {
+        setInputUserId(userId);
+    };
 
     if (loading) {
         return <div className="p-6">Loading...</div>;
@@ -101,12 +114,6 @@ export default function RefereePage() {
                         }}
                         supportedTokens={{
                         [chain.id]: [
-                            // {
-                            //     address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
-                            //     name: "DProject",
-                            //     symbol: "DFI",
-                            //     icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
-                            // },
                             {
                                 address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
                                 name: "USDC",
@@ -126,36 +133,67 @@ export default function RefereePage() {
                             "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
                         ],
                         }}
-                        theme={darkTheme({
-                        colors: {
-                            modalBg: "hsl(241, 51%, 23%)",
-                            borderColor: "hsl(60, 99%, 56%)",
-                            accentText: "hsl(0, 100%, 60%)",
-                            separatorLine: "hsl(22, 100%, 37%)",
-                            secondaryText: "hsl(251, 20%, 50%)",
-                            primaryText: "hsl(240, 89%, 93%)",
-                            accentButtonBg: "hsl(22, 100%, 37%)",
-                            tertiaryBg: "hsl(231, 11%, 12%)",
-                            accentButtonText: "hsl(0, 0%, 97%)",
-                            connectedButtonBg: "hsl(241, 51%, 23%)",
-                            connectedButtonBgHover: "hsl(241, 50%, 17%)",
-                        },
-                        })}
                     />
                 </div>
                 <div className="flex flex-col justify-center items-center">
                     <WalletBalances walletAddress={account?.address || ""} />
                 </div>
-                <h1 className="text-center text-[18px] font-bold">ตรวจสอบรายชื่อผู้ที่ท่านแนะนำ</h1>
-                <h2 className="text-center text-[17px]">ใส่เลขกระเป๋าของท่าน</h2>
+                <h1 className="text-center text-[18px] font-bold">ตรวจสอบรายการผู้ใช้งาน</h1>
+                <h2 className="text-center text-[17px]">ใส่เลขกระเป๋า</h2>
                 <input
                     type="text"
-                    placeholder="ใส่เลขกระเป๋าของผู้ที่ต้องการตรวจสอบสายงาน"
+                    placeholder="ใส่เลขกระเป๋าของผู้ใช้ที่ท่านต้องการตรวจสอบ"
                     value={referrerId}
                     onChange={(e) => setReferrerId(e.target.value)}
                     className="border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white"
                 />
-                <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2>
+                <h2 className="text-center text-[18px] font-semibold mt-4">ข้อมูลผู้ใช้</h2>
+                
+                {matchingUser ? (
+                    <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
+                        <tbody>
+                            <tr>
+                                <td className="border border-gray-400 px-4 py-2">เลขกระเป๋า</td>
+                                <td className="border border-gray-400 px-4 py-2">
+                                    <button 
+                                        className="text-yellow-500 hover:text-red-500 active:text-blue-500"
+                                        onClick={() => handleUserClick(matchingUser.userId)}>
+                                        {matchingUser.userId}
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-400 px-4 py-2">อีเมล</td>
+                                <td className="border border-gray-400 px-4 py-2">{matchingUser.email || "N/A"}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-400 px-4 py-2">ชื่อ</td>
+                                <td className="border border-gray-400 px-4 py-2">{matchingUser.name || "N/A"}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-400 px-4 py-2">Token ID</td>
+                                <td className="border border-gray-400 px-4 py-2">{matchingUser.tokenId || "N/A"}</td>
+                            </tr>
+                        </tbody>
+                        <p><br /></p>
+                        <tbody>
+                            <tr>
+                                <td className="border border-gray-400 px-4 py-2">ผู้แนะนำ</td>
+                                <td className="border border-gray-400 px-4 py-2">
+                                    <button 
+                                        className="text-yellow-500 hover:text-red-500 active:text-blue-500" 
+                                        onClick={() => handleUserClick(matchingUser.referrerId)}>
+                                        {matchingUser.referrerId}
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                ) : (
+                    <p className="mt-4 text-lg font-semibold text-red-600">ไม่พบข้อมูลผู้ใช้</p>
+                )}
+                
+                {/* <h2 className="text-center text-[18px] font-semibold mt-4">รายการผู้ที่ท่านแนะนำ</h2>
                 
                 {matchingUsers.length > 0 && (
                     <>
@@ -187,7 +225,7 @@ export default function RefereePage() {
                             รวม : {matchingUsers.length} ท่าน
                         </p>
                     </>
-                )}
+                )} */}
 
 
                 {/* {matchingUsers.length > 0 ? (

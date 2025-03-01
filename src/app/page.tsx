@@ -1,15 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { ConnectButton, MediaRenderer, useActiveAccount, useReadContract } from "thirdweb/react";
+import { ConnectButton, MediaRenderer, useActiveAccount, useReadContract,darkTheme } from "thirdweb/react";
 // import thirdwebIcon from "@public/thirdweb.svg";
 import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { chain } from "./chain";
 import { client } from "./client";
-import { inAppWallet } from "thirdweb/wallets";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import { contract } from "../../utils/contracts";
 import Link from "next/link";
+import { createThirdwebClient } from "thirdweb";
+import {
+  inAppWallet,
+  createWallet,
+} from "thirdweb/wallets";
+
 
 export default function Home() {
   const account = useActiveAccount ();
@@ -47,12 +52,12 @@ export default function Home() {
               }}
               supportedTokens={{
               [chain.id]: [
-                  {
-                      address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
-                      name: "DProject",
-                      symbol: "DFI",
-                      icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
-                  },
+                  // {
+                  //     address: "0xca23b56486035e14F344d6eb591DC27274AF3F47",
+                  //     name: "DProject",
+                  //     symbol: "DFI",
+                  //     icon: "https://dfi.fund/_next/static/media/DFastLogo_650x600.4f2ec315.svg",
+                  // },
                   {
                       address: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
                       name: "USDC",
@@ -72,6 +77,21 @@ export default function Home() {
                   "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
               ],
               }}
+              theme={darkTheme({
+                colors: {
+                  modalBg: "hsl(241, 51%, 23%)",
+                  borderColor: "hsl(60, 99%, 56%)",
+                  accentText: "hsl(0, 100%, 60%)",
+                  separatorLine: "hsl(22, 100%, 37%)",
+                  secondaryText: "hsl(251, 20%, 50%)",
+                  primaryText: "hsl(240, 89%, 93%)",
+                  accentButtonBg: "hsl(22, 100%, 37%)",
+                  tertiaryBg: "hsl(231, 11%, 12%)",
+                  accentButtonText: "hsl(0, 0%, 97%)",
+                  connectedButtonBg: "hsl(241, 51%, 23%)",
+                  connectedButtonBgHover: "hsl(241, 50%, 17%)"
+                },
+              })}
           />
           </div>
 
