@@ -64,6 +64,7 @@ const MintingPage = () => {
                     </TransactionButton>
                 </div>
                 <p className="text-center text-[18px]">
+                <b>ชำระ&nbsp;<span className="text-yellow-500 text-[22px]">40 POL</span></b><br />
                     เพื่อสนับสนุน <b>แอพพลิเคชั่น <span className="text-[26px] text-red-600">ก๊อกๆๆ</span></b> <br />
                     ถือเป็นการยืนยันสถานภาพ<br /> 
                     <span className="text-yellow-500 text-[22px]"><b>&quot;สมาชิกพรีเมี่ยม&quot;</b></span><br /> {/*  Quote Symbol &quot; &ldquo; &rdquo; &#34; */}
