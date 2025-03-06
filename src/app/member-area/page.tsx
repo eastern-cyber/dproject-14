@@ -130,7 +130,7 @@ export default function Refferrer() {
                     })}
                 />
                 </div>
-                {/* <NFTMetadata /> */}
+                <NFTMetadata />
                 {/* <div className="flex flex-col items-center mb-6">
                     <ClaimButtons walletAddress={account?.address || ""}/>
                 </div> */}
@@ -165,7 +165,7 @@ function  Header() {
             </Link>
 
             <h1 className="text-1xl md:text-4xl font-semibold md:font-bold tracking-tighter">
-               DProject Assets
+               Member Area
             </h1>
         </header>
     );
@@ -306,6 +306,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/tether_32.png" />
                     เหรียญ USDT: {walletAddress ? (Number(usdtBalance) / 1_000_000).toFixed(2) : "0"}
                 </div>
+                
                 <div className="mt-6 flex justify-items-center gap-1 md:gap-4">
                         <Link target="_blank" href="https://opensea.io/account/collected">
                             {/* <NFTMetadata /> */}

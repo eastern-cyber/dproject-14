@@ -19,8 +19,8 @@ interface UserData {
     email?: string;
     tokenId?: string;
     userCreated?: string;
-    aPlan?: string;
-    bPlan?: string;
+    planA?: string;
+    planB?: string;
 }
 
 export default function RefereePage() {
@@ -124,8 +124,8 @@ export default function RefereePage() {
                                             <b>อีเมล:</b> {user.email || "N/A"}<br />
                                             <b>ชื่อ:</b> {user.name || "N/A"}<br />
                                             <b>วันที่สร้างบัญชี:</b> {formatDate(user.userCreated) || "N/A"}<br />
-                                            <b>แผน A:</b> {formatDate(user.aPlan) || "N/A"}<br />
-                                            <b>แผน B:</b> {formatDate(user.bPlan) || "N/A"}<br />
+                                            <b>แผน A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                            <b>แผน B:</b> {formatDate(user.planB) || "N/A"}<br />
                                             <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
                                         </td>
                                         {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}

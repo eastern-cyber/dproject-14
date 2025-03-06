@@ -177,7 +177,7 @@ const MintingPage = () => {
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4]">
                     <a target="_blank" href={`https://opensea.io/assets/matic/0x2a61627c3457ccea35482cadec698c7360ffb9f2/${data?.var4 || "0"}`}>
-                    <Image src="/KokKokKok_Logo_WhiteBG_686x686.png" width="150" height={150} alt="" />
+                    <Image src="/3K_WhiteBG_40POL_PlanA.png" width="150" height={150} alt="" />
                     </a>
                 </div>
                 <div className="mt-6 flex flex-col justify-center items-center gap-1 md:gap-4 text-[18px]">
