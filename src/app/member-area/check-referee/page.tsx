@@ -64,15 +64,55 @@ export default function RefereePage() {
             .map((user, index) => ({ ...user, recordNumber: index + 1 }))
         : [];
 
+    // function formatDate(date: Date | string | null): string {
+    //     if (!date) return "N/A";
+        
+    //     const parsedDate = new Date(date);
+    //     return parsedDate.toLocaleString("th-TH", {
+    //         day: "2-digit",
+    //         month: "2-digit",
+    //         year: "2-digit",
+    //         hour: "2-digit",
+    //         minute: "2-digit",
+    //         hour12: false, // Ensures 24-hour format
+    //     });
+    // }
+
     const formatDate = (dateString?: string) => {
         if (!dateString) return "N/A";
-        const date = new Date(dateString);
+    
+        // Manually parse "07/03/2025, 13:39:10" (DD/MM/YYYY, HH:mm:ss)
+        const match = dateString.match(/^(\d{2})\/(\d{2})\/(\d{4}), (\d{2}):(\d{2}):(\d{2})$/);
+        if (!match) return "Invalid Date";
+    
+        const [, day, month, year, hour, minute, second] = match.map(Number);
+        
+        const date = new Date(year, month - 1, day, hour, minute, second); // Month is 0-based in JS
+    
         return date.toLocaleDateString("th-TH", {
             day: "2-digit",
             month: "2-digit",
-            year: "numeric",
+            year: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false, // Ensures 24-hour format
         });
     };
+    
+    // const formatDate = (dateString?: string) => {
+    //     if (!dateString) return "N/A";
+    //     const date = new Date(dateString);
+    //     return date.toLocaleDateString("th-TH", {
+    //         day: "2-digit",
+    //         month: "2-digit",
+    //         year: "2-digit",
+    //         hour: "2-digit",
+    //         minute: "2-digit",
+    //         second: "2-digit",
+    //         hour12: false, // Ensures 24-hour format
+    //     });
+    // };
         
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -123,9 +163,9 @@ export default function RefereePage() {
                                                 </button><br />
                                             <b>อีเมล:</b> {user.email || "N/A"}<br />
                                             <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                            <b>วันที่สร้างบัญชี:</b> {formatDate(user.userCreated) || "N/A"}<br />
-                                            <b>แผน A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                            <b>แผน B:</b> {formatDate(user.planB) || "N/A"}<br />
+                                            <b>วันลงทะเบียนผู้ใช้:</b> {formatDate(user.userCreated) || "N/A"}<br />
+                                            <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                            <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
                                             <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
                                         </td>
                                         {/* <td className="border border-gray-400 px-4 py-2">{user.tokenId || "N/A"}</td> */}
