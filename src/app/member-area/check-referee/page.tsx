@@ -116,7 +116,7 @@ export default function RefereePage() {
                             <tr>
                                 <th className="text-[18px] text-left font-normal border border-gray-400 px-6 py-2 break-word">
                                     {/* <div className="text-left break-all"> */}
-                                    <b>เลขกระเป๋า:</b> <span className="break-all">{matchingUser.userId}</span><br />
+                                    <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
                                     <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
                                     <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
                                     <b>วันลงทะเบียนผู้ใช้:</b> {matchingUser.userCreated || "N/A"}<br />
