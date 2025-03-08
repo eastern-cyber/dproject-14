@@ -140,7 +140,7 @@ export default function RefereePage() {
                     </table>
                 )}
                 {matchingUsers.length > 0 && (
-                    <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
+                    <table className="table-auto border-collapse mt-4 w-full">
                         <thead>
                             <tr>
                                 <th className="border border-gray-400 px-4 py-2">#</th>
@@ -171,6 +171,36 @@ export default function RefereePage() {
                                     </th>
                                 </tr>
                             ))}
+                        </tbody>
+                        <tbody>
+                            <tr className="colspan-[1]">
+                                <th></th>
+                                <th>
+                                <div className="text-center">
+                                    <p className="text-center m-4 pr-10 text-lg font-semibold">
+                                        <span className="text-[19px] text-center">
+                                            รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
+                                            <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
+                                            &nbsp;&nbsp; ท่าน</span>
+                                    </p>
+                                </div>
+                                </th>
+                            </tr>
+                            <tr className="colspan-[1]">
+                                <th></th>
+                                <th>
+                                <div className="text-center">
+                                    <p className="text-center m-4 pr-10 text-lg font-semibold">
+                                        <span className="text-[19px] text-center">
+                                            ยอดค่าแนะนำพึงจ่าย : &nbsp;
+                                            <span className="text-[24px] text-yellow-500 animate-blink">
+                                                อยู่ระหว่างการคำนวณโครงสร้างรายได้ !!!
+                                            </span> &nbsp; บาท
+                                        </span>
+                                    </p>
+                                </div>
+                                </th>
+                            </tr>
                         </tbody>
                     </table>
                 )}
