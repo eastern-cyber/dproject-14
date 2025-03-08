@@ -154,7 +154,8 @@ export default function RefereePage() {
                                             <p className="font-normal">
                                             <b>อีเมล:</b> {user.email || "N/A"}<br />
                                             <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                            <b>วันลงทะเบียนผู้ใช้:</b> {formatDate(user.userCreated) || "N/A"}<br />
+                                            {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
+                                            <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
                                             <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
                                             <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
                                             <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
