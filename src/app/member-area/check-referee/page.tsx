@@ -195,7 +195,7 @@ export default function RefereePage() {
                                             ส่วนแบ่งค่าแนะนำของท่าน : &nbsp;
                                             <span className="text-[24px] text-yellow-500 animate-blink">
                                                 อยู่ระหว่างการคำนวณโครงสร้างรายได้ !!!
-                                            </span> &nbsp; บาท
+                                            </span> &nbsp; POL
                                         </span>
                                     </p>
                                 </div>
