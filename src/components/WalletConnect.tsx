@@ -1,10 +1,13 @@
 "use client";
 
 import { ConnectButton, darkTheme } from "thirdweb/react";
-import { inAppWallet } from "thirdweb/wallets";
 import { chain } from "@/app/chain";
 import { client } from "@/app/client";
 import React from "react";
+import {
+    inAppWallet,
+    createWallet,
+} from "thirdweb/wallets";
 
 const WalletConnect: React.FC = () => {
     return (
