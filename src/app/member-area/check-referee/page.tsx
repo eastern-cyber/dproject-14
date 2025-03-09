@@ -1,19 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { ConnectButton, useActiveAccount, darkTheme } from "thirdweb/react";
+import { useActiveAccount } from "thirdweb/react";
 import dprojectIcon from "@public/DProjectLogo_650x600.svg";
-import { client } from "../../client";
-import { chain } from "../../chain";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-    inAppWallet,
-    createWallet,
-} from "thirdweb/wallets";
 import WalletConnect from "@/components/WalletConnect";
-import { table } from "console";
-
 interface UserData {
     userId: string;
     referrerId: string;
