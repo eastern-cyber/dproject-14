@@ -184,7 +184,7 @@ export default function RefereePage() {
                                 <div className="text-center">
                                     <p className="text-center m-4 pr-10 text-lg font-semibold">
                                         <span className="text-[19px] text-center">
-                                            ส่วนแบ่งค่าแนะนำของท่าน : &nbsp;
+                                            ส่วนแบ่งรายได้การประชาสัมพันธ์ : &nbsp;
                                             <span className="text-[24px] text-yellow-500 animate-blink">
                                                 อยู่ระหว่างการคำนวณโครงสร้างรายได้ !!!
                                             </span> &nbsp; POL
