@@ -149,11 +149,14 @@ export default function RefereePage() {
                     </div>
                 )}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
-                <Link className="mb-6 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600" href="/member-area/check-referee">
-                    ตรวจสอบสายงาน
+                <Link
+                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
+                    href="/member-area/check-referee">
+                    <p className="text-center text-[19px]">ตรวจสอบสายงาน</p>
                 </Link>
-                <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600" href="/member-area">
-                    กลับสู่พื้นที่สมาชิก
+                <Link className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
+                    href="/member-area">
+                    <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
             </div>
         </main>

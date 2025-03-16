@@ -198,11 +198,6 @@ export default function RefereePage() {
                                                 </span> &nbsp; POL
                                             </span>
                                         </p>
-                                        <p className="text-center m-4 text-lg font-normal">
-                                            <Link className="px-4 py-3 text-yellow-500 hover:text-red-500" href="/member-area/check-payout">
-                                                ตรวจสอบรายละเอียด
-                                            </Link>
-                                        </p>
                                     </div>
                                     </th>
                                 </tr>
@@ -211,8 +206,16 @@ export default function RefereePage() {
                     </div>
                 )}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
-                <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600" href="/member-area">
-                    กลับสู่พื้นที่สมาชิก
+                <Link 
+                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
+                    href="/member-area/check-payout">
+                    <p className="text-center text-[19px]">ตรวจสอบส่วนแบ่งรายได้</p>
+                </Link>
+
+                <Link 
+                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
+                    href="/member-area">
+                    <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
             </div>
         </main>

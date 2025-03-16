@@ -139,7 +139,6 @@ function Header() {
         </code>{" "}
         e-mail Login
       </p>
-          {/* <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Referee</h1> */}
           <WalletConnect />
       </header>
   );
