@@ -6,6 +6,7 @@ import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
+
 interface UserData {
     userId: string;
     referrerId: string;
@@ -26,10 +27,10 @@ interface ReportData {
 export default function RefereePage() {
     const account = useActiveAccount();
     const [users, setUsers] = useState<UserData[] | null>(null);
-    const [reportData, setReportData] = useState<ReportData[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [referrerId, setReferrerId] = useState("");
-
+    const [reportData, setReportData] = useState<ReportData[] | null>(null);
+    
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
     const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/438a39e0b51bc39cc1619678ecb569f0f84f7cb1/public/send-pol-report.json";
 
@@ -80,6 +81,46 @@ export default function RefereePage() {
             }}>
                 <Header />
                 <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
+                <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
+                <input
+                    type="text"
+                    placeholder="ใส่เลขกระเป๋า..."
+                    value={referrerId}
+                    onChange={(e) => setReferrerId(e.target.value)}
+                    className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
+                />
+                {matchingUser && (
+                    <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
+                        <thead>
+                            <tr>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th className="text-[18px] text-left font-normal border border-gray-400 px-6 py-2 break-word">
+                                    {/* <div className="text-left break-all"> */}
+                                    <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
+                                    <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
+                                    <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
+                                    <b>วันลงทะเบียนผู้ใช้:</b> {matchingUser.userCreated || "N/A"}<br />
+                                    <b>วันเข้าร่วม Plan A:</b> {matchingUser.planA || "N/A"}<br />
+                                    <b>วันเข้าร่วม Plan B:</b> {matchingUser.planB || "N/A"}<br />
+                                    <span className="text-[19px] text-red-600">
+                                        <b>Token ID: {matchingUser.tokenId || "N/A"}</b>
+                                    </span><br />
+                                    <b>Sponser by:</b>&nbsp;
+                                    <button
+                                            className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
+                                            onClick={() => setReferrerId(matchingUser.referrerId)}
+                                        >
+                                            {matchingUser.referrerId}
+                                        </button>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                )}
                 {matchingUsers.length > 0 && (
                     <div>
                         <table className="w-full justify-center items-center">
@@ -108,7 +149,7 @@ export default function RefereePage() {
                                         <div className="text-center">
                                             <p className="text-center m-4 text-lg font-semibold">
                                                 <span className="text-[18px] text-center">
-                                                    รวมทั้งสิ้น&nbsp;&nbsp;&nbsp;
+                                                    ยอดรวม&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-yellow-500 animate-blink">
                                                         {matchingUsers.length * 12}
                                                     </span> &nbsp; POL
@@ -116,7 +157,7 @@ export default function RefereePage() {
                                             </p>
                                             <p className="text-center m-4 text-lg font-semibold">
                                                 <span className="text-[18px] text-center">
-                                                    ชำระแล้ว&nbsp;&nbsp;&nbsp;
+                                                    ยอดรับแล้ว&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-green-500 animate-blink">
                                                         {sentAmount}
                                                     </span> &nbsp; POL
@@ -124,7 +165,7 @@ export default function RefereePage() {
                                             </p>
                                             <p className="text-center m-4 text-lg font-semibold">
                                                 <span className="text-[18px] text-center">
-                                                    ค้างชำระ&nbsp;&nbsp;&nbsp;
+                                                    ยอดใหม่&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-red-500 animate-blink">
                                                         {matchingUsers.length * 12 - sentAmount}
                                                     </span> &nbsp; POL
@@ -137,9 +178,9 @@ export default function RefereePage() {
                                     <th className="border border-gray-400 px-4 py-2">
                                         <p className="text-center m-4 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                                ชำระครั้งล่าสุด<br />
+                                                รับครั้งล่าสุด<br />
                                                 <Link 
-                                                    href={`https://polygonscan.com/address/${walletAddress}`} 
+                                                    href={`https://polygonscan.com/address/${referrerId}`} 
                                                     className="text-[18px] text-blue-300 hover:text-red-500"
                                                     target="_blank">
                                                     <p className="mt-3">
