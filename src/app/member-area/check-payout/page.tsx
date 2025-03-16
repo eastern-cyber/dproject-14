@@ -66,6 +66,7 @@ export default function RefereePage() {
     const reportEntry = reportData.find(report => report.walletAddress === matchingUser?.userId);
     const sentAmount = reportEntry?.sentAmount || 0;
     const sentDate = reportEntry?.sentDate || "N/A";
+    const walletAddress = account?.address || "";
 
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -137,9 +138,14 @@ export default function RefereePage() {
                                         <p className="text-center m-4 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
                                                 ชำระครั้งล่าสุด<br />
-                                                <span className="text-[18px] text-blue-400">
-                                                    {sentDate}
-                                                </span>
+                                                <Link 
+                                                    href={`https://polygonscan.com/address/${walletAddress}`} 
+                                                    className="text-[18px] text-blue-300 hover:text-red-500"
+                                                    target="_blank">
+                                                    <p className="mt-3">
+                                                        {sentDate}
+                                                    </p>
+                                                </Link>
                                             </span>
                                         </p>
                                     </th>
