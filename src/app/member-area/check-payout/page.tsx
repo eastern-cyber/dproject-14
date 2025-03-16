@@ -32,7 +32,7 @@ export default function RefereePage() {
     const [reportData, setReportData] = useState<ReportData[] | null>(null);
     
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
-    const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/438a39e0b51bc39cc1619678ecb569f0f84f7cb1/public/send-pol-report.json";
+    const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/send-pol-report.json";
 
     useEffect(() => {
         if (account?.address) {
@@ -59,14 +59,23 @@ export default function RefereePage() {
     if (loading) return <div className="p-6">Loading...</div>;
     if (!users || !reportData) return <div className="p-6 text-red-600">Failed to load data.</div>;
 
+    const matchingUser = users.find(user => user.userId === referrerId);
+
+    // Aggregate sentAmount and get the latest sentDate
+    const relevantReports = reportData.filter(report => report.walletAddress === matchingUser?.userId);
+
+    // Get the latest sentDate from the last matching record
+    const latestSentDate = relevantReports.length > 0 
+        ? relevantReports[relevantReports.length - 1].sentDate 
+        : "N/A";
+
+    // Properly sum the total sent amount
+    const totalSentAmount = relevantReports.reduce((sum, report) => sum + Number(report.sentAmount), 0);
+    
     const matchingUsers = users.filter(
         (user) => user.referrerId === referrerId && user.userId.trim() !== ""
     ).map((user, index) => ({ ...user, recordNumber: index + 1 }));
 
-    const matchingUser = users.find(user => user.userId === referrerId);
-    const reportEntry = reportData.find(report => report.walletAddress === matchingUser?.userId);
-    const sentAmount = reportEntry?.sentAmount || 0;
-    const sentDate = reportEntry?.sentDate || "N/A";
     const walletAddress = account?.address || "";
 
     return (
@@ -99,7 +108,6 @@ export default function RefereePage() {
                         <tbody>
                             <tr>
                                 <th className="text-[18px] text-left font-normal border border-gray-400 px-6 py-2 break-word">
-                                    {/* <div className="text-left break-all"> */}
                                     <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
                                     <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
                                     <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
@@ -139,9 +147,9 @@ export default function RefereePage() {
                             <tbody className="mt-6 w-full justify-center items-center">
                                 <tr className="mt-4">
                                     <th className="border border-gray-400 px-4 py-2">
-                                            <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                    ส่วนแบ่งรายได้  การประชาสัมพันธ์
-                                            </p>
+                                        <p className="text-[19px] text-center m-2 text-lg font-semibold">
+                                                ส่วนแบ่งรายได้  การประชาสัมพันธ์
+                                        </p>
                                     </th>
                                 </tr>
                                 <tr className="w-full">
@@ -157,9 +165,9 @@ export default function RefereePage() {
                                             </p>
                                             <p className="text-center m-4 text-lg font-semibold">
                                                 <span className="text-[18px] text-center">
-                                                    ยอดรับแล้ว&nbsp;&nbsp;&nbsp;
+                                                    รับแล้ว&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-green-500 animate-blink">
-                                                        {sentAmount}
+                                                        {totalSentAmount}
                                                     </span> &nbsp; POL
                                                 </span>
                                             </p>
@@ -167,7 +175,7 @@ export default function RefereePage() {
                                                 <span className="text-[18px] text-center">
                                                     ยอดใหม่&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-red-500 animate-blink">
-                                                        {matchingUsers.length * 12 - sentAmount}
+                                                        {matchingUsers.length * 12 - totalSentAmount}
                                                     </span> &nbsp; POL
                                                 </span>
                                             </p>
@@ -184,7 +192,7 @@ export default function RefereePage() {
                                                     className="text-[18px] text-blue-300 hover:text-red-500"
                                                     target="_blank">
                                                     <p className="mt-3">
-                                                        {sentDate}
+                                                        {latestSentDate}
                                                     </p>
                                                 </Link>
                                             </span>
@@ -209,6 +217,7 @@ export default function RefereePage() {
         </main>
     );
 }
+
 interface WalletBalancesProps {
     walletAddress?: string;
     setReferrerId: (id: string) => void;
