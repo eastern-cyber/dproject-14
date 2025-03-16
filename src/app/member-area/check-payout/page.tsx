@@ -78,6 +78,28 @@ export default function RefereePage() {
 
     const walletAddress = account?.address || "";
 
+    const formatDate = (dateString?: string) => {
+        if (!dateString) return "N/A";
+    
+        // Manually parse "07/03/2025, 13:39:10" (DD/MM/YYYY, HH:mm:ss)
+        const match = dateString.match(/^(\d{2})\/(\d{2})\/(\d{4}), (\d{2}):(\d{2}):(\d{2})$/);
+        if (!match) return "Invalid Date";
+    
+        const [, day, month, year, hour, minute, second] = match.map(Number);
+        
+        const date = new Date(year, month - 1, day, hour, minute, second); // Month is 0-based in JS
+    
+        return date.toLocaleDateString("th-TH", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false, // Ensures 24-hour format
+        });
+    };
+    
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div style={{
@@ -131,6 +153,39 @@ export default function RefereePage() {
                 )}
                 {matchingUsers.length > 0 && (
                     <div>
+                        <table className="table-auto border-collapse mt-4 w-full">
+                            <thead>
+                                <tr>
+                                    <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
+                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกใต้สายงาน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {matchingUsers.map((user) => (
+                                    <tr key={user.userId}>
+                                        <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
+                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all">
+                                            <b>เลขกระเป๋า:</b>&nbsp;
+                                            <button
+                                                className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
+                                                onClick={() => setReferrerId(user.userId)}
+                                            >
+                                                {user.userId}
+                                            </button>
+                                                <p className="font-normal">
+                                                <b>อีเมล:</b> {user.email || "N/A"}<br />
+                                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                                {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
+                                                <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
+                                                <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                                <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
+                                                <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
+                                                </p>
+                                        </th>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                         <table className="w-full justify-center items-center">
                             <tbody>
                                 <tr className="colspan-[1]">
@@ -145,7 +200,7 @@ export default function RefereePage() {
                                 </tr>
                             </tbody>
                             <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4">
+                                <tr className="mt-4 colspan-[1]">
                                     <th className="border border-gray-400 px-4 py-2">
                                         <p className="text-[19px] text-center m-2 text-lg font-semibold">
                                                 ส่วนแบ่งรายได้  การประชาสัมพันธ์
