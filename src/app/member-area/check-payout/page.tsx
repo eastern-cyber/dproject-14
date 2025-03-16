@@ -95,35 +95,35 @@ export default function RefereePage() {
                                 </tr>
                             </tbody>
                             <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4 colspan-[1]">
+                                <tr className="mt-4">
                                     <th className="border border-gray-400 px-4 py-2">
-                                            <p className="text-[19px] text-center m-2 pr-10 text-lg font-semibold">
-                                                    ส่วนแบ่งรายได้การประชาสัมพันธ์
+                                            <p className="text-[19px] text-center m-2 text-lg font-semibold">
+                                                    ส่วนแบ่งรายได้  การประชาสัมพันธ์
                                             </p>
                                     </th>
                                 </tr>
-                                <tr className="colspan-[1]">
+                                <tr className="w-full">
                                     <th className="border border-gray-400 px-4 py-2">
                                         <div className="text-center">
-                                            <p className="text-center m-4 pr-10 text-lg font-semibold">
-                                                <span className="text-[19px] text-center">
-                                                    รวมทั้งสิ้น&nbsp;&nbsp;
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    รวมทั้งสิ้น&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-yellow-500 animate-blink">
                                                         {matchingUsers.length * 12}
                                                     </span> &nbsp; POL
                                                 </span>
                                             </p>
-                                            <p className="text-center m-4 pr-10 text-lg font-semibold">
-                                                <span className="text-[19px] text-center">
-                                                    ชำระแล้ว&nbsp;&nbsp;
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    ชำระแล้ว&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-green-500 animate-blink">
                                                         {sentAmount}
                                                     </span> &nbsp; POL
                                                 </span>
                                             </p>
-                                            <p className="text-center m-4 pr-10 text-lg font-semibold">
-                                                <span className="text-[19px] text-center">
-                                                    ค้างชำระ&nbsp;&nbsp;
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    ค้างชำระ&nbsp;&nbsp;&nbsp;
                                                     <span className="text-[24px] text-red-500 animate-blink">
                                                         {matchingUsers.length * 12 - sentAmount}
                                                     </span> &nbsp; POL
@@ -132,12 +132,12 @@ export default function RefereePage() {
                                         </div>
                                     </th>
                                 </tr>
-                                <tr className="colspan-[1]">
+                                <tr className="w-full">
                                     <th className="border border-gray-400 px-4 py-2">
-                                        <p className="text-center m-4 pr-10 text-lg font-semibold">
+                                        <p className="text-center m-4 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                                ชำระครั้งล่าสุด:&nbsp;&nbsp;
-                                                <span className="text-[20px] text-blue-500">
+                                                ชำระครั้งล่าสุด<br />
+                                                <span className="text-[18px] text-blue-400">
                                                     {sentDate}
                                                 </span>
                                             </span>
