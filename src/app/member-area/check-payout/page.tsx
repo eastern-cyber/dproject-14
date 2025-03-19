@@ -135,9 +135,9 @@ export default function RefereePage() {
                                     <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
                                     <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
                                     <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
-                                    <b>วันลงทะเบียนผู้ใช้:</b> {matchingUser.userCreated || "N/A"}<br />
-                                    <b>วันเข้าร่วม Plan A:</b> {matchingUser.planA || "N/A"}<br />
-                                    <b>วันเข้าร่วม Plan B:</b> {matchingUser.planB || "N/A"}<br />
+                                    <b>ลงทะเบียน:</b> {matchingUser.userCreated || "N/A"}<br />
+                                    <b>เข้า Plan A:</b> {matchingUser.planA || "N/A"}<br />
+                                    <b>เข้า Plan B:</b> {matchingUser.planB || "N/A"}<br />
                                     <span className="text-[19px] text-red-600">
                                         <b>Token ID: {matchingUser.tokenId || "N/A"}</b>
                                     </span><br />
@@ -187,11 +187,11 @@ export default function RefereePage() {
 
                                             {/* Expanded Details */}
                                             {expandedUser === user.userId && (
-                                                <div className="mt-2 p-2 border-t border-gray-300">
+                                                <div className="mt-2 break-word">
                                                     <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                    <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
-                                                    <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                                    <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
+                                                    <b>ลงทะเบียน:</b> {user.userCreated || "N/A"}<br />
+                                                    <b>เข้า Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                                    <b>เข้า Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
                                                     <span className="text-[19px] text-red-600">
                                                         <b>Token ID: {user.tokenId || "N/A"}</b>
                                                     </span>
