@@ -179,10 +179,10 @@ export default function RefereePage() {
                                             
                                             {/* Toggle Button */}
                                             <button
-                                                className="absolute top-3 right-4 text-yellow-500 hover:text-red-500"
+                                                className="absolute top-2 right-4 text-yellow-500 hover:text-red-500"
                                                 onClick={() => setExpandedUser(expandedUser === user.userId ? null : user.userId)}
                                             >
-                                                {expandedUser === user.userId ? <span className="text-[20px]">︿</span> : <span className="text-[20px]">﹀</span>}
+                                                {expandedUser === user.userId ? <span className="text-[18px]">⏶</span> : <span className="text-[18px]">⏷</span>}
                                             </button>
 
                                             {/* Expanded Details */}
