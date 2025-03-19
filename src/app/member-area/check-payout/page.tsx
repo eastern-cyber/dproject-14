@@ -25,6 +25,8 @@ interface ReportData {
 }
 
 export default function RefereePage() {
+    const [expandedUser, setExpandedUser] = useState<string | null>(null);
+
     const account = useActiveAccount();
     const [users, setUsers] = useState<UserData[] | null>(null);
     const [loading, setLoading] = useState(true);
@@ -164,7 +166,7 @@ export default function RefereePage() {
                                 {matchingUsers.map((user) => (
                                     <tr key={user.userId}>
                                         <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all">
+                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all relative">
                                             <b>เลขกระเป๋า:</b>&nbsp;
                                             <button
                                                 className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
@@ -172,19 +174,34 @@ export default function RefereePage() {
                                             >
                                                 {user.userId}
                                             </button>
-                                                <p className="font-normal">
-                                                <b>อีเมล:</b> {user.email || "N/A"}<br />
-                                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
-                                                <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
-                                                <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
-                                                </p>
+                                            <br />
+                                            <b>อีเมล:</b> {user.email || "N/A"}
+                                            
+                                            {/* Toggle Button */}
+                                            <button
+                                                className="absolute top-3 right-4 text-yellow-500 hover:text-red-500"
+                                                onClick={() => setExpandedUser(expandedUser === user.userId ? null : user.userId)}
+                                            >
+                                                {expandedUser === user.userId ? <span className="text-[20px]">︿</span> : <span className="text-[20px]">﹀</span>}
+                                            </button>
+
+                                            {/* Expanded Details */}
+                                            {expandedUser === user.userId && (
+                                                <div className="mt-2 p-2 border-t border-gray-300">
+                                                    <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                                    <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
+                                                    <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                                    <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
+                                                    <span className="text-[19px] text-red-600">
+                                                        <b>Token ID: {user.tokenId || "N/A"}</b>
+                                                    </span>
+                                                </div>
+                                            )}
                                         </th>
                                     </tr>
                                 ))}
                             </tbody>
+
                         </table>
                         <table className="w-full justify-center items-center">
                             <tbody>
