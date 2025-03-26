@@ -11,7 +11,7 @@ import {
 
 const WalletConnect: React.FC = () => {
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center m-5">
             <ConnectButton locale={"en_US"} 
                 client={client}
                 chain={chain}
