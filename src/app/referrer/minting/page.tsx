@@ -16,6 +16,7 @@ import {
     inAppWallet,
     createWallet,
   } from "thirdweb/wallets";
+import WalletConnect from "@/components/WalletConnect";
 
 const MintingPage = () => {
   const [data, setData] = useState<{ var1: string; var2: string; var3: string; var4: string } | null>(null);
@@ -221,7 +222,8 @@ const MintingPage = () => {
                 <h1 className="p-4 md:text-2xl text-2xl font-semibold md:font-bold tracking-tighter">
                     Mint 3K NFT
                 </h1>
-                <div className="flex justify-center m-2">
+                <WalletConnect />
+                {/* <div className="flex justify-center m-2">
                     <ConnectButton locale={"en_US"} 
                         client={client}
                         chain={chain}
@@ -282,7 +284,7 @@ const MintingPage = () => {
                             },
                         })}
                     />
-                </div>
+                </div> */}
                 
                 <div>
                     {data ? (
