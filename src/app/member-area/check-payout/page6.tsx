@@ -6,6 +6,7 @@ import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
+
 interface UserData {
     userId: string;
     referrerId: string;
@@ -17,13 +18,21 @@ interface UserData {
     planB?: string;
 }
 
+interface ReportData {
+    walletAddress: string;
+    sentAmount: number;
+    sentDate: string;
+}
+
 export default function RefereePage() {
     const account = useActiveAccount();
     const [users, setUsers] = useState<UserData[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [referrerId, setReferrerId] = useState("");
-
+    const [reportData, setReportData] = useState<ReportData[] | null>(null);
+    
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
+    const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/438a39e0b51bc39cc1619678ecb569f0f84f7cb1/public/send-pol-report.json";
 
     useEffect(() => {
         if (account?.address) {
@@ -32,10 +41,13 @@ export default function RefereePage() {
     }, [account?.address]);
 
     useEffect(() => {
-        fetch(usersUrl)
-            .then((res) => res.json())
-            .then((data) => {
-                setUsers(data);
+        Promise.all([
+            fetch(usersUrl).then((res) => res.json()),
+            fetch(reportUrl).then((res) => res.json()),
+        ])
+            .then(([userData, reportData]) => {
+                setUsers(userData);
+                setReportData(reportData);
                 setLoading(false);
             })
             .catch((err) => {
@@ -45,35 +57,17 @@ export default function RefereePage() {
     }, []);
 
     if (loading) return <div className="p-6">Loading...</div>;
-    if (!users) return <div className="p-6 text-red-600">Failed to load data.</div>;
+    if (!users || !reportData) return <div className="p-6 text-red-600">Failed to load data.</div>;
 
     const matchingUsers = users.filter(
         (user) => user.referrerId === referrerId && user.userId.trim() !== ""
     ).map((user, index) => ({ ...user, recordNumber: index + 1 }));
 
     const matchingUser = users.find(user => user.userId === referrerId);
-
-    const formatDate = (dateString?: string) => {
-        if (!dateString) return "N/A";
-    
-        // Manually parse "07/03/2025, 13:39:10" (DD/MM/YYYY, HH:mm:ss)
-        const match = dateString.match(/^(\d{2})\/(\d{2})\/(\d{4}), (\d{2}):(\d{2}):(\d{2})$/);
-        if (!match) return "Invalid Date";
-    
-        const [, day, month, year, hour, minute, second] = match.map(Number);
-        
-        const date = new Date(year, month - 1, day, hour, minute, second); // Month is 0-based in JS
-    
-        return date.toLocaleDateString("th-TH", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-            hour12: false, // Ensures 24-hour format
-        });
-    };
+    const reportEntry = reportData.find(report => report.walletAddress === matchingUser?.userId);
+    const sentAmount = reportEntry?.sentAmount || 0;
+    const sentDate = reportEntry?.sentDate || "N/A";
+    const walletAddress = account?.address || "";
 
     return (
         <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
@@ -84,11 +78,9 @@ export default function RefereePage() {
                 justifyContent: "center",
                 padding: "5px",
                 margin: "20px",
-                // border: "1px solid #333",
-                // borderRadius: "8px",
             }}>
                 <Header />
-                <h1 className="text-center text-[20px] font-bold">ตรวจสอบรายชื่อสายงาน</h1>
+                <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
                 <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
                 <input
                     type="text"
@@ -97,12 +89,11 @@ export default function RefereePage() {
                     onChange={(e) => setReferrerId(e.target.value)}
                     className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
                 />
-                <h2 className="text-center text-[18px] mt-3 text-yellow-500 break-all">ระบบมีการปรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Token ID</b></span> เพื่อรองรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Plan B</b></span></h2>
                 {matchingUser && (
                     <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
                         <thead>
                             <tr>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดผู้แนะนำ</th>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,8 +116,6 @@ export default function RefereePage() {
                                         >
                                             {matchingUser.referrerId}
                                         </button>
-                                    {/* <b>ผู้แนะนำของผู้แนะนำ:</b> <span className="break-all">{matchingUser.referrerId}</span><br /> */}
-                                    {/* </div> */}
                                 </th>
                             </tr>
                         </tbody>
@@ -134,39 +123,6 @@ export default function RefereePage() {
                 )}
                 {matchingUsers.length > 0 && (
                     <div>
-                        <table className="table-auto border-collapse mt-4 w-full">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกใต้สายงาน</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {matchingUsers.map((user) => (
-                                    <tr key={user.userId}>
-                                        <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all">
-                                            <b>เลขกระเป๋า:</b>&nbsp;
-                                            <button
-                                                className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                                onClick={() => setReferrerId(user.userId)}
-                                            >
-                                                {user.userId}
-                                            </button>
-                                                <p className="font-normal">
-                                                <b>อีเมล:</b> {user.email || "N/A"}<br />
-                                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
-                                                <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
-                                                <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
-                                                </p>
-                                        </th>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
                         <table className="w-full justify-center items-center">
                             <tbody>
                                 <tr className="colspan-[1]">
@@ -181,25 +137,58 @@ export default function RefereePage() {
                                 </tr>
                             </tbody>
                             <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4 colspan-[1]">
+                                <tr className="mt-4">
                                     <th className="border border-gray-400 px-4 py-2">
                                         <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                ส่วนแบ่งรายได้ การประชาสัมพันธ์
+                                                ส่วนแบ่งรายได้  การประชาสัมพันธ์
                                         </p>
                                     </th>
                                 </tr>
-                                <tr className="colspan-[1]">
+                                <tr className="w-full">
                                     <th className="border border-gray-400 px-4 py-2">
-                                    <div className="text-center">
+                                        <div className="text-center">
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    ยอดรวม&nbsp;&nbsp;&nbsp;
+                                                    <span className="text-[24px] text-yellow-500 animate-blink">
+                                                        {matchingUsers.length * 12}
+                                                    </span> &nbsp; POL
+                                                </span>
+                                            </p>
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    ยอดรับแล้ว&nbsp;&nbsp;&nbsp;
+                                                    <span className="text-[24px] text-green-500 animate-blink">
+                                                        {sentAmount}
+                                                    </span> &nbsp; POL
+                                                </span>
+                                            </p>
+                                            <p className="text-center m-4 text-lg font-semibold">
+                                                <span className="text-[18px] text-center">
+                                                    ยอดใหม่&nbsp;&nbsp;&nbsp;
+                                                    <span className="text-[24px] text-red-500 animate-blink">
+                                                        {matchingUsers.length * 12 - sentAmount}
+                                                    </span> &nbsp; POL
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </th>
+                                </tr>
+                                <tr className="w-full">
+                                    <th className="border border-gray-400 px-4 py-2">
                                         <p className="text-center m-4 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                                รวมทั้งสิ้น&nbsp;&nbsp;
-                                                <span className="text-[24px] text-yellow-500 animate-blink">
-                                                    {matchingUsers.length * 12}
-                                                </span> &nbsp; POL
+                                                รับครั้งล่าสุด<br />
+                                                <Link 
+                                                    href={`https://polygonscan.com/address/${referrerId}`} 
+                                                    className="text-[18px] text-blue-300 hover:text-red-500"
+                                                    target="_blank">
+                                                    <p className="mt-3">
+                                                        {sentDate}
+                                                    </p>
+                                                </Link>
                                             </span>
                                         </p>
-                                    </div>
                                     </th>
                                 </tr>
                             </tbody>
@@ -207,14 +196,12 @@ export default function RefereePage() {
                     </div>
                 )}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
-                    href="/member-area/check-payout">
-                    <p className="text-center text-[19px]">ตรวจสอบส่วนแบ่งรายได้</p>
+                <Link
+                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
+                    href="/member-area/check-referee">
+                    <p className="text-center text-[19px]">ตรวจสอบสายงาน</p>
                 </Link>
-
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
+                <Link className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
                     href="/member-area">
                     <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
@@ -222,7 +209,6 @@ export default function RefereePage() {
         </main>
     );
 }
-
 interface WalletBalancesProps {
     walletAddress?: string;
     setReferrerId: (id: string) => void;
@@ -240,7 +226,7 @@ const WalletBalances: React.FC<WalletBalancesProps>= ({ walletAddress, setReferr
             </button>
         </div>
             <p className="text-center my-3 text-[16px]">
-                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
+                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่รายละเอียดของตัวท่านเอง
             </p>
     </div>
 );
@@ -251,7 +237,7 @@ function Header() {
             <Link href="/">
                 <Image src={dprojectIcon} alt="" className="m-8 size-[100px]" />
             </Link>
-            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Referee</h1>
+            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Payout</h1>
             <WalletConnect />
         </header>
     );

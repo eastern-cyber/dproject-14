@@ -88,7 +88,7 @@ export default function RefereePage() {
                 // borderRadius: "8px",
             }}>
                 <Header />
-                <h1 className="text-center text-[20px] font-bold">ตรวจสอบรายชื่อสายงาน</h1>
+                <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
                 <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
                 <input
                     type="text"
@@ -97,12 +97,11 @@ export default function RefereePage() {
                     onChange={(e) => setReferrerId(e.target.value)}
                     className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
                 />
-                <h2 className="text-center text-[18px] mt-3 text-yellow-500 break-all">ระบบมีการปรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Token ID</b></span> เพื่อรองรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Plan B</b></span></h2>
                 {matchingUser && (
                     <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
                         <thead>
                             <tr>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดผู้แนะนำ</th>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,8 +124,6 @@ export default function RefereePage() {
                                         >
                                             {matchingUser.referrerId}
                                         </button>
-                                    {/* <b>ผู้แนะนำของผู้แนะนำ:</b> <span className="break-all">{matchingUser.referrerId}</span><br /> */}
-                                    {/* </div> */}
                                 </th>
                             </tr>
                         </tbody>
@@ -183,17 +180,17 @@ export default function RefereePage() {
                             <tbody className="mt-6 w-full justify-center items-center">
                                 <tr className="mt-4 colspan-[1]">
                                     <th className="border border-gray-400 px-4 py-2">
-                                        <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                ส่วนแบ่งรายได้ การประชาสัมพันธ์
-                                        </p>
+                                            <p className="text-[19px] text-center m-2 pr-10 text-lg font-semibold">
+                                                    ส่วนแบ่งรายได้การประชาสัมพันธ์
+                                            </p>
                                     </th>
                                 </tr>
                                 <tr className="colspan-[1]">
                                     <th className="border border-gray-400 px-4 py-2">
                                     <div className="text-center">
-                                        <p className="text-center m-4 text-lg font-semibold">
+                                        <p className="text-center m-4 pr-10 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                                รวมทั้งสิ้น&nbsp;&nbsp;
+                                                รวมทั้งสิ้น:&nbsp;&nbsp;
                                                 <span className="text-[24px] text-yellow-500 animate-blink">
                                                     {matchingUsers.length * 12}
                                                 </span> &nbsp; POL
@@ -207,16 +204,8 @@ export default function RefereePage() {
                     </div>
                 )}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
-                    href="/member-area/check-payout">
-                    <p className="text-center text-[19px]">ตรวจสอบส่วนแบ่งรายได้</p>
-                </Link>
-
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
-                    href="/member-area">
-                    <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
+                <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600" href="/member-area">
+                    กลับสู่พื้นที่สมาชิก
                 </Link>
             </div>
         </main>
@@ -239,7 +228,7 @@ const WalletBalances: React.FC<WalletBalancesProps>= ({ walletAddress, setReferr
                 {walletAddress || "ยังไม่ได้เชื่อมกระเป๋า !"}
             </button>
         </div>
-            <p className="text-center my-3 text-[16px]">
+            <p className="my-3 text-[16px]">
                 คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
             </p>
     </div>
@@ -251,7 +240,7 @@ function Header() {
             <Link href="/">
                 <Image src={dprojectIcon} alt="" className="m-8 size-[100px]" />
             </Link>
-            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Referee</h1>
+            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Payout</h1>
             <WalletConnect />
         </header>
     );

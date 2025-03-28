@@ -97,7 +97,6 @@ export default function RefereePage() {
                     onChange={(e) => setReferrerId(e.target.value)}
                     className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
                 />
-                <h2 className="text-center text-[18px] mt-3 text-yellow-500 break-all">ระบบมีการปรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Token ID</b></span> เพื่อรองรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Plan B</b></span></h2>
                 {matchingUser && (
                     <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
                         <thead>
@@ -133,90 +132,73 @@ export default function RefereePage() {
                     </table>
                 )}
                 {matchingUsers.length > 0 && (
-                    <div>
-                        <table className="table-auto border-collapse mt-4 w-full">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกใต้สายงาน</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {matchingUsers.map((user) => (
-                                    <tr key={user.userId}>
-                                        <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all">
-                                            <b>เลขกระเป๋า:</b>&nbsp;
-                                            <button
-                                                className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                                onClick={() => setReferrerId(user.userId)}
-                                            >
-                                                {user.userId}
-                                            </button>
-                                                <p className="font-normal">
-                                                <b>อีเมล:</b> {user.email || "N/A"}<br />
-                                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
-                                                <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                                <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
-                                                <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
-                                                </p>
-                                        </th>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <table className="w-full justify-center items-center">
-                            <tbody>
-                                <tr className="colspan-[1]">
-                                    <th>
-                                        <p className="mb-12 text-center m-4 pr-10 text-lg font-semibold">
-                                            <span className="text-[19px] text-center">
-                                                รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
-                                                <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
-                                                &nbsp;&nbsp; ท่าน</span>
-                                        </p>
+                    <table className="table-auto border-collapse mt-4 w-full">
+                        <thead>
+                            <tr>
+                                <th className="border border-gray-400 px-4 py-2">#</th>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกใต้สายงาน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {matchingUsers.map((user) => (
+                                <tr key={user.userId}>
+                                    <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
+                                    <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all">
+                                        <b>เลขกระเป๋า:</b>&nbsp;
+                                        <button
+                                            className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
+                                            onClick={() => setReferrerId(user.userId)}
+                                        >
+                                            {user.userId}
+                                        </button>
+                                            <p className="font-normal">
+                                            <b>อีเมล:</b> {user.email || "N/A"}<br />
+                                            <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                            {/* {user.userCreated? new Date(user.userCreated).toLocaleDateString("en-GB") // 'en-GB' is for dd/mm/yyyy format  */}
+                                            <b>วันลงทะเบียนผู้ใช้:</b> {user.userCreated || "N/A"}<br />
+                                            <b>วันเข้าร่วม Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
+                                            <b>วันเข้าร่วม Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
+                                            <span className="text-[19px] text-red-600"><b>Token ID: {user.tokenId || "N/A"}</b></span><br />
+                                            </p>
                                     </th>
                                 </tr>
-                            </tbody>
-                            <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4 colspan-[1]">
-                                    <th className="border border-gray-400 px-4 py-2">
-                                        <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                ส่วนแบ่งรายได้ การประชาสัมพันธ์
-                                        </p>
-                                    </th>
-                                </tr>
-                                <tr className="colspan-[1]">
-                                    <th className="border border-gray-400 px-4 py-2">
-                                    <div className="text-center">
-                                        <p className="text-center m-4 text-lg font-semibold">
-                                            <span className="text-[19px] text-center">
-                                                รวมทั้งสิ้น&nbsp;&nbsp;
-                                                <span className="text-[24px] text-yellow-500 animate-blink">
-                                                    {matchingUsers.length * 12}
-                                                </span> &nbsp; POL
-                                            </span>
-                                        </p>
-                                    </div>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            ))}
+                        </tbody>
+                        <tbody>
+                            <tr className="colspan-[1]">
+                                <th></th>
+                                <th>
+                                <div className="text-center">
+                                    <p className="text-center m-4 pr-10 text-lg font-semibold">
+                                        <span className="text-[19px] text-center">
+                                            รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
+                                            <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
+                                            &nbsp;&nbsp; ท่าน</span>
+                                    </p>
+                                </div>
+                                </th>
+                            </tr>
+                            <tr className="colspan-[1]">
+                                <th></th>
+                                <th>
+                                <div className="text-center">
+                                    <p className="text-center m-4 pr-10 text-lg font-semibold">
+                                        <span className="text-[19px] text-center">
+                                            ส่วนแบ่งรายได้การประชาสัมพันธ์ : &nbsp;
+                                            <span className="text-[24px] text-yellow-500 animate-blink">
+                                                อยู่ระหว่างการคำนวณโครงสร้างรายได้ !!!
+                                            </span> &nbsp; POL
+                                        </span>
+                                    </p>
+                                </div>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
                 )}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
-                    href="/member-area/check-payout">
-                    <p className="text-center text-[19px]">ตรวจสอบส่วนแบ่งรายได้</p>
-                </Link>
-
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
-                    href="/member-area">
-                    <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
+                <Link className="border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600" href="/member-area">
+                    กลับสู่พื้นที่สมาชิก
                 </Link>
             </div>
         </main>
@@ -239,7 +221,7 @@ const WalletBalances: React.FC<WalletBalancesProps>= ({ walletAddress, setReferr
                 {walletAddress || "ยังไม่ได้เชื่อมกระเป๋า !"}
             </button>
         </div>
-            <p className="text-center my-3 text-[16px]">
+            <p className="my-3 text-[16px]">
                 คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
             </p>
     </div>
