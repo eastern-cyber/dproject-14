@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ConnectButton, MediaRenderer, TransactionButton, useActiveAccount, useReadContract, darkTheme } from "thirdweb/react";
 import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import { claimTo as claimERC1155, balanceOf as balanceOfERC1155 } from "thirdweb/extensions/erc1155";
+// import { claimTo as claimERC721, balanceOf as balanceOfERC721 } from "thirdweb/extensions/erc721";
 import { defineChain, getContract } from "thirdweb";
 import { polygon } from "thirdweb/chains";
 import { getContractMetadata } from "thirdweb/extensions/common";
