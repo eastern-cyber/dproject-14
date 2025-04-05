@@ -220,7 +220,7 @@ export default function RefereePage() {
                     <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
             </div>
-            <div>
+            <div className='px-1 w-full'>
                 <Footer />
             </div>
         </main>

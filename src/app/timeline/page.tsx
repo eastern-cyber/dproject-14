@@ -1,6 +1,7 @@
 import React from "react";
 import "./timeline.css";
 import Footer from "@/components/Footer";
+import Link from "next/link";
 
 const Timeline: React.FC = () => {
   return (
@@ -143,16 +144,14 @@ const Timeline: React.FC = () => {
                 </div>
             </div>
         </div>
-        <center>
         <div>
             <Footer />
         </div>
-        <div className="mt-4">
-                <a 
-                    className="flex flex-col w-36 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
-                    href="/">กลับหน้าหลัก</a>
-            </div>
-        </center>
+        <div className="flex justify-center mt-4">
+                <Link
+                    className="flex justify-center w-36 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                    href="/">กลับหน้าหลัก</Link>
+        </div>
     </div>
   );
 };

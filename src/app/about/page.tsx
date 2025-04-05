@@ -13,7 +13,7 @@ export default function About() {
       }}>
         <div style={{
           display: "flex",
-          margin: "20px",
+          margin: "5px",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -35,7 +35,7 @@ export default function About() {
 
         <div style={{
           display: "flex",
-          margin: "20px",
+          margin: "5px",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -57,7 +57,7 @@ export default function About() {
 
         <div style={{
           display: "flex",
-          margin: "20px",
+          margin: "5px",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
@@ -72,16 +72,16 @@ export default function About() {
             <div style={{
                 display: "flex",
                 fontSize: "20px",
-                margin: "15px",
+                margin: "10px",
             }}>DProject Membership</div>
             <div>เปิดโอกาสให้สมาชิกได้รับผลตอบแทนจากการใช้งาน Web3 Application ชื่อ Kok Kok Kok (ก๊อกๆๆ) หรือ 3K ซึ่งจะถูกพัฒนาขึ้น เพื่อให้สมาชิกมีรายได้จากระบบ ในรูปแบบ Passive Income หรือ รายได้ที่จะคงอยู่ตลอดไป ทั้งนี้สามารถสอบถามรายละเอียดได้จากผู้แนะนำ</div>
         </div>
-        <div>
+        <div className='px-1 w-full'>
           <Footer />
         </div>
         <div className='mt-4'>
                 <a 
-                    className="flex flex-col border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
+                    className="flex flex-col px-4 py-3 mt-2 border border-zinc-500 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                     href="/">กลับหน้าหลัก</a>
         </div>
     </div>

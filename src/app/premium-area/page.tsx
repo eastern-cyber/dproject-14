@@ -37,7 +37,7 @@ export default function PremiumArea() {
             </div>
 
             </div>
-            <div>
+            <div className='px-1 w-full'>
                 <Footer />
             </div>
             <div className="flex flex-col items-center">

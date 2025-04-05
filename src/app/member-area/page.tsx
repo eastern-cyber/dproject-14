@@ -33,7 +33,7 @@ export default function Refferrer() {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "20px",
-                margin: "20px",
+                margin: "10px",
                 border: "1px solid #333",
                 borderRadius: "8px",
               }}>
@@ -54,7 +54,7 @@ export default function Refferrer() {
       }
 
     return (
-        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
+        <main className="flex p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div style={{
                     display: "flex",
                     flexDirection: "column",
@@ -77,10 +77,10 @@ export default function Refferrer() {
                     <WalletBalances walletAddress={account?.address || ""}/>
                 </div>
             </div>
-            <div>
+            <div className='px-1 w-full'>
                 <Footer />
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col mt-2 items-center">
                     <Link 
                         className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                         href="/">
@@ -94,7 +94,7 @@ export default function Refferrer() {
 
 function  Header() {
     return (
-        <header className="flex flex-col items-center mb-12 mb:mb-20">
+        <header className="flex flex-col mx-2 items-center mb-12 mb:mb-20">
             <Link href="/" passHref>
                 <Image
                     src={dprojectIcon}

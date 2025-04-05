@@ -194,7 +194,7 @@ const MintingPage = () => {
                         <></>
                     )}
                 </p>
-                {/* <p>มีจำนวน <span className="text-[24px] my-3 text-yellow-500"><b>{walletAddress ? nftBalance?.toString() : "0"}</b></span> รายการ</p> */}
+                <p>มีจำนวน <span className="text-[24px] my-3 text-yellow-500"><b>{walletAddress ? nftBalance?.toString() : "0"}</b></span> รายการ</p>
                 </div>
                 {nftBalance && nftBalance > 0 && (
                     <div className="flex flex-col items-center mt-6">
