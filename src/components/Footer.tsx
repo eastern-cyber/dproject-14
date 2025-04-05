@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#110022] text-white py-8 mt-14">
+    <footer className="bg-[#110030] text-white py-8 mt-14">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo & Description */}
         <div>
@@ -22,8 +22,8 @@ export default function Footer() {
           <ul className="space-y-2 text-[17px] text-gray-400">
             <li className="hover:text-blue-300 hover:font-semibold"><Link href="/">Home</Link></li>
             <li className="hover:text-blue-300 hover:font-semibold"><Link href="/about">About</Link></li>
-            <li className="hover:text-blue-300 hover:font-semibold"><Link href="https://3k.aseanquality.com/?utm_source=next-template">3K App</Link></li>
             <li className="hover:text-blue-300 hover:font-semibold"><Link href="/timeline">Timeline</Link></li>
+            <li className="hover:text-blue-300 hover:font-semibold"><Link href="/member-area/">Member Area</Link></li>
           </ul>
         </div>
 
