@@ -11,7 +11,7 @@ export default function Footer() {
             <Link href="/">DFI.Fund</Link>
         </h2>
           <p className="mt-2 text-[16px] text-gray-400">
-          <b>DProject Financial Innovation</b> <br />
+          <b>DProject</b> Financial Innovation<br />
           <b>Web3 SuperApp</b> of the Future.
           </p>
         </div>

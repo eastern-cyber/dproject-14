@@ -13,6 +13,7 @@ import { contract } from "../../../utils/contracts";
 import { getContractMetadata } from "thirdweb/extensions/common";
 import Link from "next/link";
 import WalletConnect from "@/components/WalletConnect";
+import Footer from "@/components/Footer";
 
 export default function Refferrer() {
     const account = useActiveAccount();
@@ -75,7 +76,10 @@ export default function Refferrer() {
                 <div className="flex flex-col justify-center items-center">
                     <WalletBalances walletAddress={account?.address || ""}/>
                 </div>
-            </div> 
+            </div>
+            <div>
+                <Footer />
+            </div>
             <div className="flex flex-col items-center">
                     <Link 
                         className="flex flex-col mt-4 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"

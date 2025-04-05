@@ -6,6 +6,7 @@ import dprojectIcon from "@public/DProjectLogo_650x600.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
+import Footer from "@/components/Footer";
 interface UserData {
     userId: string;
     referrerId: string;
@@ -218,6 +219,9 @@ export default function RefereePage() {
                     href="/member-area">
                     <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
+            </div>
+            <div>
+                <Footer />
             </div>
         </main>
     );

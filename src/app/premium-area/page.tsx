@@ -7,6 +7,7 @@ import { client } from "../client";
 import { chain  } from "../chain";
 import Link from 'next/link';
 import WalletConnect from '@/components/WalletConnect';
+import Footer from '@/components/Footer';
 
 export default function PremiumArea() {
     const account = useActiveAccount();
@@ -35,6 +36,9 @@ export default function PremiumArea() {
                 <WalletPublicKey walletAddress={account?.address || ""}/>
             </div>
 
+            </div>
+            <div>
+                <Footer />
             </div>
             <div className="flex flex-col items-center">
                     <a 
