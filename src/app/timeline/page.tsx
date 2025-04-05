@@ -1,5 +1,6 @@
 import React from "react";
 import "./timeline.css";
+import Footer from "@/components/Footer";
 
 const Timeline: React.FC = () => {
   return (
@@ -87,6 +88,20 @@ const Timeline: React.FC = () => {
             </div>
             <div className="timeline-item">
                 <div className="timeline-content">
+                <ul><b>28.02.2025</b></ul>
+                <h3><b>Valentine Promotion Extended</b></h3>
+                <p>ขยายเวลา วาเลนไทน์ โปรโมชั่น รับเพิ่มอีก 1,000 DFI จนถึง 15/03/2025 </p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>15.03.2025</b></ul>
+                <h3><b>Valentine Promotion Ended</b></h3>
+                <p>จบช่วงเวลา วาเลนไทน์ โปรโมชั่น และยังคงได้สิทธิ์โปรโมชั่นเริ่มต้นที่ 1,000 DFI ต่อไป</p>
+                </div>
+            </div>            
+            <div className="timeline-item">
+                <div className="timeline-content">
                 {/* <ul><b>20.02.2025</b></ul> */}
                 <h3><b>To be continue ... ยังมีต่อ โปรดรอติดตาม</b></h3>
                 {/* <p>3K Application ก๊อกๆๆ ที่สามารถใช้งานได้ ใกล้เคียงเวอร์ชั่นสมบูรณ์มากยิ่งขึ้น</p> */}
@@ -95,6 +110,9 @@ const Timeline: React.FC = () => {
         </div>
         <center>
         <div>
+            <Footer />
+        </div>
+        <div className="mt-4">
                 <a 
                     className="flex flex-col w-36 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                     href="/">กลับหน้าหลัก</a>

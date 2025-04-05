@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer'
 import React from 'react'
 
 export default function About() {
@@ -76,6 +77,9 @@ export default function About() {
             <div>เปิดโอกาสให้สมาชิกได้รับผลตอบแทนจากการใช้งาน Web3 Application ชื่อ Kok Kok Kok (ก๊อกๆๆ) หรือ 3K ซึ่งจะถูกพัฒนาขึ้น เพื่อให้สมาชิกมีรายได้จากระบบ ในรูปแบบ Passive Income หรือ รายได้ที่จะคงอยู่ตลอดไป ทั้งนี้สามารถสอบถามรายละเอียดได้จากผู้แนะนำ</div>
         </div>
         <div>
+          <Footer />
+        </div>
+        <div className='mt-4'>
                 <a 
                     className="flex flex-col border border-zinc-500 px-4 py-3 rounded-lg hover:bg-zinc-800 transition-colors hover:border-zinc-800"
                     href="/">กลับหน้าหลัก</a>
