@@ -102,6 +102,27 @@ const Timeline: React.FC = () => {
             </div>            
             <div className="timeline-item">
                 <div className="timeline-content">
+                <ul><b>16.03.2025</b></ul>
+                <h3><b>Initiate 40% PayOut</b></h3>
+                <p>รับส่วนแบ่งรายได้การประชาสัมพันธ์ 40% เป็นครั้งแรก</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>31.03.2025</b></ul>
+                <h3><b>Prepare System for Plan B </b></h3>
+                <p>ปรับระบบ เตรียมพร้อมสำหรับ Plan B (ปรับเปลี่ยน Token ID สำหรับ โครงสร้างองค์กร 1-255)</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>02.04.2025</b></ul>
+                <h3><b>19 Knights Initiative </b></h3>
+                <p>ปรับทีมผู้นำทัพ 18K (18 ขุนพล) เป็น 19K  (19 อัศวิน) เพื่อความเหมาะสมด้วยประการทั้งปวง</p>
+                </div>
+            </div>            
+            <div className="timeline-item">
+                <div className="timeline-content">
                 {/* <ul><b>20.02.2025</b></ul> */}
                 <h3><b>To be continue ... ยังมีต่อ โปรดรอติดตาม</b></h3>
                 {/* <p>3K Application ก๊อกๆๆ ที่สามารถใช้งานได้ ใกล้เคียงเวอร์ชั่นสมบูรณ์มากยิ่งขึ้น</p> */}

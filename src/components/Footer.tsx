@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="flex space-x-4">
             <a href="https://web.facebook.com/people/KOK-KOK-KOK/61573998052437/" target="_blank" aria-label="Facebook"><Facebook className="w-6 h-6 hover:text-blue-500 pt-2" /></a>
             <a href="#" aria-label="Instagram"><Instagram className="w-6 h-6 hover:text-pink-500 pt-1" /></a>
-            <a href="https://youtu.be/B52JqmWTrXY?si=CzkGQUJgub6fIw-W" target="_blank" aria-label="YouTube Channel"><Youtube className="w-7 h-8 hover:text-red-500 pb-1" /></a>
+            <a href="https://www.youtube.com/@kokkokkok-w5z" target="_blank" aria-label="YouTube Channel"><Youtube className="w-7 h-8 hover:text-red-500 pb-1" /></a>
             <a href="#" aria-label="X (formerly Twitter)"><span className="text-xl font-bold hover:text-sky-400">X</span></a>
           </div>
         </div>
