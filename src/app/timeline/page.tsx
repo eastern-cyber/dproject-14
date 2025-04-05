@@ -103,24 +103,38 @@ const Timeline: React.FC = () => {
             <div className="timeline-item">
                 <div className="timeline-content">
                 <ul><b>16.03.2025</b></ul>
-                <h3><b>Initiate 40% PayOut</b></h3>
+                <h3><b>Initiate 40% Sponsoring PayOut</b></h3>
                 <p>รับส่วนแบ่งรายได้การประชาสัมพันธ์ 40% เป็นครั้งแรก</p>
                 </div>
             </div>
             <div className="timeline-item">
                 <div className="timeline-content">
                 <ul><b>31.03.2025</b></ul>
-                <h3><b>Prepare System for Plan B </b></h3>
-                <p>ปรับระบบ เตรียมพร้อมสำหรับ Plan B (ปรับเปลี่ยน Token ID สำหรับ โครงสร้างองค์กร 1-255)</p>
+                <h3><b>Prepare System for Plan B</b> Avatar & AutoRun Enable</h3>
+                <p>ปรับระบบ เตรียมพร้อมสำหรับ แผนบี และ โครงสร้างองค์กรในอนาคตเพื่อรองรับรูปแบบ อวตาร์และออโต้รัน</p>
+                </div>
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>01.04.2025</b></ul>
+                <h3><b>1-255 Organization Structure </b></h3>
+                <p>ปรับเปลี่ยน Token ID สำหรับ โครงสร้างองค์กร 1-255</p>
                 </div>
             </div>
             <div className="timeline-item">
                 <div className="timeline-content">
                 <ul><b>02.04.2025</b></ul>
                 <h3><b>19 Knights Initiative </b></h3>
-                <p>ปรับทีมผู้นำทัพ 18K (18 ขุนพล) เป็น 19K  (19 อัศวิน) เพื่อความเหมาะสมด้วยประการทั้งปวง</p>
+                <p>ปรับทีมผู้นำทัพ 18K (18 ขุนพล) เป็น 19K (19 อัศวิน) เพื่อความเหมาะสมด้วยประการทั้งปวง</p>
                 </div>
-            </div>            
+            </div>
+            <div className="timeline-item">
+                <div className="timeline-content">
+                <ul><b>07.04.2025</b></ul>
+                <h3><b>Initiate 20% Unilevel & 20% Referee Matching Payout </b></h3>
+                <p>รับส่วนแบ่งรายได้ 20% 10 ชั้นลึก และ 20% Referee Matching เป็นครั้งแรก</p>
+                </div>
+            </div>                      
             <div className="timeline-item">
                 <div className="timeline-content">
                 {/* <ul><b>20.02.2025</b></ul> */}
