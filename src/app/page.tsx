@@ -107,7 +107,9 @@ export default function Home() {
       <div style={{margin:"30px"}}>
         <ThirdwebResources />
       </div>
-      <Footer />
+      <div className='px-1 w-full'>
+        <Footer />
+      </div>
     </div>
   )
 }

@@ -18,6 +18,7 @@ import {
     createWallet,
   } from "thirdweb/wallets";
 import WalletConnect from "@/components/WalletConnect";
+import Footer from "@/components/Footer";
 
 const MintingPage = () => {
   const [data, setData] = useState<{ var1: string; var2: string; var3: string; var4: string } | null>(null);
@@ -265,6 +266,9 @@ const MintingPage = () => {
                         <p>ไม่พบข้อมูลผู้แนะนำ</p>                        
                     )}
                 </div>
+        </div>
+        <div className='px-1 w-full'>
+            <Footer />
         </div>
     </main>
   );

@@ -28,8 +28,8 @@ export default function Footer() {
         </div>
 
         {/* Social Icons */}
-        <div className="flex flex-col justify-top items-left">
-          <h3 className="flex text-[18px] items-left font-semibold text-yellow-500 mb-4">Follow Us</h3>
+        <div className="flex flex-col justify-top items-center">
+          <h3 className="flex text-[18px] font-semibold text-yellow-500 mb-4">Follow Us</h3>
           <div className="flex space-x-5 items-center">
             <a href="https://web.facebook.com/people/KOK-KOK-KOK/61573998052437/" target="_blank" aria-label="Facebook"><Facebook className="w-6 h-6 text-[#ababab] hover:text-blue-500" /></a>
             <a href="#" aria-label="Instagram"><Instagram className="w-6 h-6 text-[#ababab] hover:text-orange-500" /></a>

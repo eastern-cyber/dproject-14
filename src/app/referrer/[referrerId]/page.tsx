@@ -11,6 +11,7 @@ import {
     inAppWallet,
     createWallet,
   } from "thirdweb/wallets";
+import Footer from "@/components/Footer";
 
 export default function ReferrerDetails({ params }: { params: { referrerId: string } }) {
     const [referrerData, setReferrerData] = useState<{ email?: string; name?: string; tokenId?: string } | null>(null);
@@ -165,6 +166,9 @@ export default function ReferrerDetails({ params }: { params: { referrerId: stri
                         ดำเนินการต่อ
                     </button>
                 </div>
+            </div>
+            <div className='px-1 w-full'>
+                <Footer />
             </div>
         </main>
     );
