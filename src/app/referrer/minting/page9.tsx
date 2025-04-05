@@ -40,7 +40,7 @@ const MintingPage = () => {
         const nftContract = getContract({
             client: client,
             chain: defineChain(polygon),
-            address: "0xf96190438548F0A6D6C3116D8e57058AB76DC986"
+            address: "0xE92A5360363103eAf73e8E8c0Ad68d93eeA672a1"
         })
     
         return (
@@ -140,7 +140,7 @@ const MintingPage = () => {
                 contract: getContract({
                     client: client,
                     chain: defineChain(polygon),
-                    address: "0xf96190438548F0A6D6C3116D8e57058AB76DC986"
+                    address: "0xE92A5360363103eAf73e8E8c0Ad68d93eeA672a1"
                 }),
                 owner: walletAddress || "",
                 tokenId: BigInt(data?.var4 || "0")
@@ -178,7 +178,7 @@ const MintingPage = () => {
                     {/* </div> */}
                 </div>
                 <div className="flex flex-col gap-2 md:gap-4]">
-                    <a target="_blank" href={`https://opensea.io/assets/matic/0xf96190438548F0A6D6C3116D8e57058AB76DC986/${data?.var4 || "0"}`}>
+                    <a target="_blank" href={`https://opensea.io/assets/matic/0xE92A5360363103eAf73e8E8c0Ad68d93eeA672a1/${data?.var4 || "0"}`}>
                     <Image src="/3K_WhiteBG_40POL_PlanA.png" width="150" height={150} alt="" />
                     </a>
                 </div>
@@ -194,7 +194,7 @@ const MintingPage = () => {
                         <></>
                     )}
                 </p>
-                {/* <p>มีจำนวน <span className="text-[24px] my-3 text-yellow-500"><b>{walletAddress ? nftBalance?.toString() : "0"}</b></span> รายการ</p> */}
+                <p>มีจำนวน <span className="text-[24px] my-3 text-yellow-500"><b>{walletAddress ? nftBalance?.toString() : "0"}</b></span> รายการ</p>
                 </div>
                 {nftBalance && nftBalance > 0 && (
                     <div className="flex flex-col items-center mt-6">

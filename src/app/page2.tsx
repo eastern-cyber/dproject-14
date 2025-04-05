@@ -14,7 +14,6 @@ import {
   inAppWallet,
   createWallet,
 } from "thirdweb/wallets";
-import Footer from "@/components/Footer";
 
 
 export default function Home() {
@@ -34,7 +33,6 @@ export default function Home() {
         <div className="py-20">
           <Header />
           <ThirdwebResources />
-          <Footer />
         </div>
       </main>
     );
@@ -76,6 +74,15 @@ export default function Home() {
             padding: "20px",
             marginTop: "5px",
           }}>
+            {/* <div>
+              <MediaRenderer
+                client={client}
+                src={contractMetadata.image}
+                style={{
+                  borderRadius: "8px",
+                }}
+              />
+            </div> */}
             <div style={{
               display: "flex",
               flexDirection: "column",
@@ -107,13 +114,12 @@ export default function Home() {
       <div style={{margin:"30px"}}>
         <ThirdwebResources />
       </div>
-      <Footer />
     </div>
   )
 }
 function Header() {
   return (
-    <header className="flex flex-col items-center md:mb-5">
+    <header className="flex flex-col items-center mb-20 md:mb-20">
           <Link href="/" passHref>
         <Image
           src={dprojectIcon}
@@ -135,17 +141,53 @@ function Header() {
         <span className="inline-block -skew-x-6 text-white"> Register </span>
       </h2>
 
-      <p className="text-center text-zinc-300 text-base m-8 break-word">
+      <p className="text-zinc-300 text-base">
         ล็อกอินด้วยอีเมลล์{" "}
         <code className="bg-zinc-800 text-zinc-300 px-2 rounded py-1 text-sm mx-1">
           OTP
         </code>{" "}
-        e-mail Login
+        Web3 E-Mail Login
       </p>
+          <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Referee</h1>
           <WalletConnect />
       </header>
   );
 }
+
+// function Header() {
+//   return (
+//     <header className="flex flex-col items-center mb-20 md:mb-20">
+//       <Link href="/" passHref>
+//         <Image
+//           src={dprojectIcon}
+//           alt=""
+//           className="size-[150px] md:size-[150px]"
+//           style={{
+//             filter: "drop-shadow(0px 0px 24px #a726a9a8)",
+//           }}
+//         />
+//       </Link>
+//       <p>&nbsp;&nbsp;</p>
+//       <h2 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
+//         <span className="inline-block text-blue-500"> DProject </span>
+//         &nbsp;&nbsp;&nbsp;
+//         <span className="inline-block -skew-x-6 text-white"> Login </span>
+//         &nbsp;
+//         <span className="text-zinc-300 inline-block mx-1"> + </span>
+//         &nbsp;
+//         <span className="inline-block -skew-x-6 text-white"> Register </span>
+//       </h2>
+
+//       <p className="text-zinc-300 text-base">
+//         ล็อกอินด้วยอีเมลล์{" "}
+//         <code className="bg-zinc-800 text-zinc-300 px-2 rounded py-1 text-sm mx-1">
+//           OTP
+//         </code>{" "}
+//         Web3 E-Mail Login
+//       </p>
+//     </header>
+//   );
+// }
 
 function ThirdwebResources() {
   return (
