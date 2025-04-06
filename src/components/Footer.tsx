@@ -28,7 +28,7 @@ export default function Footer() {
 
         {/* Social Icons */}
         <div className="flex flex-col justify-top items-center">
-          <h3 className="flex text-[18px] font-semibold text-yellow-500 mb-4">Follow Us</h3>
+          <h3 className="flex text-[18px] font-semibold text-yellow-500 mb-4">Follow DProject</h3>
           <div className="flex space-x-5 items-center">
             <a href="https://web.facebook.com/people/KOK-KOK-KOK/61573998052437/" target="_blank" aria-label="Facebook"><Facebook className="w-6 h-6 -gray-300 hover:text-blue-500" /></a>
             <a href="#" aria-label="X (formerly Twitter)"><span className="text-[23px] font-bold text-gray-300 hover:text-yellow-400">X</span></a>
