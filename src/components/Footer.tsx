@@ -7,10 +7,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Logo & Description */}
         <div className="flex flex-col w-full justify-top items-right">
-          <h2 className="text-[26px] text-yellow-500 font-bold hover:text-red-500">
+          <h2 className="text-[24px] text-yellow-500 font-bold hover:text-red-500">
             <Link href="/">DFI.Fund</Link>
         </h2>
-          <p className="mt-3 text-[20px] text-gray-300">
+          <p className="mt-3 text-[18px] text-gray-300">
           <b>D</b>Project<br /> <b>F</b>inancial<br /> <b>I</b>nnovation<br />
           </p>
         </div>
