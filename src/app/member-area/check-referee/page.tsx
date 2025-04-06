@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
 import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
-import ReferralTree from "@/components/ReferralTree2";
+import ReferralTree from "@/components/ReferralTree";
 interface UserData {
     userId: string;
     referrerId: string;
