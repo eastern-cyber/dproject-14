@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
+import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
+import ReferralTree from "@/components/ReferralTree2";
 interface UserData {
     userId: string;
     referrerId: string;
@@ -76,15 +78,16 @@ export default function RefereePage() {
     };
 
     return (
-        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
+        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center w-full">
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "5px",
-                margin: "20px",
+                margin: "5px",
                 // border: "1px solid #333",
+                width: "full"
                 // borderRadius: "8px",
             }}>
                 <Header />
@@ -125,8 +128,6 @@ export default function RefereePage() {
                                         >
                                             {matchingUser.referrerId}
                                         </button>
-                                    {/* <b>ผู้แนะนำของผู้แนะนำ:</b> <span className="break-all">{matchingUser.referrerId}</span><br /> */}
-                                    {/* </div> */}
                                 </th>
                             </tr>
                         </tbody>
@@ -167,13 +168,14 @@ export default function RefereePage() {
                                 ))}
                             </tbody>
                         </table>
+                        
                         <table className="w-full justify-center items-center">
                             <tbody>
                                 <tr className="colspan-[1]">
-                                    <th>
+                                <th>
                                         <p className="mb-12 text-center m-4 pr-10 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                                รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
+                                            รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
                                                 <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
                                                 &nbsp;&nbsp; ท่าน</span>
                                         </p>
@@ -206,6 +208,10 @@ export default function RefereePage() {
                         </table>
                     </div>
                 )}
+                <div className="mt-6 w-full">
+                    <ReferralTree />
+                    <Dynamic10GensReferralTable />
+                </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link 
                     className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
