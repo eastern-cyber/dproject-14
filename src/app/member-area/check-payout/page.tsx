@@ -121,7 +121,7 @@ export default function RefereePage() {
                     placeholder="ใส่เลขกระเป๋า..."
                     value={referrerId}
                     onChange={(e) => setReferrerId(e.target.value)}
-                    className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
+                    className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
                 />
                 <h2 className="text-center text-[18px] mt-3 text-yellow-500 break-all">ระบบมีการปรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Token ID</b></span> เพื่อรองรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Plan B</b></span></h2>
                 {matchingUser && (

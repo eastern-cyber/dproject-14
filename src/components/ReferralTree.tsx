@@ -133,15 +133,17 @@ const ReferralTree1: React.FC = () => {
   };
 
   return (
-    <div className="text-[18px] text-center pt-6 w-full">
-        <span>รายละเอียดสมาชิกทั้งหมดในสายงาน</span>
-      <input
-        type="text"
-        placeholder="ใส่เลขกระเป๋า..."
-        value={referrerId}
-        onChange={(e) => handleSearch(e.target.value)}
-        className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
-      />
+    <div className="text-[18px] pt-6 w-full">
+        <div className="text-center">
+          <span>รายละเอียดสมาชิกทั้งหมดในสายงาน</span>
+          <input
+            type="text"
+            placeholder="ใส่เลขกระเป๋า..."
+            value={referrerId}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
+          />
+      </div>
 
       {tree.length > 0 && (
         <>

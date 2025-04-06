@@ -60,7 +60,7 @@ const Dynamic10GensReferralTable: React.FC = () => {
         placeholder="ใส่เลขกระเป๋า..."
         value={referrerId}
         onChange={(e) => setReferrerId(e.target.value)}
-        className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-800 text-white break-all"
+        className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
       />
 
       {genUsers.length > 0 && (
@@ -78,9 +78,9 @@ const Dynamic10GensReferralTable: React.FC = () => {
                 <td className="border border-gray-400 px-4 py-2 text-center">{gen.length}</td>
               </tr>
             ))}
-            <tr className="bg-gray-800 text-white font-bold">
-              <td className="border border-gray-400 px-4 py-2 text-center">รวมทั้งหมด</td>
-              <td className="border border-gray-400 px-4 py-2 text-center">{totalUsers}</td>
+            <tr className="bg-gray-900 text-white font-bold">
+              <td className="border border-gray-400 px-4 py-3 text-center">รวมทั้งหมด</td>
+              <td className="border border-gray-400 px-4 py-3 text-center">{totalUsers}</td>
             </tr>
           </tbody>
         </table>
