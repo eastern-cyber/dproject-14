@@ -30,10 +30,10 @@ export default function Footer() {
         <div className="flex flex-col justify-top items-center">
           <h3 className="flex text-[18px] font-semibold text-yellow-500 mb-4">Follow Us</h3>
           <div className="flex space-x-5 items-center">
-            <a href="https://web.facebook.com/people/KOK-KOK-KOK/61573998052437/" target="_blank" aria-label="Facebook"><Facebook className="w-6 h-6 text-[#ababab] hover:text-blue-500" /></a>
-            <a href="#" aria-label="Instagram"><Instagram className="w-6 h-6 text-[#ababab] hover:text-orange-500" /></a>
-            <a href="https://www.youtube.com/@kokkokkok-w5z" target="_blank" aria-label="YouTube Channel"><Youtube className="w-7 h-7 text-[#ababab] hover:text-red-500" /></a>
-            <a href="#" aria-label="X (formerly Twitter)"><span className="text-[23px] font-bold text-[#ababab] hover:text-yellow-400">X</span></a>
+            <a href="https://web.facebook.com/people/KOK-KOK-KOK/61573998052437/" target="_blank" aria-label="Facebook"><Facebook className="w-6 h-6 -gray-300 hover:text-blue-500" /></a>
+            <a href="#" aria-label="X (formerly Twitter)"><span className="text-[23px] font-bold text-gray-300 hover:text-yellow-400">X</span></a>
+            <a href="https://www.youtube.com/@kokkokkok-w5z" target="_blank" aria-label="YouTube Channel"><Youtube className="w-7 h-7 text-gray-300 hover:text-red-500" /></a>            
+            <a href="#" aria-label="Instagram"><Instagram className="w-6 h-6 text-gray-300 hover:text-orange-500" /></a>
           </div>
           <p className="text-[20px] font-bold mt-4"><span className="text-red-500">Kok</span><span className="text-yellow-500">Kok</span><span className="text-green-500">Kok</span><sup className="text-[10px] font-bold">TM</sup></p>
           <p className="text-[16px] text-gray-200 mt-0"><b>Web3 SuperApp</b> for the Future.</p>
