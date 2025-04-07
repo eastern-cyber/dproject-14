@@ -7,6 +7,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
+import ReferralTree from "@/components/ReferralTree";
+import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
 
 interface UserData {
     userId: string;
@@ -277,6 +279,10 @@ export default function RefereePage() {
                         </table>
                     </div>
                 )}
+                <div className="mt-6 w-full">
+                    <ReferralTree />
+                    <Dynamic10GensReferralTable />
+                </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link
                     className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
