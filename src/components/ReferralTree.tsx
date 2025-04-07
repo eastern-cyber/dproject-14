@@ -200,14 +200,14 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
               </tr>
             </tbody>
           </table>
-          <div className="w-full justify-items-center text-center">
+          {/* <div className="w-full justify-items-center text-center">
             <button
               onClick={exportToJson}
               className="mt-4 mb-2 px-4 py-2 border border-gray-300 text-white rounded hover:text-gray-900 hover:border-gray-300 hover:bg-red-600"
             >
               📁 Export JSON
             </button>
-          </div>
+          </div> */}
           {tree.length > 0 && (
             <>
               <div className="mt-6">
