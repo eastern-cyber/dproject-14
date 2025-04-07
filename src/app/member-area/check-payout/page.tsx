@@ -280,7 +280,8 @@ export default function RefereePage() {
                     </div>
                 )}
                 <div className="mt-6 w-full">
-                    <ReferralTree />
+                    <ReferralTree referrerId={referrerId} />
+                    {/* <Dynamic10GensReferralTable referrerId={referrerId} /> */}
                     <Dynamic10GensReferralTable />
                 </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
