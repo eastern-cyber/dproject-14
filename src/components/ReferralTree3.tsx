@@ -146,16 +146,6 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
     return nodes.reduce((acc, node) => acc + 1 + countTotalUsers(node.children), 0);
   };
 
-  // Add this helper function above the return statement
-  const getGenerationSummary = (nodes: TreeNode[], summary: Record<number, number> = {}) => {
-    for (const node of nodes) {
-      summary[node.generation] = (summary[node.generation] || 0) + 1;
-      getGenerationSummary(node.children, summary);
-    }
-    return summary;
-  };
-
-  
   return (
     <div className="text-[18px] pt-6 w-full">
       <div className="text-center">
@@ -208,36 +198,6 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
               📁 Export JSON
             </button>
           </div>
-          {tree.length > 0 && (
-            <>
-              <div className="mt-6">
-                <table className="table-auto w-full border-collapse border border-gray-400 text-gray-300">
-                  <thead>
-                    <tr className="bg-gray-900 text-[19px] font-bold">
-                      <th className="border border-gray-400 py-3 px-4">Gen</th>
-                      <th className="border border-gray-400 py-3 px-4">จำนวนสมาชิกในแต่ละชั้น</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {Object.entries(getGenerationSummary(tree))
-                      .sort((a, b) => Number(a[0]) - Number(b[0]))
-                      .map(([gen, count]) => (
-                        <tr key={gen}>
-                          <td className="border border-gray-400 px-4 py-3 text-center">{gen}</td>
-                          <td className="border border-gray-400 px-4 py-3 text-center">{count}</td>
-                        </tr>
-                      ))}
-                    <tr className="bg-gray-900 text-gray-300 text-[19px]">
-                      <td className="border border-gray-400 px-4 py-3 text-center font-bold">รวมทั้งหมด</td>
-                      <td className="border border-gray-400 px-4 py-3 text-center font-bold text-yellow-200">
-                        {countTotalUsers(tree)}
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
         </>
       )}
     </div>

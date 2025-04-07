@@ -94,7 +94,7 @@ export default function CheckUserPage() {
                 <h1 className="text-center text-[20px] font-bold">ตรวจสอบจำนวนสมาชิกในสายงาน</h1>
                 <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
                 <ReferralTree referrerId={referrerId} />
-                <Dynamic10GensReferralTable />
+                {/* <Dynamic10GensReferralTable /> */}
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link 
                     className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 

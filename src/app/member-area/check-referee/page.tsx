@@ -212,7 +212,7 @@ export default function RefereePage() {
                     {/* <ReferralTree /> */}
                     <ReferralTree referrerId={referrerId} />
                     {/* <Dynamic10GensReferralTable referrerId={referrerId} /> */}
-                    <Dynamic10GensReferralTable />
+                    {/* <Dynamic10GensReferralTable /> */}
                 </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link 
