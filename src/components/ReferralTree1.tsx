@@ -18,7 +18,7 @@ interface TreeNode {
   totalReferrals: number;
 }
 
-const ReferralTree: React.FC = () => {
+const ReferralTree1: React.FC = () => {
   const [referrerId, setReferrerId] = useState('');
   const [users, setUsers] = useState<User[]>([]);
   const [tree, setTree] = useState<TreeNode[]>([]);
@@ -97,10 +97,10 @@ const ReferralTree: React.FC = () => {
         <tr key={key}>
           <td className="border border-gray-400 px-4 py-2 text-center">{node.generation}</td>
           <td className="border border-gray-400 px-4 py-2">
-            <div className="flex flex-col text-gray-300 text-[18px]" style={{ marginLeft: `${(node.generation - 1) * 20}px` }}>
-              <div className="flex items-center space-x-2 text-[18px]">
+            <div className="flex flex-col text-white" style={{ marginLeft: `${(node.generation - 1) * 20}px` }}>
+              <div className="flex items-center space-x-2">
                 {directReferrals > 0 && (
-                  <button className="text-gray-300 text-[18px]" onClick={() => toggleNode(node)}>
+                  <button className="text-white" onClick={() => toggleNode(node)}>
                     <span className="text-yellow-500 text-[18px]">
                       {node.expanded ? '⏶' : '⏷'}
                     </span>
@@ -115,13 +115,13 @@ const ReferralTree: React.FC = () => {
                 {/* <span className="font-mono">{node.user.userId}</span> */}
                 {totalReferrals > 0 && (
                   <span className="text-green-400 text-sm">
-                    ({directReferrals}/{totalReferrals})
+                    ({directReferrals} / {totalReferrals})
                   </span>
                 )}
               </div>
-              <div className="ml-6 text-[17px]">
+              <div className="ml-6 text-sm">
                 👤 ชื่อ: {node.user.name || 'No name'}<br />
-                📧 อีเมล: <span className="break-all">{node.user.email}</span><br />
+                📧 อีเมล: <span className="break-words">{node.user.email}</span><br />
                 🪙 Token ID: {node.user.tokenId}
               </div>
             </div>
@@ -134,12 +134,6 @@ const ReferralTree: React.FC = () => {
     });
   };
 
-  const countTotalUsers = (nodes: TreeNode[]): number => {
-    return nodes.reduce((acc, node) => {
-      return acc + 1 + countTotalUsers(node.children);
-    }, 0);
-  };
-  
   return (
     <div className="text-[18px] pt-6 w-full">
         <div className="text-center">
@@ -149,32 +143,20 @@ const ReferralTree: React.FC = () => {
             placeholder="ใส่เลขกระเป๋า..."
             value={referrerId}
             onChange={(e) => handleSearch(e.target.value)}
-            className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-gray-300 break-all"
+            className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
           />
       </div>
 
       {tree.length > 0 && (
         <>
-          <table className="table-auto w-full mt-4 border-collapse border border-gray-400 text-gray-300">
+          <table className="table-auto w-full mt-4 border-collapse border border-gray-400">
             <thead>
-              <tr className="bg-gray-900 text-[19px] text-gray-300 font-bold">
-                <th className="border border-gray-400 py-3 px-4">Gen</th>
-                <th className="border border-gray-400 py-3 px-4">สมาชิกในสายงาน</th>
+              <tr>
+                <th className="border border-gray-400 px-4 py-2 text-white">Gen</th>
+                <th className="border border-gray-400 px-4 py-2 text-white">สมาชิกในสายงาน</th>
               </tr>
             </thead>
-            {/* <tbody>{renderTree(tree)}</tbody> */}
-            <tbody>
-              {renderTree(tree)}
-              <tr className="bg-gray-900 text-gray-300 text-[19px]">
-                <td className="border border-gray-400 px-4 py-3 text-center font-bold" colSpan={2}>
-                  👥 จำนวนสมาชิกทั้งหมดในสายงาน &nbsp;&nbsp; 
-                    <span className="text-[20px] text-yellow-200 font-bold">
-                      {countTotalUsers(tree)}
-                    </span> &nbsp;&nbsp; คน
-                </td>
-              </tr>
-            </tbody>
-
+            <tbody>{renderTree(tree)}</tbody>
           </table>
           <div className="w-full justify-items-center">
             <button
@@ -190,4 +172,4 @@ const ReferralTree: React.FC = () => {
   );
 };
 
-export default ReferralTree;
+export default ReferralTree1;

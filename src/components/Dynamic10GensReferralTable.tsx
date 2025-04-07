@@ -60,15 +60,15 @@ const Dynamic10GensReferralTable: React.FC = () => {
         placeholder="ใส่เลขกระเป๋า..."
         value={referrerId}
         onChange={(e) => setReferrerId(e.target.value)}
-        className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
+        className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-gray-300 break-all"
       />
 
       {genUsers.length > 0 && (
         <table className="table-auto w-full mt-4 border-collapse border border-gray-400">
           <thead>
-            <tr>
+            <tr className="bg-gray-900 text-gray-300 text-[19px] font-bold">
               <th className="border border-gray-400 px-4 py-2">Gen</th>
-              <th className="border border-gray-400 px-4 py-2">จำนวนสมาชิกในแต่ละชั้น</th>
+              <th className="border border-gray-400 px-4 py-2">จำนวนสมาชิกในแต่ละชั้น (คน)</th>
             </tr>
           </thead>
           <tbody>
@@ -78,9 +78,11 @@ const Dynamic10GensReferralTable: React.FC = () => {
                 <td className="border border-gray-400 px-4 py-2 text-center">{gen.length}</td>
               </tr>
             ))}
-            <tr className="bg-gray-900 text-white font-bold">
+            <tr className="bg-gray-900 text-gray-300 text-[19px] font-bold">
               <td className="border border-gray-400 px-4 py-3 text-center">รวมทั้งหมด</td>
-              <td className="border border-gray-400 px-4 py-3 text-center">{totalUsers}</td>
+              <td className="border border-gray-400 px-4 py-3 text-center">
+                <span className="text-yellow-200 text-[20px] font-bold">{totalUsers}</span>
+              </td>
             </tr>
           </tbody>
         </table>
