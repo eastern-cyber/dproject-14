@@ -211,30 +211,62 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
           {tree.length > 0 && (
             <>
               <div className="mt-6">
+
                 <table className="table-auto w-full border-collapse border border-gray-400 text-gray-300">
                   <thead>
                     <tr className="bg-gray-900 text-[19px] font-bold">
                       <th className="border border-gray-400 py-3 px-4">Gen</th>
-                      <th className="border border-gray-400 py-3 px-4">จำนวนสมาชิกในแต่ละชั้น</th>
+                      <th className="border border-gray-400 py-3 px-4">จำนวนสมาชิก<br />(คน)</th>
+                      <th className="border border-gray-400 py-3 px-4">รายได้ยูนิเลเวล<br /> 2% 10 ชั้นลึก</th>
+                      <th className="border border-gray-400 py-3 px-4">เก็บสะสม<br />25%</th>
+                      <th className="border border-gray-400 py-3 px-4">ได้รับ<br />POL</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(getGenerationSummary(tree))
-                      .sort((a, b) => Number(a[0]) - Number(b[0]))
-                      .map(([gen, count]) => (
-                        <tr key={gen}>
-                          <td className="border border-gray-400 px-4 py-3 text-center">{gen}</td>
-                          <td className="border border-gray-400 px-4 py-3 text-center">{count}</td>
-                        </tr>
-                      ))}
-                    <tr className="bg-gray-900 text-gray-300 text-[19px]">
-                      <td className="border border-gray-400 px-4 py-3 text-center font-bold">รวมทั้งหมด</td>
-                      <td className="border border-gray-400 px-4 py-3 text-center font-bold text-yellow-200">
-                        {countTotalUsers(tree)}
-                      </td>
-                    </tr>
+                  {(() => {
+                    const genSummary = Object.entries(getGenerationSummary(tree))
+                      .sort((a, b) => Number(a[0]) - Number(b[0]));
+
+                    let totalMembers = 0;
+                    let totalUnilevel = 0;
+                    let totalSaved = 0;
+                    let totalReceived = 0;
+
+                    return (
+                      <>
+                        {genSummary.map(([gen, count]) => {
+                          const unilevel = count * 0.8;
+                          const saved = unilevel * 0.25;
+                          const received = unilevel - saved;
+
+                          totalMembers += count;
+                          totalUnilevel += unilevel;
+                          totalSaved += saved;
+                          totalReceived += received;
+
+                          return (
+                            <tr key={gen}>
+                              <td className="border border-gray-400 px-5 py-3 text-center">{gen}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-center">{count}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right">{unilevel.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right">{saved.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right">{received.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                            </tr>
+                          );
+                        })}
+                            <tr className="bg-gray-900 text-gray-300 text-[19px] font-bold">
+                              <td className="border border-gray-400 px-5 py-3 text-[22px] text-center">รวม</td>
+                              <td className="border border-gray-400 px-5 py-3 text-center text-yellow-200">{totalMembers}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right text-yellow-200">{totalUnilevel.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right text-yellow-200">{totalSaved.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                              <td className="border border-gray-400 px-5 py-3 text-right text-yellow-200">{totalReceived.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+                            </tr>
+                          </>
+                        );
+                      })()}
                   </tbody>
                 </table>
+                <p className="py-2 text-[18px] text-center"><b>หมายเหตุ :</b> เมื่อเกิดรายได้ทุกช่องทาง ระบบมีการจัดเก็บค่าพัฒนา 5%</p>
               </div>
             </>
           )}
