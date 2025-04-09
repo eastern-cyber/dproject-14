@@ -90,6 +90,44 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
     URL.revokeObjectURL(url);
   };
 
+  const exportReferralSummary = () => {
+    const map = new Map<string, TreeNode>();
+  
+    const flattenTree = (nodes: TreeNode[]) => {
+      for (const node of nodes) {
+        map.set(node.user.tokenId, node); // tokenId as key
+        flattenTree(node.children);
+      }
+    };
+  
+    flattenTree(tree);
+  
+    const records = Array.from(map.values()).map((node) => {
+      const totalMembers = node.totalReferrals;
+      const totalUnilevel = totalMembers * 0.8;
+      const totalSaved = totalUnilevel * 0.25;
+      const totalReceived = totalUnilevel - totalSaved;
+  
+      return {
+        userId: node.user.userId,
+        tokenId: node.user.tokenId,
+        totalMembers,
+        totalUnilevel: Number(totalUnilevel.toFixed(2)),
+        totalSaved: Number(totalSaved.toFixed(2)),
+        totalReceived: Number(totalReceived.toFixed(2)),
+      };
+    });
+  
+    const json = JSON.stringify(records, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `referral-summary-${referrerId}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  
   const shortenWallet = (address: string, front = 6, rear = 4) => {
     if (!address) return '';
     return `${address.slice(0, front)}...${address.slice(-rear)}`;
@@ -267,6 +305,14 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
                   </tbody>
                 </table>
                 <p className="py-2 text-[18px] text-center"><b>หมายเหตุ :</b> เมื่อเกิดรายได้ทุกช่องทาง ระบบมีการจัดเก็บค่าพัฒนา 5%</p>
+              </div>
+              <div className="w-full justify-items-center text-center">
+                <button
+                  onClick={exportReferralSummary}
+                  className="mt-4 mb-2 px-4 py-2 border border-gray-300 text-white rounded hover:text-gray-900 hover:border-gray-300 hover:bg-yellow-500"
+                >
+                  📁 Download JSON Table Report
+                </button>
               </div>
             </>
           )}
