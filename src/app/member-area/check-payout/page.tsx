@@ -221,8 +221,8 @@ export default function RefereePage() {
                                 </tr>
                             </tbody>
                             <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4 colspan-[1]">
-                                    <th className="border border-gray-400 px-4 py-2">
+                                <tr className="mt-4 colspan-[1] bg-gray-900 text-[19px] font-bold">
+                                    <th className="border border-gray-400 py-3 px-4 text-center">
                                         <p className="text-[19px] text-center m-2 text-lg font-semibold">
                                                 ส่วนแบ่งรายได้  การประชาสัมพันธ์
                                         </p>
