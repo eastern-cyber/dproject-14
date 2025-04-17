@@ -175,7 +175,7 @@ export default function RefereePage() {
                                 <th>
                                         <p className="mb-12 text-center m-4 pr-10 text-lg font-semibold">
                                             <span className="text-[19px] text-center">
-                                            รวมจำนวนสมาชิกแนะนำตรง : &nbsp;&nbsp;
+                                            รวมจำนวนสมาชิก Direct PR : &nbsp;&nbsp;
                                                 <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
                                                 &nbsp;&nbsp; ท่าน</span>
                                         </p>
@@ -186,7 +186,7 @@ export default function RefereePage() {
                                 <tr className="mt-4 colspan-[1]">
                                     <th className="border border-gray-400 px-4 py-2">
                                         <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                ส่วนแบ่งรายได้ การประชาสัมพันธ์
+                                                ส่วนแบ่งรายได้ PR Bonus
                                         </p>
                                     </th>
                                 </tr>
