@@ -275,7 +275,7 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                         <Link 
                             className=" mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
                             href="/member-area/check-referee">
-                            <p className="text-center text-[19px]">ตรวจสอบสายงาน</p>
+                            <p className="text-center text-[19px]">ตรวจสอบรายละเอียดสมาชิก</p>
                         </Link>
                         <Link 
                             className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
