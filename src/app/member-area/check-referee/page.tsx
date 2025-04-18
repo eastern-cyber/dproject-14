@@ -121,7 +121,7 @@ export default function RefereePage() {
                                     <span className="text-[19px] text-red-600">
                                         <b>Token ID: {matchingUser.tokenId || "N/A"}</b>
                                     </span><br />
-                                    <b>Sponsor by:</b>&nbsp;
+                                    <b>PR by:</b>&nbsp;
                                     <button
                                             className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
                                             onClick={() => setReferrerId(matchingUser.referrerId)}
