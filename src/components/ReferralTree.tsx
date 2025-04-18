@@ -305,7 +305,7 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
   return (
     <div className="text-[18px] pt-6 w-full">
       <div className="text-center">
-        <span>รายละเอียดสมาชิกทั้งหมดในสายงาน</span>
+        <span>รายละเอียดสมาชิกทั้งหมดในครอบครัว</span>
         <input
           type="text"
           placeholder="ใส่เลขกระเป๋า..."
@@ -330,14 +330,14 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
             <thead>
               <tr className="bg-gray-900 text-[19px] font-bold">
                 <th className="border border-gray-400 py-3 px-4">Gen</th>
-                <th className="border border-gray-400 py-3 px-4">สมาชิกในสายงาน</th>
+                <th className="border border-gray-400 py-3 px-4">สมาชิกในครอบครัว</th>
               </tr>
             </thead>
             <tbody>
               {renderTree(tree)}
               <tr className="bg-gray-900 text-gray-300 text-[19px]">
                 <td className="border border-gray-400 px-4 py-3 text-center font-bold" colSpan={2}>
-                  👥 จำนวนสมาชิกทั้งหมดในสายงาน &nbsp;&nbsp;
+                  👥 จำนวนสมาชิกทั้งหมดในครอบครัว &nbsp;&nbsp;
                   <span className="text-[20px] text-yellow-200 font-bold">
                     {countTotalUsers(tree)}
                   </span>

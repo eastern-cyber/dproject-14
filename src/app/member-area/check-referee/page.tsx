@@ -91,7 +91,7 @@ export default function RefereePage() {
                 // borderRadius: "8px",
             }}>
                 <Header />
-                <h1 className="text-center text-[20px] font-bold">ตรวจสอบรายชื่อสายงาน</h1>
+                <h1 className="text-center text-[20px] font-bold">ตรวจสอบรายละเอียดสมาชิก</h1>
                 <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
                 <input
                     type="text"
@@ -139,7 +139,7 @@ export default function RefereePage() {
                             <thead>
                                 <tr>
                                     <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกใต้สายงาน</th>
+                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกในครอบครัว</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -251,7 +251,7 @@ const WalletBalances: React.FC<WalletBalancesProps>= ({ walletAddress, setReferr
             </button>
         </div>
             <p className="text-center my-3 text-[16px]">
-                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
+                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่รายละเอียดของตัวท่านเอง
             </p>
     </div>
 );
