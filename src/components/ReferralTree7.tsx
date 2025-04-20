@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 interface User {
@@ -194,118 +193,11 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
     return summary;
   };
 
-  const [payoutData, setPayoutData] = useState<any[]>([]);
-  const [receivedAmount, setReceivedAmount] = useState(0);
-
-  useEffect(() => {
-    const fetchPayoutData = async () => {
-      try {
-        const res = await fetch('https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/CaringBonus-Payout-Success_Polygonscan.json');
-        const data = await res.json();
-        setPayoutData(data);
-      } catch (error) {
-        console.error("Error fetching payout data:", error);
-      }
-    };
-
-    fetchPayoutData();
-  }, []);
-
-  // useEffect(() => {
-  //   if (!input || payoutData.length === 0) return;
-
-  //   const totalReceivedFromChain = payoutData
-  //     .filter((tx: any) => tx.To.toLowerCase() === input.toLowerCase())
-  //     .reduce((sum, tx: any) => sum + parseFloat(tx["Value_OUT(POL)"] || "0"), 0);
-
-  //   setReceivedAmount(totalReceivedFromChain);
-  // }, [input, payoutData]);
-  useEffect(() => {
-    if (!input || payoutData.length === 0) return;
   
-    const matchedTxs = payoutData.filter((tx: any) => tx.To.toLowerCase() === input.toLowerCase());
-  
-    const totalReceivedFromChain = matchedTxs.reduce(
-      (sum, tx: any) => sum + parseFloat(tx["Value_OUT(POL)"] || "0"), 0
-    );
-  
-    setReceivedAmount(totalReceivedFromChain);
-  
-    // Find the latest transaction (based on DateTime UTC)
-    const latestTx = matchedTxs.reduce((latest, current) => {
-      return new Date(current["DateTime (UTC)"]) > new Date(latest["DateTime (UTC)"]) ? current : latest;
-    }, matchedTxs[0]);
-  
-    if (latestTx) {
-      setLastReceivedDate(formatUTCToBangkok(latestTx["DateTime (UTC)"]));
-    }
-  }, [input, payoutData]);
-  
-  const {
-    totalMembers,
-    totalUnilevel,
-    totalSaved,
-    totalReceived: totalExpected,
-  } = React.useMemo(() => {
-    const genSummary = Object.entries(getGenerationSummary(tree))
-      .sort((a, b) => Number(a[0]) - Number(b[0]));
-  
-    let totalMembers = 0;
-    let totalUnilevel = 0;
-    let totalSaved = 0;
-    let totalReceived = 0;
-  
-    genSummary.forEach(([_, count]) => {
-      const unilevel = count * 0.8;
-      const saved = unilevel * 0.25;
-      const received = unilevel - saved;
-  
-      totalMembers += Number(count);
-      totalUnilevel += unilevel;
-      totalSaved += saved;
-      totalReceived += received;
-    });
-  
-    return {
-      totalMembers,
-      totalUnilevel,
-      totalSaved,
-      totalReceived,
-    };
-  }, [tree]);
-  
-  // const formatUTCToBangkok = (utcDateStr: string): string => {
-  //   const utcDate = new Date(utcDateStr + ' UTC'); // Make sure it's treated as UTC
-  //   const bangkokTime = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000); // UTC+7
-  //   const pad = (n: number) => n.toString().padStart(2, '0');
-  
-  //   return `${pad(bangkokTime.getDate())}/${pad(bangkokTime.getMonth() + 1)}/${bangkokTime.getFullYear()} ` +
-  //          `${pad(bangkokTime.getHours())}:${pad(bangkokTime.getMinutes())}:${pad(bangkokTime.getSeconds())}`;
-  // };
-  
-  function formatUTCToBangkok(utcString: string): string {
-    const utcDate = new Date(utcString);
-  
-    // Convert to Bangkok time (UTC+7)
-    const bangkokDate = new Date(utcDate.getTime() + 7 * 60 * 60 * 1000);
-  
-    const dd = String(bangkokDate.getDate()).padStart(2, '0');
-    const mm = String(bangkokDate.getMonth() + 1).padStart(2, '0'); // Month is 0-indexed
-    const yyyy = bangkokDate.getFullYear();
-  
-    const HH = String(bangkokDate.getHours()).padStart(2, '0');
-    const min = String(bangkokDate.getMinutes()).padStart(2, '0');
-    const sec = String(bangkokDate.getSeconds()).padStart(2, '0');
-  
-    return `${dd}/${mm}/${yyyy} ${HH}:${min}:${sec}`;
-  }
-  
-  const [lastReceivedDate, setLastReceivedDate] = useState<string | null>(null);
-
   return (
     <div className="text-[18px] pt-6 w-full">
       <div className="text-center">
-        <span>รายละเอียดสมาชิกทั้งหมดในครอบครัว</span>
+        <span>รายละเอียดสมาชิกทั้งหมดในสายงาน</span>
         <input
           type="text"
           placeholder="ใส่เลขกระเป๋า..."
@@ -330,14 +222,14 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
             <thead>
               <tr className="bg-gray-900 text-[19px] font-bold">
                 <th className="border border-gray-400 py-3 px-4">Gen</th>
-                <th className="border border-gray-400 py-3 px-4">สมาชิกในครอบครัว</th>
+                <th className="border border-gray-400 py-3 px-4">สมาชิกในสายงาน</th>
               </tr>
             </thead>
             <tbody>
               {renderTree(tree)}
               <tr className="bg-gray-900 text-gray-300 text-[19px]">
                 <td className="border border-gray-400 px-4 py-3 text-center font-bold" colSpan={2}>
-                  👥 จำนวนสมาชิกทั้งหมดในครอบครัว &nbsp;&nbsp;
+                  👥 จำนวนสมาชิกทั้งหมดในสายงาน &nbsp;&nbsp;
                   <span className="text-[20px] text-yellow-200 font-bold">
                     {countTotalUsers(tree)}
                   </span>
@@ -363,7 +255,7 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
                     <tr className="bg-gray-900 text-[19px] font-bold">
                       <th className="border border-gray-400 py-3 px-4">Gen</th>
                       <th className="border border-gray-400 py-3 px-4">จำนวนสมาชิก<br />(คน)</th>
-                      <th className="border border-gray-400 py-3 px-4">รายได้ Caring Bonus<br /> 2% 10 ชั้นลึก</th>
+                      <th className="border border-gray-400 py-3 px-4">รายได้ครอบครัวอบอุ่น<br /> 2% 10 ชั้นลึก</th>
                       <th className="border border-gray-400 py-3 px-4">เก็บสะสม<br />25%</th>
                       <th className="border border-gray-400 py-3 px-4">ได้รับ<br />POL</th>
                     </tr>
@@ -421,81 +313,25 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
                 >
                   📁 Download JSON Table Report
                 </button>
-
+                {/* New Table Starts Here */}
                 <div className="w-full mt-6">
                   <table className="table-auto w-full border-collapse border border-gray-400 text-gray-300">
-                    {/* Section 1 */}
                     <thead>
                       <tr className="bg-gray-900 text-[19px] font-bold">
-                        <th className="border border-gray-400 py-3 px-4 text-center">
-                          ส่วนแบ่งรายได้ Caring Bonus
-                        </th>
+                        <th className="border border-gray-400 py-3 px-4 text-center">ข้อมูลเพิ่มเติม</th>
                       </tr>
                     </thead>
-
-                    {/* Section 2 */}
                     <tbody>
-                      <tr className="w-full">
-                        <th className="border border-gray-400 px-4 py-2">
-                          <div className="text-center">
-                            <p className="text-center m-4 text-lg font-semibold">
-                              <span className="text-[18px] text-center">
-                                ยอดรวม&nbsp;&nbsp;&nbsp;
-                                <span className="text-[24px] text-yellow-500 animate-blink">
-                                  {totalExpected.toLocaleString(undefined, {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2,
-                                  })}
-                                </span> &nbsp; POL
-                              </span>
-                            </p>
-                            <p className="text-center m-4 text-lg font-semibold">
-                              <span className="text-[18px] text-center">
-                                รับแล้ว&nbsp;&nbsp;&nbsp;
-                                <span className="text-[24px] text-green-500 animate-blink">
-                                  {receivedAmount.toLocaleString(undefined, {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2,
-                                  })}
-                                </span> &nbsp; POL
-                              </span>
-                            </p>
-                            <p className="text-center m-4 text-lg font-semibold">
-                              <span className="text-[18px] text-center">
-                                ยอดใหม่&nbsp;&nbsp;&nbsp;
-                                <span className="text-[24px] text-red-500 animate-blink">
-                                  {(totalExpected - receivedAmount).toLocaleString(undefined, {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2,
-                                  })}
-                                </span> &nbsp; POL
-                              </span>
-                            </p>
-                          </div>
-                        </th>
+                      <tr>
+                        <td className="border border-gray-400 px-4 py-3 text-left">🔸 แถวที่ 1: รายละเอียดเพิ่มเติม</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-400 px-4 py-3 text-left">🔸 แถวที่ 2: ข้อมูลประกอบการวิเคราะห์</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-400 px-4 py-3 text-left">🔸 แถวที่ 3: หมายเหตุหรือข้อแนะนำ</td>
                       </tr>
                     </tbody>
-
-                    {/* Section 3 */}
-                    <tfoot>
-                      <tr>
-                        <th className="border border-gray-400 px-4 py-2">
-                          <p className="text-center m-4 text-lg font-semibold">
-                            <span className="text-[19px] text-center">
-                              รับครั้งล่าสุด<br />
-                              <Link
-                                href={`https://polygonscan.com/address/${input}`}
-                                className="text-[18px] text-blue-300 hover:text-red-500"
-                                target="_blank">
-                                <p className="mt-3">
-                                  {lastReceivedDate ?? 'ยังไม่มีรายการรับ'}
-                                </p>
-                              </Link>
-                            </span>
-                          </p>
-                        </th>
-                      </tr>
-                    </tfoot>
                   </table>
                 </div>
               </div>
