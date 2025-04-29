@@ -9,6 +9,7 @@ import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
 import ReferralTree from "@/components/ReferralTree";
 import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
+import ReferralSummary from "@/components/ReferralSummary";
 
 interface UserData {
     userId: string;
@@ -116,169 +117,13 @@ export default function RefereePage() {
                 margin: "20px",
             }}>
                 <Header />
-                <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
-                <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
-                <input
-                    type="text"
-                    placeholder="ใส่เลขกระเป๋า..."
-                    value={referrerId}
-                    onChange={(e) => setReferrerId(e.target.value)}
-                    className="text-[18px] text-center border border-gray-400 p-2 rounded mt-4 w-full bg-gray-900 text-white break-all"
+                <ReferralSummary
+                    referrerId={referrerId}
+                    setReferrerId={setReferrerId}
+                    users={users}
+                    reportData={reportData}
                 />
-                {/* <h2 className="text-center text-[18px] mt-3 text-yellow-500 break-all">ระบบมีการปรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Token ID</b></span> เพื่อรองรับ <span className="text-red-500 text-[20px] mx-2 animate-blink"><b>Plan B</b></span></h2> */}
-                {matchingUser && (
-                    <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
-                        <thead>
-                            <tr>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th className="text-[18px] text-left font-normal border border-gray-400 px-6 py-2 break-word">
-                                    <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
-                                    <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
-                                    <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
-                                    <b>ลงทะเบียน:</b> {matchingUser.userCreated || "N/A"}<br />
-                                    <b>เข้า Plan A:</b> {matchingUser.planA || "N/A"}<br />
-                                    <b>เข้า Plan B:</b> {matchingUser.planB || "N/A"}<br />
-                                    <span className="text-[19px] text-red-600">
-                                        <b>Token ID: {matchingUser.tokenId || "N/A"}</b>
-                                    </span><br />
-                                    <b>PR by:</b>&nbsp;
-                                    <button
-                                            className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                            onClick={() => setReferrerId(matchingUser.referrerId)}
-                                        >
-                                            {matchingUser.referrerId}
-                                        </button>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                )}
-                {matchingUsers.length > 0 && (
-                    <div>
-                        <table className="table-auto border-collapse mt-4 w-full">
-                            <thead>
-                                <tr>
-                                    <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                    <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิกในครอบครัว</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {matchingUsers.map((user) => (
-                                    <tr key={user.userId}>
-                                        <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                        <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all relative">
-                                            <b>เลขกระเป๋า:</b>&nbsp;
-                                            <button
-                                                className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                                onClick={() => setReferrerId(user.userId)}
-                                            >
-                                                {user.userId}
-                                            </button>
-                                            <br />
-                                            <b>อีเมล:</b> {user.email || "N/A"}
-                                            
-                                            {/* Toggle Button */}
-                                            <button
-                                                className="absolute top-2 right-4 text-yellow-500 hover:text-red-500"
-                                                onClick={() => setExpandedUser(expandedUser === user.userId ? null : user.userId)}
-                                            >
-                                                {expandedUser === user.userId ? <span className="text-[18px]">⏶</span> : <span className="text-[18px]">⏷</span>}
-                                            </button>
 
-                                            {/* Expanded Details */}
-                                            {expandedUser === user.userId && (
-                                                <div className="mt-2 break-word">
-                                                    <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                    <b>ลงทะเบียน:</b> {user.userCreated || "N/A"}<br />
-                                                    <b>เข้า Plan A:</b> {formatDate(user.planA) || "N/A"}<br />
-                                                    <b>เข้า Plan B:</b> {formatDate(user.planB) || "N/A"}<br />
-                                                    <span className="text-[19px] text-red-600">
-                                                        <b>Token ID: {user.tokenId || "N/A"}</b>
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </th>
-                                    </tr>
-                                ))}
-                            </tbody>
-
-                        </table>
-                        <table className="w-full justify-center items-center">
-                            <tbody>
-                                <tr className="colspan-[1]">
-                                    <th>
-                                        <p className="mb-12 text-center m-4 pr-10 text-lg font-semibold">
-                                            <span className="text-[19px] text-center">
-                                                รวมจำนวนสมาชิก Direct PR : &nbsp;&nbsp;
-                                                <span className="text-[24px] text-yellow-500">{matchingUsers.length}</span>
-                                                &nbsp;&nbsp; ท่าน</span>
-                                        </p>
-                                    </th>
-                                </tr>
-                            </tbody>
-                            <tbody className="mt-6 w-full justify-center items-center">
-                                <tr className="mt-4 colspan-[1] bg-gray-900 text-[19px] font-bold">
-                                    <th className="border border-gray-400 py-3 px-4 text-center">
-                                        <p className="text-[19px] text-center m-2 text-lg font-semibold">
-                                                ส่วนแบ่งรายได้  PR Bonus
-                                        </p>
-                                    </th>
-                                </tr>
-                                <tr className="w-full">
-                                    <th className="border border-gray-400 px-4 py-2">
-                                        <div className="text-center">
-                                            <p className="text-center m-4 text-lg font-semibold">
-                                                <span className="text-[18px] text-center">
-                                                    ยอดรวม&nbsp;&nbsp;&nbsp;
-                                                    <span className="text-[24px] text-yellow-500 animate-blink">
-                                                        {matchingUsers.length * 12}
-                                                    </span> &nbsp; POL
-                                                </span>
-                                            </p>
-                                            <p className="text-center m-4 text-lg font-semibold">
-                                                <span className="text-[18px] text-center">
-                                                    รับแล้ว&nbsp;&nbsp;&nbsp;
-                                                    <span className="text-[24px] text-green-500 animate-blink">
-                                                        {totalSentAmount}
-                                                    </span> &nbsp; POL
-                                                </span>
-                                            </p>
-                                            <p className="text-center m-4 text-lg font-semibold">
-                                                <span className="text-[18px] text-center">
-                                                    ยอดใหม่&nbsp;&nbsp;&nbsp;
-                                                    <span className="text-[24px] text-red-500 animate-blink">
-                                                        {matchingUsers.length * 12 - totalSentAmount}
-                                                    </span> &nbsp; POL
-                                                </span>
-                                            </p>
-                                        </div>
-                                    </th>
-                                </tr>
-                                <tr className="w-full">
-                                    <th className="border border-gray-400 px-4 py-2">
-                                        <p className="text-center m-4 text-lg font-semibold">
-                                            <span className="text-[19px] text-center">
-                                                รับครั้งล่าสุด<br />
-                                                <Link 
-                                                    href={`https://polygonscan.com/address/${referrerId}`} 
-                                                    className="text-[18px] text-blue-300 hover:text-red-500"
-                                                    target="_blank">
-                                                    <p className="mt-3">
-                                                        {latestSentDate}
-                                                    </p>
-                                                </Link>
-                                            </span>
-                                        </p>
-                                    </th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                )}
                 <div className="mt-6 w-full">
                     <ReferralTree referrerId={referrerId} />
                     {/* <Dynamic10GensReferralTable referrerId={referrerId} /> */}
