@@ -302,6 +302,18 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
   
   const [lastReceivedDate, setLastReceivedDate] = useState<string | null>(null);
 
+  const rowsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Flatten the tree into a paginated list
+  const flattenedRows = renderTree(tree); // assuming this returns an array of <tr> elements
+
+  const totalPages = Math.ceil(flattenedRows.length / rowsPerPage);
+  const paginatedRows = flattenedRows.slice(
+    (currentPage - 1) * rowsPerPage,
+    currentPage * rowsPerPage
+  );
+
   return (
     <div className="text-[18px] pt-6 w-full">
       <div className="text-center">
@@ -334,7 +346,7 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
               </tr>
             </thead>
             <tbody>
-              {renderTree(tree)}
+            {paginatedRows}
               <tr className="bg-gray-900 text-gray-300 text-[19px]">
                 <td className="border border-gray-400 px-4 py-3 text-center font-bold" colSpan={2}>
                   👥 จำนวนสมาชิกทั้งหมดในครอบครัว &nbsp;&nbsp;
@@ -346,6 +358,60 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
               </tr>
             </tbody>
           </table>
+
+          <div className="flex justify-center items-items mt-4 space-x-2 text-white text-[18px]">
+            <button
+              className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
+            >
+              |&lt;
+            </button>
+            <button
+              className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              &lt;
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .slice(
+                Math.max(0, currentPage - 3),
+                Math.min(totalPages, currentPage + 2)
+              )
+              .map((page) => (
+                <button
+                  key={page}
+                  className={`px-3 py-1 rounded ${
+                    currentPage === page ? "bg-yellow-500 text-black font-bold" : "bg-gray-700 text-white"
+                    } hover:bg-red-600`}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              ))}
+
+            <button
+              className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+            >
+              &gt;
+            </button>
+            <button
+              className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+              onClick={() => setCurrentPage(totalPages)}
+              disabled={currentPage === totalPages}
+            >
+              &gt;|
+            </button>
+              <div className="ml-4 text-white">
+                  หน้า <span className="text-yellow-400">{currentPage}</span> /{" "}
+                  <span className="text-yellow-400">{totalPages}</span>
+              </div>
+          </div>
+
           {/* <div className="w-full justify-items-center text-center">
             <button
               onClick={exportToJson}
