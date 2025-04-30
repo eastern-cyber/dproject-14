@@ -60,6 +60,54 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
         });
     };
 
+    // Add useEffect and pagination logic
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 10;
+    const totalPages = Math.ceil(matchingUsers.length / usersPerPage);
+
+    const paginatedUsers = matchingUsers.slice(
+        (currentPage - 1) * usersPerPage,
+        currentPage * usersPerPage
+    );
+
+    const changePage = (page: number) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const renderPageNumbers = () => {
+        const pages = [];
+        const maxPagesToShow = 7;
+        const start = Math.max(1, currentPage - 3);
+        const end = Math.min(totalPages, start + maxPagesToShow - 1);
+
+        if (start > 1) {
+            pages.push(<span key="startEllipsis">...</span>);
+        }
+
+        for (let i = start; i <= end; i++) {
+            pages.push(
+                <button
+                    key={i}
+                    className={`mx-1 px-2 py-1 rounded ${
+                        i === currentPage ? "bg-yellow-500 text-black font-bold" : "bg-gray-700 text-white"
+                    } hover:bg-red-600`}
+                    onClick={() => changePage(i)}
+                >
+                    {i}
+                </button>
+            );
+        }
+
+        if (end < totalPages) {
+            pages.push(<span key="endEllipsis">...</span>);
+        }
+
+        return pages;
+    };
+
+
     return (
         <>
             <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
@@ -115,7 +163,7 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                             </tr>
                         </thead>
                         <tbody>
-                            {matchingUsers.map((user) => (
+                            {paginatedUsers.map((user) => (
                                 <tr key={user.userId}>
                                     <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
                                     <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all relative">
@@ -152,6 +200,42 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                             ))}
                         </tbody>
                     </table>
+
+                    <div className="flex justify-center items-center mt-6 space-x-1 text-sm flex-wrap">
+                        <button
+                            className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                            onClick={() => changePage(1)}
+                            disabled={currentPage === 1}
+                        >
+                            |&lt;
+                        </button>
+                        <button
+                            className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                            onClick={() => changePage(currentPage - 1)}
+                            disabled={currentPage === 1}
+                        >
+                            &lt;
+                        </button>
+                        {renderPageNumbers()}
+                        <button
+                            className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                            onClick={() => changePage(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                        >
+                            &gt;
+                        </button>
+                        <button
+                            className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
+                            onClick={() => changePage(totalPages)}
+                            disabled={currentPage === totalPages}
+                        >
+                            &gt;|
+                        </button>
+                        <div className="ml-4 text-white">
+                            หน้า <span className="text-yellow-400">{currentPage}</span> /{" "}
+                            <span className="text-yellow-400">{totalPages}</span>
+                        </div>
+                    </div>
 
                     {/* Summary table */}
                     <table className="w-full justify-center items-center">
