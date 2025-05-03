@@ -359,7 +359,7 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
             </tbody>
           </table>
 
-          <div className="flex justify-center items-items mt-4 space-x-2 text-white text-[18px]">
+          <div className="flex justify-center items-center mt-6 space-x-1 text-sm flex-wrap">
             <button
               className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-red-600 disabled:opacity-50"
               onClick={() => setCurrentPage(1)}
@@ -406,7 +406,7 @@ const ReferralTree: React.FC<ReferralTreeProps> = ({ referrerId }) => {
             >
               &gt;|
             </button>
-              <div className="ml-4 text-white">
+              <div className="pl-2 ml-4 text-white">
                   หน้า <span className="text-yellow-400">{currentPage}</span> /{" "}
                   <span className="text-yellow-400">{totalPages}</span>
               </div>
