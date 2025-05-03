@@ -231,10 +231,10 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                         >
                             &gt;|
                         </button>
-                        <div className="ml-4 text-white">
-                            หน้า <span className="text-yellow-400">{currentPage}</span> /{" "}
-                            <span className="text-yellow-400">{totalPages}</span>
-                        </div>
+                            <div className="ml-4 text-white">
+                                หน้า <span className="text-yellow-400">{currentPage}</span> /{" "}
+                                <span className="text-yellow-400">{totalPages}</span>
+                            </div>
                     </div>
 
                     {/* Summary table */}
