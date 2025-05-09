@@ -55,6 +55,7 @@ const WalletConnect: React.FC = () => {
                     "0x2a61627c3457cCEA35482cAdEC698C7360fFB9F2", // nft contract address
                     "0x60aD2f102FDb0e09ED50e2ab07573079C956aFB8",
                     "0xF8a1C75Ee5802328Dc38460437154DC624e473ee",
+                    "0x532313164FDCA3ACd2C2900455B208145f269f0e", // KTDFI contract address
                 ],
                 }}
                 theme={darkTheme({
