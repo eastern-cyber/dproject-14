@@ -1,8 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+interface TransactionData {
+    "Transaction Hash": string;
+    "DateTime (UTC)": string;
+    From: string;
+    To: string;
+    "Value_OUT(POL)": string;
+  }
 interface UserData {
     userId: string;
     referrerId: string;
@@ -30,6 +37,33 @@ interface Props {
 
 const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, reportData }) => {
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
+    const [transactionData, setTransactionData] = useState<TransactionData[]>([]);
+    const [userPolMap, setUserPolMap] = useState<{ [key: string]: number }>({});
+  
+    useEffect(() => {
+      // Fetch the JSON data
+      fetch("https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/CaringBonus-Payout-Success_Polygonscan.json")
+        .then((response) => response.json())
+        .then((data: TransactionData[]) => {
+          setTransactionData(data);
+  
+          // Create a map to store the total POL for each user
+          const polMap: { [key: string]: number } = {};
+  
+          data.forEach((transaction) => {
+            const toAddress = transaction.To.toLowerCase();
+            const valueOut = parseFloat(transaction["Value_OUT(POL)"]);
+            if (!isNaN(valueOut)) {
+              polMap[toAddress] = (polMap[toAddress] || 0) + valueOut;
+            }
+          });
+  
+          setUserPolMap(polMap);
+        })
+        .catch((error) => {
+          console.error("Error fetching transaction data:", error);
+        });
+    }, []);
 
     const matchingUser = users.find(user => user.userId === referrerId);
     const matchingUsers = users.filter(
@@ -129,53 +163,58 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
             {/* Matching Direct PR Members */}
             {matchingUsers.length > 0 && (
                 <>
-                    <table className="table-auto border-collapse mt-4 w-full">
-                        <thead>
-                            <tr>
-                                <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">Direct PR</th>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">Return Bonus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {paginatedUsers.map((user) => (
-                                <tr key={user.userId}>
-                                    <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                    <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all relative">
-                                        <b>เลขกระเป๋า:</b>&nbsp;
-                                        <button
-                                            className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                            onClick={() => setReferrerId(user.userId)}
-                                        >
-                                            {user.userId}
-                                        </button>
-                                        <br />
-                                        <b>อีเมล:</b> {user.email || "N/A"}
+                <table className="table-auto border-collapse mt-4 w-full">
+                    <thead>
+                    <tr>
+                        <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
+                        <th className="text-[19px] border border-gray-400 px-4 py-2">Direct PR</th>
+                        <th className="text-[19px] border border-gray-400 px-4 py-2">Return Bonus</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {paginatedUsers.map((user) => {
+                        const userIdLower = user.userId.toLowerCase();
+                        const totalPol = userPolMap[userIdLower] || 0;
 
-                                        <button
-                                            className="absolute top-2 right-4 text-yellow-500 hover:text-red-500"
-                                            onClick={() => setExpandedUser(expandedUser === user.userId ? null : user.userId)}
-                                        >
-                                            {expandedUser === user.userId ? "⏶" : "⏷"}
-                                        </button>
+                        return (
+                        <tr key={user.userId}>
+                            <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
+                            <th className="text-[18px] font-normal text-left border border-gray-400 px-4 py-2 break-all relative">
+                            <b>เลขกระเป๋า:</b>&nbsp;
+                            <button
+                                className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
+                                onClick={() => setReferrerId(user.userId)}
+                            >
+                                {user.userId}
+                            </button>
+                            <br />
+                            <b>อีเมล:</b> {user.email || "N/A"}
 
-                                        {expandedUser === user.userId && (
-                                            <div className="mt-2 break-word">
-                                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
-                                                <b>ลงทะเบียน:</b> {user.userCreated || "N/A"}<br />
-                                                <b>เข้า Plan A:</b> {formatDate(user.planA)}<br />
-                                                <b>เข้า Plan B:</b> {formatDate(user.planB)}<br />
-                                                <span className="text-[19px] text-red-600">
-                                                    <b>Token ID: {user.tokenId || "N/A"}</b>
-                                                </span>
-                                            </div>
-                                        )}
-                                    </th>
-                                    <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            <button
+                                className="absolute top-2 right-4 text-yellow-500 hover:text-red-500"
+                                onClick={() => setExpandedUser(expandedUser === user.userId ? null : user.userId)}
+                            >
+                                {expandedUser === user.userId ? "⏶" : "⏷"}
+                            </button>
+
+                            {expandedUser === user.userId && (
+                                <div className="mt-2 break-word">
+                                <b>ชื่อ:</b> {user.name || "N/A"}<br />
+                                <b>ลงทะเบียน:</b> {user.userCreated || "N/A"}<br />
+                                <b>เข้า Plan A:</b> {formatDate(user.planA)}<br />
+                                <b>เข้า Plan B:</b> {formatDate(user.planB)}<br />
+                                <span className="text-[19px] text-red-600">
+                                    <b>Token ID: {user.tokenId || "N/A"}</b>
+                                </span>
+                                </div>
+                            )}
+                            </th>
+                            <th className="border border-gray-400 px-4 py-2">{totalPol.toFixed(2)} POL</th>
+                        </tr>
+                        );
+                    })}
+                    </tbody>
+                </table>
 
                     <div className="flex justify-center items-center mt-6 space-x-1 text-sm flex-wrap">
                         <button
