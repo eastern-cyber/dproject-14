@@ -8,8 +8,9 @@ import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
 import ReferralTree from "@/components/ReferralTree";
-import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
 import ReferralSummary from "@/components/ReferralSummary";
+import ReturnBonusData from "@/components/ReturnBunusData";
+
 
 interface UserData {
     userId: string;
@@ -117,22 +118,29 @@ export default function RefereePage() {
                 margin: "20px",
             }}>
                 <Header />
-                <ReferralSummary
-                    referrerId={referrerId}
-                    setReferrerId={setReferrerId}
-                    users={users}
-                    reportData={reportData}
-                />
-
-                <div className="mt-6 w-full">
+                <div className="max-w-4xl mx-auto mt-10 w-full">
+                    <ReferralSummary
+                        referrerId={referrerId}
+                        setReferrerId={setReferrerId}
+                        users={users}
+                        reportData={reportData}
+                    />
+                </div>
+                <div className="max-w-4xl mx-auto mt-10 w-full">
                     <ReferralTree referrerId={referrerId} />
-                    {/* <Dynamic10GensReferralTable referrerId={referrerId} /> */}
-                    {/* <Dynamic10GensReferralTable /> */}
+                </div>
+                <div className="max-w-4xl mx-auto mt-10 w-full">
+                    <ReturnBonusData
+                        referrerId={referrerId}
+                        setReferrerId={setReferrerId}
+                        users={users}
+                        reportData={reportData}
+                    />
                 </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link
                     className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
-                    href="/member-area/check-referee">
+                    href="/member-area/check-user">
                     <p className="text-center text-[19px]">ตรวจสอบรายละเอียดสมาชิก</p>
                 </Link>
                 <Link className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"

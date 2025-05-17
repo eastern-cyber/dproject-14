@@ -28,7 +28,7 @@ interface Props {
     reportData: ReportData[];
 }
 
-const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, reportData }) => {
+const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, reportData }) => {
     const [expandedUser, setExpandedUser] = useState<string | null>(null);
 
     const matchingUser = users.find(user => user.userId === referrerId);
@@ -110,8 +110,8 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
 
     return (
         <>
-            <h1 className="text-center text-[20px] font-bold">รายละเอียด ส่วนแบ่งรายได้</h1>
-            <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
+            <h1 className="text-center text-[20px] font-bold">รายละเอียด Return Bonus</h1>
+            {/* <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2> */}
             <input
                 type="text"
                 placeholder="ใส่เลขกระเป๋า..."
@@ -121,34 +121,8 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
             />
 
             {matchingUser && (
-                <table className="table-auto border-collapse border border-gray-500 mt-4 w-full">
-                    <thead>
-                        <tr>
-                            <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th className="text-[18px] text-left font-normal border border-gray-400 px-6 py-2 break-word">
-                                <b>เลขกระเป๋า:</b> <span className="text-red-500 break-all">{matchingUser.userId}</span><br />
-                                <b>อีเมล:</b> {matchingUser.email || "N/A"}<br />
-                                <b>ชื่อ:</b> {matchingUser.name || "N/A"}<br />
-                                <b>ลงทะเบียน:</b> {matchingUser.userCreated || "N/A"}<br />
-                                <b>เข้า Plan A:</b> {matchingUser.planA || "N/A"}<br />
-                                <b>เข้า Plan B:</b> {matchingUser.planB || "N/A"}<br />
-                                <span className="text-[19px] text-red-600">
-                                    <b>Token ID: {matchingUser.tokenId || "N/A"}</b>
-                                </span><br />
-                                <b>PR by:</b>&nbsp;
-                                <button
-                                    className="text-left font-normal text-[18px] text-yellow-500 hover:text-red-500 break-all"
-                                    onClick={() => setReferrerId(matchingUser.referrerId)}
-                                >
-                                    {matchingUser.referrerId}
-                                </button>
-                            </th>
-                        </tr>
-                    </tbody>
+                <table>
+
                 </table>
             )}
 
@@ -159,7 +133,8 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                         <thead>
                             <tr>
                                 <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                                <th className="text-[19px] border border-gray-400 px-4 py-2">รายละเอียดสมาชิก Direct PR</th>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">Direct PR</th>
+                                <th className="text-[19px] border border-gray-400 px-4 py-2">Return Bonus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -196,6 +171,7 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                                             </div>
                                         )}
                                     </th>
+                                    <th className="border border-gray-400 px-4 py-2">{user.recordNumber}</th>
                                 </tr>
                             ))}
                         </tbody>
@@ -254,7 +230,7 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                         <tbody className="mt-6">
                             <tr className="bg-gray-900 text-[19px] font-bold">
                                 <th className="border border-gray-400 py-3 px-4 text-center">
-                                    <p className="text-[19px] m-2 font-semibold">ส่วนแบ่งรายได้  PR Bonus</p>
+                                    <p className="text-[19px] m-2 font-semibold">ส่วนแบ่งรายได้  Return Bonus</p>
                                 </th>
                             </tr>
                             <tr>
@@ -292,4 +268,4 @@ const ReferralSummary: React.FC<Props> = ({ referrerId, setReferrerId, users, re
     );
 };
 
-export default ReferralSummary;
+export default ReturnBonusData;

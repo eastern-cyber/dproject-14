@@ -8,7 +8,10 @@ import { useEffect, useState } from "react";
 import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
 import ReferralTree from "@/components/ReferralTree";
-import Dynamic10GensReferralTable from "@/components/Dynamic10GensReferralTable";
+import ReferralSummary from "@/components/ReferralSummary";
+import ReturnBonusData from "@/components/ReturnBonusData";
+
+
 interface UserData {
     userId: string;
     referrerId: string;
@@ -20,12 +23,23 @@ interface UserData {
     planB?: string;
 }
 
-export default function CheckUserPage() {
+interface ReportData {
+    walletAddress: string;
+    sentAmount: number;
+    sentDate: string;
+}
+
+export default function RefereePage() {
+    const [expandedUser, setExpandedUser] = useState<string | null>(null);
+
     const account = useActiveAccount();
     const [users, setUsers] = useState<UserData[] | null>(null);
     const [loading, setLoading] = useState(true);
     const [referrerId, setReferrerId] = useState("");
+    const [reportData, setReportData] = useState<ReportData[] | null>(null);
+    
     const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
+    const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/send-pol-report.json";
 
     useEffect(() => {
         if (account?.address) {
@@ -34,10 +48,13 @@ export default function CheckUserPage() {
     }, [account?.address]);
 
     useEffect(() => {
-        fetch(usersUrl)
-            .then((res) => res.json())
-            .then((data) => {
-                setUsers(data);
+        Promise.all([
+            fetch(usersUrl).then((res) => res.json()),
+            fetch(reportUrl).then((res) => res.json()),
+        ])
+            .then(([userData, reportData]) => {
+                setUsers(userData);
+                setReportData(reportData);
                 setLoading(false);
             })
             .catch((err) => {
@@ -47,13 +64,26 @@ export default function CheckUserPage() {
     }, []);
 
     if (loading) return <div className="p-6">Loading...</div>;
-    if (!users) return <div className="p-6 text-red-600">Failed to load data.</div>;
+    if (!users || !reportData) return <div className="p-6 text-red-600">Failed to load data.</div>;
 
+    const matchingUser = users.find(user => user.userId === referrerId);
+
+    // Aggregate sentAmount and get the latest sentDate
+    const relevantReports = reportData.filter(report => report.walletAddress === matchingUser?.userId);
+
+    // Get the latest sentDate from the last matching record
+    const latestSentDate = relevantReports.length > 0 
+        ? relevantReports[relevantReports.length - 1].sentDate 
+        : "N/A";
+
+    // Properly sum the total sent amount
+    const totalSentAmount = relevantReports.reduce((sum, report) => sum + Number(report.sentAmount), 0);
+    
     const matchingUsers = users.filter(
         (user) => user.referrerId === referrerId && user.userId.trim() !== ""
     ).map((user, index) => ({ ...user, recordNumber: index + 1 }));
 
-    const matchingUser = users.find(user => user.userId === referrerId);
+    const walletAddress = account?.address || "";
 
     const formatDate = (dateString?: string) => {
         if (!dateString) return "N/A";
@@ -76,34 +106,44 @@ export default function CheckUserPage() {
             hour12: false, // Ensures 24-hour format
         });
     };
-
+    
     return (
-        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center w-full">
+        <main className="p-4 pb-10 min-h-[100vh] flex flex-col items-center">
             <div style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "5px",
-                margin: "5px",
-                // border: "1px solid #333",
-                width: "full"
-                // borderRadius: "8px",
+                margin: "20px",
             }}>
                 <Header />
-                <h1 className="text-center text-[20px] font-bold">ตรวจสอบจำนวนสมาชิกในสายงาน</h1>
-                <h2 className="text-center text-[16px] break-all">ใส่เลขกระเป๋าของท่าน หรือ เลขกระเป๋าของผู้ที่ต้องการจะตรวจสอบ</h2>
-                <ReferralTree referrerId={referrerId} />
-                {/* <Dynamic10GensReferralTable /> */}
+                <div className="max-w-4xl mx-auto mt-10 w-full">
+                    <ReferralSummary
+                        referrerId={referrerId}
+                        setReferrerId={setReferrerId}
+                        users={users}
+                        reportData={reportData}
+                    />
+                </div>
+                <div className="max-w-4xl mx-auto mt-10 w-full">
+                    <ReferralTree referrerId={referrerId} />
+                </div>
+                <div className="max-w-4xl mx-auto mt-10 w-full">
+                    <ReturnBonusData
+                        referrerId={referrerId}
+                        setReferrerId={setReferrerId}
+                        users={users}
+                        reportData={reportData}
+                    />
+                </div>
                 <WalletBalances walletAddress={account?.address || ""} setReferrerId={setReferrerId} />
                 <Link 
                     className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
                     href="/member-area/check-payout">
                     <p className="text-center text-[19px]">ตรวจสอบส่วนแบ่งรายได้</p>
                 </Link>
-
-                <Link 
-                    className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300" 
+                <Link className="mb-8 border border-zinc-500 px-4 py-3 rounded-lg hover:bg-red-600 hover:text-yellow-200 hover:border-yellow-300"
                     href="/member-area">
                     <p className="text-center text-[19px]">กลับสู่พื้นที่สมาชิก</p>
                 </Link>
@@ -132,7 +172,7 @@ const WalletBalances: React.FC<WalletBalancesProps>= ({ walletAddress, setReferr
             </button>
         </div>
             <p className="text-center my-3 text-[16px]">
-                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่สายงานของท่าน
+                คลิ๊กเลขกระเป๋าด้านบนนี้ เพื่อกลับไปเริ่มต้นที่รายละเอียดของตัวท่านเอง
             </p>
     </div>
 );
@@ -143,7 +183,7 @@ function Header() {
             <Link href="/">
                 <Image src={dprojectIcon} alt="" className="m-8 size-[100px]" />
             </Link>
-            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check Referee</h1>
+            <h1 className="text-1xl md:text-4xl font-semibold md:font-bold mb-6">Check User</h1>
             <WalletConnect />
         </header>
     );
