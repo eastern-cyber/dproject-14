@@ -9,7 +9,7 @@ import WalletConnect from "@/components/WalletConnect";
 import Footer from "@/components/Footer";
 import ReferralTree from "@/components/ReferralTree";
 import ReferralSummary from "@/components/ReferralSummary";
-import ReturnBonusData from "@/components/ReturnBunusData";
+import ReturnBonusData from "@/components/ReturnBonusData";
 
 
 interface UserData {
