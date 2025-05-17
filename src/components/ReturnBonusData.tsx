@@ -140,7 +140,16 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
 
         return pages;
     };
+    
+    const paginatedTotalPol = paginatedUsers.reduce((sum, user) => {
+        const userIdLower = user.userId.toLowerCase();
+        return sum + (userPolMap[userIdLower] || 0);
+    }, 0);    
 
+    const grandTotalPol = matchingUsers.reduce((sum, user) => {
+        const userIdLower = user.userId.toLowerCase();
+        return sum + (userPolMap[userIdLower] || 0);
+    }, 0);
 
     return (
         <>
@@ -167,8 +176,8 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                     <thead>
                     <tr>
                         <th className="border border-gray-400 px-4 py-2 w-1/6">#</th>
-                        <th className="text-[19px] border border-gray-400 px-4 py-2">Direct PR</th>
-                        <th className="text-[19px] border border-gray-400 px-4 py-2">Return Bonus</th>
+                        <th className="text-[19px] border border-gray-400 px-4 py-2">Return Bonus from Direct PR</th>
+                        <th className="text-[19px] border border-gray-400 px-4 py-2">POL</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -209,11 +218,29 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                                 </div>
                             )}
                             </th>
-                            <th className="border border-gray-400 px-4 py-2">{totalPol.toFixed(2)} POL</th>
+                            <th className="border border-gray-400 px-4 py-2">{totalPol.toFixed(2)}</th>
                         </tr>
                         );
                     })}
                     </tbody>
+                    <tfoot>
+                        <tr className="bg-gray-900 text-white font-bold">
+                            <td className="border border-gray-400 px-4 py-2 text-center" colSpan={2}>
+                                รวมยอด Return Bonus หน้านี้
+                            </td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">
+                                {paginatedTotalPol.toFixed(2)}
+                            </td>
+                        </tr>
+                        <tr className="bg-gray-800 text-white font-bold">
+                            <td className="border border-gray-400 px-4 py-2 text-center" colSpan={2}>
+                                รวมยอด Return Bonus ทั้งหมด &#40; POL &#41;
+                            </td>
+                            <td className="border border-gray-400 px-4 py-2 text-center">
+                                {grandTotalPol.toFixed(2)}
+                            </td>
+                        </tr>
+                    </tfoot>
                 </table>
 
                     <div className="flex justify-center items-center mt-6 space-x-1 text-sm flex-wrap">
@@ -275,27 +302,27 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                             <tr>
                                 <th className="border border-gray-400 px-4 py-2 text-center">
                                     <p className="text-[18px]">
-                                        ยอดรวม <span className="text-[24px] text-yellow-500 animate-blink">{matchingUsers.length * 12}</span> POL
+                                        ยอดรวมที่ท่านจะได้รับ <span className="text-[24px] text-yellow-500 animate-blink">{grandTotalPol.toFixed(2)}</span> POL
                                     </p>
-                                    <p className="text-[18px]">
+                                    {/* <p className="text-[18px]">
                                         รับแล้ว <span className="text-[24px] text-green-500 animate-blink">{totalSentAmount}</span> POL
                                     </p>
                                     <p className="text-[18px]">
                                         ยอดใหม่ <span className="text-[24px] text-red-500 animate-blink">{matchingUsers.length * 12 - totalSentAmount}</span> POL
-                                    </p>
+                                    </p> */}
                                 </th>
                             </tr>
                             <tr>
                                 <th className="border border-gray-400 px-4 py-2 text-center">
                                     <p className="text-[19px]">
                                         รับครั้งล่าสุด<br />
-                                        <Link
+                                        {/* <Link
                                             href={`https://polygonscan.com/address/${referrerId}`}
                                             className="text-[18px] text-blue-300 hover:text-red-500"
                                             target="_blank"
                                         >
                                             <p className="mt-3">{latestSentDate}</p>
-                                        </Link>
+                                        </Link> */}
                                     </p>
                                 </th>
                             </tr>
