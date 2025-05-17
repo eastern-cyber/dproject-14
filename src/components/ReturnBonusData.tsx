@@ -226,7 +226,7 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                     <tfoot>
                         <tr className="bg-gray-900 text-white font-bold">
                             <td className="border border-gray-400 px-4 py-2 text-center" colSpan={2}>
-                                รวมยอด Return Bonus หน้านี้
+                                รวม Return Bonus หน้านี้
                             </td>
                             <td className="border border-gray-400 px-4 py-2 text-center">
                                 {paginatedTotalPol.toFixed(2)}
@@ -234,7 +234,7 @@ const ReturnBonusData: React.FC<Props> = ({ referrerId, setReferrerId, users, re
                         </tr>
                         <tr className="bg-gray-800 text-white font-bold">
                             <td className="border border-gray-400 px-4 py-2 text-center" colSpan={2}>
-                                รวมยอด Return Bonus ทั้งหมด &#40; POL &#41;
+                                รวม Return Bonus ทั้งหมด &#40; POL &#41;
                             </td>
                             <td className="border border-gray-400 px-4 py-2 text-center">
                                 {grandTotalPol.toFixed(2)}
