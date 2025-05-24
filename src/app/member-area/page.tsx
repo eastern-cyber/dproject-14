@@ -160,13 +160,13 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
             tokenId: 0n
         }
     );
-    const { data: dfastBalance } = useReadContract(
+    const { data: ktdfiBalance } = useReadContract(
         balanceOfERC20,
         {
             contract: getContract({
                 client: client,
                 chain: defineChain(polygon),
-                address: "0xca23b56486035e14F344d6eb591DC27274AF3F47"
+                address: "0x532313164FDCA3ACd2C2900455B208145f269f0e"
             }),
             address: walletAddress || ""
         }
@@ -239,6 +239,10 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                     new Intl.NumberFormat("en-US",{minimumFractionDigits: 2,maximumFractionDigits: 6,})
                     .format(Number(toEther(polBalance || 0n))): "0"}
                     {/* {walletAddress ? (Number(toEther(polBalance || 0n))).toFixed(2) : "0"} */}
+                </div>
+                <div className="flex mt-3 gap-2 md:gap-2">
+                    <img className="h-6 w-6 rounded-full mr-1" src="https://ipfs.io/ipfs/QmSLo5e3PSBWgF3wysabPzsBjoRLngrFoVNrGwgL3vm2Zn/KTDFI_600x600.png" />
+                    เหรียญ KTDFI: {walletAddress ? (Number(ktdfiBalance) / 1_000_000).toFixed(2) : "0"}
                 </div>
                 <div className="flex mt-3 gap-2 md:gap-2">
                     <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/centre-usdc_32.png" />
