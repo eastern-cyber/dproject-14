@@ -242,8 +242,9 @@ const WalletBalances: React.FC<walletAddresssProps> = ({ walletAddress }) => {
                 </div>
                 <div className="flex mt-3 gap-2 md:gap-2">
                     <img className="h-6 w-6 rounded-full mr-1" src="https://ipfs.io/ipfs/QmSLo5e3PSBWgF3wysabPzsBjoRLngrFoVNrGwgL3vm2Zn/KTDFI_600x600.png" />
-                    เหรียญ KTDFI: {walletAddress ? (Number(ktdfiBalance) / 1_000_000).toFixed(2) : "0"}
+                    เหรียญ KTDFI: {walletAddress ? (Number(ktdfiBalance) / 1e18).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0.00"}
                 </div>
+
                 <div className="flex mt-3 gap-2 md:gap-2">
                     <img className="h-6 w-6 rounded-full mr-1" src="https://polygonscan.com/token/images/centre-usdc_32.png" />
                     เหรียญ USDC: {walletAddress ? (Number(usdcBalance) / 1_000_000).toFixed(2) : "0"}
