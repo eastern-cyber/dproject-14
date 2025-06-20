@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 // import { ThirdwebSDK } from "thirdweb";
+// import { polygon } from "@thirdweb-dev/chains";
 import { polygon } from "thirdweb/chains";
 
 export default async function handler(
@@ -15,11 +16,11 @@ export default async function handler(
 
   try {
     // 1. Initialize SDK
-    const sdk = new ThirdwebSDK({
-      chain: polygon,
-      clientId: process.env.THIRDWEB_CLIENT_ID,
-      secretKey: process.env.THIRDWEB_SECRET_KEY,
+    const sdk = new ThirdwebSDK("polygon", {
+        clientId: process.env.THIRDWEB_CLIENT_ID,
+        secretKey: process.env.THIRDWEB_SECRET_KEY,
     });
+
 
     // 2. Get your contract
     const contract = await sdk.getContract(
