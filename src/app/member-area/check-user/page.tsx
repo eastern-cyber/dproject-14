@@ -38,7 +38,7 @@ export default function RefereePage() {
     const [referrerId, setReferrerId] = useState("");
     const [reportData, setReportData] = useState<ReportData[] | null>(null);
     
-    const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/dproject-users.json";
+    const usersUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.2/main/public/dproject-users.json";
     const reportUrl = "https://raw.githubusercontent.com/eastern-cyber/dproject-admin-1.0.1/main/public/send-pol-report.json";
 
     useEffect(() => {
