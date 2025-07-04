@@ -91,23 +91,25 @@ const Page: React.FC = () => {
           <table style={{ borderCollapse: 'collapse', minWidth: '900px', border: '1px solid #ccc', textAlign: 'left' }}>
             <thead>
               <tr>
-                <th rowSpan={2}>Token ID</th>
-                <th rowSpan={2} style={{ width: '140px', textAlign: 'right' }}>User ID</th>
-                <th rowSpan={2} style={{ width: '140px', textAlign: 'right' }}>Referrer ID</th>
-                <th rowSpan={2} style={{ textAlign: 'center' }}>Email</th>
-                <th rowSpan={2} style={{ textAlign: 'center' }}>Name</th>
-                <th rowSpan={2}>User Created</th>
-                <th colSpan={2}>Plan A</th>
+                <th rowSpan={2} style={{ width: '80px', textAlign: 'right' }}>Token ID</th>
+                <th rowSpan={2} style={{ width: '180px', textAlign: 'right' }}>User ID</th>
+                <th rowSpan={2} style={{ width: '180px', textAlign: 'right' }}>Referrer ID</th>
+                <th rowSpan={2} style={{ width: '250px', textAlign: 'center' }}>Email</th>
+                <th rowSpan={2} style={{ width: '150px', textAlign: 'center' }}>Name</th>
+                <th rowSpan={2} style={{ width: '180px', textAlign: 'center' }}>User Created</th>
+                <th colSpan={2} style={{ width: '80px', textAlign: 'center' }}>Plan A</th>
               </tr>
               <tr>
-                <th>Date/Time</th>
-                <th>POL</th>
+                <th style={{ width: '100px', textAlign: 'center' }}>Date/Time</th>
+                <th style={{ width: '80px', textAlign: 'center' }}>POL</th>
               </tr>
             </thead>
             <tbody>
               {paginatedUsers.map((user, index) => (
                 <tr key={index}>
-                  <td>{user.tokenId}</td>
+                  <td style={{ width: '80px', textAlign: 'right', margin: '5px' }}>
+                    {user.tokenId}
+                  </td>
                   <td style={{ textAlign: 'right' }}>
                     <span>{shortenAddress(user.userId)}</span>
                     <button
@@ -132,9 +134,9 @@ const Page: React.FC = () => {
                   </td>
                   <td style={{ textAlign: 'center' }}>{user.email}</td>
                   <td style={{ textAlign: 'center' }}>{user.name}</td>
-                  <td>{user.userCreated}</td>
-                  <td>{user.planA.dateTime}</td>
-                  <td>{user.planA.POL}</td>
+                  <td  style={{ textAlign: 'center' }}>{user.userCreated}</td>
+                  <td style={{ textAlign: 'center' }}>{user.planA.dateTime}</td>
+                  <td style={{ textAlign: 'center' }}>{user.planA.POL}</td>
                 </tr>
               ))}
             </tbody>
